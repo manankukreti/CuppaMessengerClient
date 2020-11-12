@@ -9,7 +9,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import sample.Client;
-import sample.Employee;
 import javafx.event.ActionEvent;
 import sample.Message;
 import sample.controller.mainController;
@@ -20,12 +19,11 @@ public class loginController {
 
 
     @FXML
-    private TextField usernameID = new TextField();
+    private TextField usernameID;
     @FXML
-    private TextField passwordID = new TextField();
+    private TextField passwordID;
     private boolean isAuth;
 
-    private Employee currentEmployee;
     Stage stage;
     private Client client = Client.getInstance();
     Gson gson = new Gson();
@@ -47,7 +45,7 @@ public class loginController {
         stage.setScene(mainScreenScene);
 
         mainController controller = loader.getController();
-        controller.setCurrentEmployeeInfo(currentEmployee);
+        controller.setCurrentEmployeeInfo(client.getUser());
         stage.show();
 
     }
@@ -56,7 +54,7 @@ public class loginController {
         String username = usernameID.getText();
         String password = passwordID.getText();
 
-        client.user.username = username;
+        client.getUser().setUsername(username);
 
         String[] credentials = {username, password};
 

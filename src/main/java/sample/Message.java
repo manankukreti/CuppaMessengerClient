@@ -2,10 +2,10 @@ package sample;
 import java.io.Serializable;
 
 public class Message implements Serializable {
-    String from;
-    String to;
-    String type;
-    String subject;
+    public String from;
+    public String to;
+    public String type;
+    public String subject;
     public String message;
 
     public Message(String from, String to, String type, String subject, String message) {

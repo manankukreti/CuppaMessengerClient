@@ -10,15 +10,15 @@ import java.net.UnknownHostException;
 import java.util.Arrays;
 
 public class Client {
-	public static Client instance = null;
-	public User user;
+	private static Client instance = null;
+	private User user;
 	private final Socket socket;
-	public InputStream in;
-	public OutputStream out;
-	public boolean isAuth;
-	
+	private final InputStream in;
+	private final OutputStream out;
+	private boolean isAuth = false;
+
+
 	private Client() throws IOException {
-		System.out.println("constructed");
 		user = new User();
 		socket = new Socket("localhost", 5000);
 		in = socket.getInputStream();
@@ -37,7 +37,7 @@ public class Client {
 		return instance;
 	}
 
-	
+
 	public void send(Message msg) throws IOException {
 		DataOutputStream dout = new DataOutputStream(out);
 		Gson gson = new Gson();
@@ -46,18 +46,60 @@ public class Client {
 	}
 
 	public void sendToUser(String to, String msg) throws IOException {
-		send(new Message(user.username, to, "MSG-TEXT", "user_to_user", msg));
+		send(new Message(user.getUsername(), to, "MSG-TEXT", "user_to_user", msg));
 	}
 
 	public void sendToGroup(String[] to, String msg) throws IOException {
 		send(new Message(Arrays.toString(to), "", "MSG-TEXT", "user_to_group", msg));
 	}
 
+	//set user status
+	public void setStatus(int status_id) throws IOException {
+		if(status_id == 1)
+			user.setStatus("Busy");
+		else if(status_id == 2)
+			user.setStatus("Away");
+		else
+			user.setStatus("Online");
 
+		send(new Message(user.getUsername(), "server", "MSG-REQ", "set_status", user.getStatus()));
+	}
+
+	//request all users that are signed up
+	public void requestAllUsers() throws IOException {
+		send(new Message(user.getUsername(), "server", "MSG-REQ", "general", "all_users"));
+	}
+
+	//request all currently online users
+	public void requestOnlineUsers() throws IOException {
+		send(new Message(user.getUsername(), "server", "MSG-REQ", "general", "online_users"));
+	}
+
+	//send heartbeat to server
 	public void pulse() throws IOException {
-		Message heartbeat = new Message(user.username, "server", "client_status", "heartbeat", "alive");
+		Message heartbeat = new Message(user.getUsername(), "server", "client_status", "heartbeat", "alive");
 		send(heartbeat);
 	}
 
+	public InputStream getInputStream(){
+		return in;
+	}
+
+	public void setUser(User user){
+		this.user = user;
+		System.out.println(this.user.toString());
+	}
+
+	public User getUser(){
+		return user;
+	}
+
+	public void setAuth(boolean auth){
+		isAuth = auth;
+	}
+
+	public boolean isAuth(){
+		return isAuth;
+	}
 
 }

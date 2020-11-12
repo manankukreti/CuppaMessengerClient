@@ -18,7 +18,10 @@
         </Text>
       <ScrollPane prefHeight="600.0" prefWidth="805.0" style="-fx-background-color: FBFBFB;">
          <content>
-            <VBox fx:id="conversationVbox" prefHeight="592.0" prefWidth="788.0" style="-fx-background-color: FBFBFB;" />
+            <VBox fx:id="conversationVbox" prefHeight="592.0" prefWidth="788.0" style="-fx-background-color: FBFBFB;">
+               <padding>
+                  <Insets top="40.0" />
+               </padding></VBox>
          </content>
       </ScrollPane>
     </children>

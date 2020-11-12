@@ -13,13 +13,16 @@ import java.io.IOException;
 import java.util.Scanner;
 import java.util.Timer;
 import java.util.TimerTask;
+
+import sample.controller.conversationWindow;
+import sample.controller.conversations;
 import sample.controller.loginController;
 
 public class Main extends Application {
 
     public Parent login;
     static loginController loginController;
-
+    static conversations conversationsController;
 
     @Override
     public void start(Stage primaryStage) throws Exception{
@@ -28,6 +31,12 @@ public class Main extends Application {
         login = logLoader.load();
         loginController = logLoader.getController();
         loginController.setStage(primaryStage);
+
+        FXMLLoader convoPaneLoader = new FXMLLoader();
+        convoPaneLoader.setLocation(getClass().getResource("/mainPage/conversations/conversations.fxml"));
+        convoPaneLoader.load();
+        conversationsController = convoPaneLoader.getController();
+
 
         primaryStage.setTitle("Hello World");
         primaryStage.setScene(new Scene(login));
@@ -64,7 +73,7 @@ public class Main extends Application {
         listenThread = new Thread() {
             public void run() {
 
-                DataInputStream din = new DataInputStream(client.in);
+                DataInputStream din = new DataInputStream(client.getInputStream());
                 String line;
                 Message msg;
 
@@ -82,8 +91,10 @@ public class Main extends Application {
                                 System.out.println("Incorrect credentials :(");
 
                             }
-                            else if(msg.message.equals("success")){
-                                client.isAuth = true;
+                            else{
+                                User user = gson.fromJson(msg.message, User.class);
+                                client.setUser(user);
+                                client.setAuth(true);
                                 //go from login to main screen
                                 Platform.runLater(new Runnable() {
                                     @Override
@@ -99,13 +110,25 @@ public class Main extends Application {
                             }
                         }
                         else if(msg.subject.equals("user_to_user") && msg.type.equals("MSG-TEXT")){
-                            System.out.println(msg.from + ": " + msg.message);
+                            Message message = msg;
+                            Platform.runLater(new Runnable() {
+                                @Override
+                                public void run() {
+                                    try {
+                                        conversationsController.addReceivedMessage(message);
+                                    } catch (IOException e) {
+                                        e.printStackTrace();
+                                    }
+                                }
+                            });
+
+
                         }
                         else if(msg.subject.equals("online_users")){
                             User[] online_users = gson.fromJson(msg.message, User[].class);
 
                             for(User user: online_users){
-                                System.out.println(user.username + " ");
+                                System.out.println(user.getUsername() + " ");
                             }
                         }
                         else{

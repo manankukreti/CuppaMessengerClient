@@ -8,8 +8,8 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.event.ActionEvent;
 import javafx.stage.Stage;
-import sample.Employee;
 import sample.Conversation;
+import sample.User;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -25,41 +25,38 @@ public class mainController {
     @FXML private BorderPane mainPane;
 
     private Parent root1;
-    private Employee currentEmployee;
+    private User currentUser;
 
     //Navigation mechanism start
-    public void initialize()  {
 
-    }
 
-    public void setCurrentEmployeeInfo(Employee currentUser){
-       /* currentEmployee = currentUser;
-        nameCurrentUser.setText(currentUser.getName());
+    public void setCurrentEmployeeInfo(User currentUser){
+        nameCurrentUser.setText(currentUser.getFullName());
         jobTitleCurrentUser.setText(currentUser.getJobTitle());
-        bioCurrentUser.setText(currentUser.getBio());*/
+        bioCurrentUser.setText(currentUser.getBio());
     }
 
 
 
-    public void contacts(ActionEvent mouseEvent) throws IOException {
-        loadUI("contacts");
+    public void contacts() throws IOException {
+        loadUI("/mainPage/contacts/contacts.fxml");
     }
 
-    public void conversations(ActionEvent mouseEvent) throws IOException {
-        loadUI("conversations");
+    public void conversations() throws IOException {
+        loadUI("/mainPage/conversations/conversations.fxml");
     }
 
-    public void newsFeed(ActionEvent mouseEvent) throws IOException {
-        loadUI("newsFeed");
+    public void newsFeed() throws IOException {
+        loadUI("/mainPage/newsFeed/newsFeed.fxml");
     }
-    private void loadUI(String ui) throws IOException {
+    public void loadUI(String ui) throws IOException {
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/mainPage/" + ui + "/"+ ui + ".fxml"));
+        loader.setLocation(getClass().getResource(ui));
         Parent root1 = loader.load();
         mainPane.setCenter(root1);
     }
 
-    //Navigation mechanism ends
+
 
 
 
