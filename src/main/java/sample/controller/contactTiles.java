@@ -45,7 +45,7 @@ public class contactTiles {
     public void setContactInfo(User contact){
         contactName.setText(contact.getFullName());
         contactJobTitle.setText(contact.getJobTitle());
-        contactStatusText.setText(contact.getStatus());
+        changeStatus(contact.getStatus());
         contactTile.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
 
             @Override
@@ -98,17 +98,18 @@ public class contactTiles {
 
 
 
-    public void changeStatus(int status_code){
-        switch(status_code){
-            case 1:
+    public void changeStatus(String status_string){
+        status_string = status_string.toLowerCase().trim();
+        switch(status_string){
+            case "away":
                 contactStatusIndicator.setFill(Color.YELLOW);
                 contactStatusText.setText("Away");
                 break;
-            case 2:
+            case "busy":
                 contactStatusIndicator.setFill(Color.RED);
                 contactStatusText.setText("Busy");
                 break;
-            case 3:
+            case "offline":
                 contactStatusIndicator.setFill(Color.GRAY);
                 contactStatusText.setText("Offline");
                 break;

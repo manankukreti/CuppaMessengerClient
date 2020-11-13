@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.layout.BorderPane;
 import javafx.event.ActionEvent;
 import javafx.stage.Stage;
@@ -21,7 +22,7 @@ public class mainController {
 
     @FXML private Label nameCurrentUser;
     @FXML private Label jobTitleCurrentUser;
-    @FXML private Label bioCurrentUser;
+    @FXML private TextArea bioCurrentUser;
     @FXML private BorderPane mainPane;
 
     private Parent root1;

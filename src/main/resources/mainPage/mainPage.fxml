@@ -46,7 +46,7 @@
                                       </VBox.margin>
                                   </Label>
                                   <Label fx:id="jobTitleCurrentUser" style="-fx-font-size: 14;" text="Senior titty boi" />
-                  <TextArea prefHeight="200.0" prefWidth="200.0" text="efg" />
+                  <TextArea fx:id="bioCurrentUser" prefHeight="200.0" prefWidth="200.0" text="efg" />
                   <Button fx:id="editStatusBtn"  prefHeight="25.0" prefWidth="79.0" text="Update Text" />
                                   <HBox prefHeight="25.0" prefWidth="200.0">
 

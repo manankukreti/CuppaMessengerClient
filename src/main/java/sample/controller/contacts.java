@@ -19,57 +19,53 @@ import javafx.stage.Stage;
 import sample.User;
 
 import java.io.IOException;
-import java.time.Duration;
-import java.time.Instant;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
 
 public class contacts {
-    HashMap<String, contactTiles> tileControllers = new HashMap<>();
+    static HashMap<String, contactTiles> tileControllers = new HashMap<>();
     @FXML
     GridPane list;
 
     @FXML
     Node contactTile;
 
-    List<User> users  = new ArrayList<>();
-
+    static List<User> users  = new ArrayList<>();
 
     @FXML
     public void initialize() throws IOException {
-        initializeUsers();
-
-        loadContacts();changeContactStatus("manan", 1);
-
+        loadContacts();
     }
 
-    public void initializeUsers(){
-        users.add(new User("manan", "Manan Kukreti", "Senior Developer", ""));
-        users.add(new User("shivain", "Shivain Kumar", "Senior business dev", ""));
-        users.add(new User("shs", "Yousuf", "", ""));
-        users.add(new User("Mamnan", "Booty", "", ""));
-
+    public void initializeUsers(User[] users) throws IOException {
+        contacts.users.addAll(Arrays.asList(users));
     }
 
-    public void changeContactStatus(String username, int status_code){
-        tileControllers.get(username).changeStatus(status_code);
+    public void changeContactStatus(String username, String status){
+        tileControllers.get(username).changeStatus(status);
     }
 
     private void loadContacts() throws IOException {
         int j = 0;
         int k = 0;
-        for(int i = 0; i< users.size();i++){
+        for (User user : users) {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/mainPage/contacts/contactTile.fxml"));
             contactTile = loader.load();
             contactTiles infoSet = loader.getController();
-            infoSet.setContactInfo(users.get(i));
+
+            infoSet.setContactInfo(user);
             list.add(contactTile, j, k);
-            tileControllers.put(users.get(i).getUsername(), infoSet);
+            tileControllers.put(user.getUsername(), infoSet);
             //adding to the grid
-            j++; if(j % 2 == 0 && j != 0){ k++; j = 0; }
+            j++;
+            if (j % 2 == 0 && j != 0) {
+                k++;
+                j = 0;
+            }
         }
 
 

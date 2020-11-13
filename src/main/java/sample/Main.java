@@ -14,7 +14,8 @@ import java.util.Scanner;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import sample.controller.conversationWindow;
+import sample.controller.MessageController;
+import sample.controller.contacts;
 import sample.controller.conversations;
 import sample.controller.loginController;
 
@@ -23,6 +24,7 @@ public class Main extends Application {
     public Parent login;
     static loginController loginController;
     static conversations conversationsController;
+    static contacts contactsController;
 
     @Override
     public void start(Stage primaryStage) throws Exception{
@@ -37,6 +39,17 @@ public class Main extends Application {
         convoPaneLoader.load();
         conversationsController = convoPaneLoader.getController();
 
+        FXMLLoader contactsLoader = new FXMLLoader();
+        contactsLoader.setLocation(getClass().getResource("/mainPage/contacts/contacts.fxml"));
+        try{
+            contactsLoader.load();
+        }
+        catch(Exception e){
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+        }
+        contactsController = contactsLoader.getController();
+
 
         primaryStage.setTitle("Hello World");
         primaryStage.setScene(new Scene(login));
@@ -47,11 +60,9 @@ public class Main extends Application {
     public static void main(String[] args) throws IOException {
 
         Gson gson = new Gson();
-        Scanner scanner = new Scanner(System.in);
         Client client = Client.getInstance();
 
         Thread listenThread;
-        Thread sendThread;
 
         Timer heartbeat = new Timer();
         heartbeat.schedule(new TimerTask() {
@@ -100,7 +111,7 @@ public class Main extends Application {
                                     @Override
                                     public void run() {
                                         try {
-                                            loginController.goToMainScreen();
+                                            client.requestAllUsers();
                                         } catch (IOException e) {
                                             e.printStackTrace();
                                         }
@@ -122,15 +133,37 @@ public class Main extends Application {
                                 }
                             });
 
+                        }
+                        else if(msg.subject.equals("all_users")){
+                            User[] users = gson.fromJson(msg.message, User[].class);
+                            for(User user: users){
+                                System.out.println(user.toString());
+                            }
+                            Platform.runLater(new Runnable() {
+                                @Override
+                                public void run() {
+                                    try {
+                                        contactsController.initializeUsers(users);
+                                        loginController.goToMainScreen();
+                                    } catch (IOException e) {
+                                        e.printStackTrace();
+                                    }
+                                }
+                            });
 
                         }
-                        else if(msg.subject.equals("online_users")){
-                            User[] online_users = gson.fromJson(msg.message, User[].class);
-
-                            for(User user: online_users){
-                                System.out.println(user.getUsername() + " ");
+                        else if(msg.type.equalsIgnoreCase("MSG-NOTIFY")){
+                            if(msg.subject.equalsIgnoreCase("user_status_change")){
+                                Message message = msg;
+                                Platform.runLater(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        contactsController.changeContactStatus(message.from, message.message);
+                                    }
+                                });
                             }
                         }
+
                         else{
                             System.out.println(line);
                         }

@@ -28,9 +28,9 @@ public class loginController {
     private Client client = Client.getInstance();
     Gson gson = new Gson();
 
-
     public loginController() throws IOException {
     }
+
 
     public void setStage(Stage stage){
         this.stage = stage;
