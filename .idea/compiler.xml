@@ -20,7 +20,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="Cuppa" target="8" />
+      <module name="Cuppa" target="11" />
     </bytecodeTargetLevel>
   </component>
 </project>

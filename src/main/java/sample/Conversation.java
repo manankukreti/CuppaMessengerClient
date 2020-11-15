@@ -12,6 +12,10 @@ public class Conversation implements Serializable {
         participants = new ArrayList<String>();
         messages = new ArrayList<Message>();
     }
+    public Conversation(ArrayList<String> participants){
+        this.participants = participants;
+        this.messages = new ArrayList<Message>();;
+    }
     public Conversation(ArrayList<String> participants, ArrayList<Message> messages){
         this.participants = participants;
         this.messages = messages;

@@ -84,7 +84,11 @@ public class contactTiles {
                     Stage chatStage = new Stage();
                     chatStage.setScene(chatScene);
 
-                    convoController.addConversationPane(participants.toString(), chatStage, convoWindowController);
+                    try {
+                        convoController.addConversationPane(participants.toString(), chatStage, convoWindowController);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                     chatStage.show();
                 }
 

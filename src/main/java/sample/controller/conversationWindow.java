@@ -35,13 +35,18 @@ public class conversationWindow{
     Client client = Client.getInstance();
 
     Conversation conversation = new Conversation();
+    static conversations conversationsController;
 
     User sender = client.getUser();
     User receiver;
 
     @FXML
     public void initialize() throws IOException {
+        FXMLLoader conversationLoader = new FXMLLoader();
+        conversationLoader.setLocation(getClass().getResource("/mainPage/conversations/conversations.fxml"));
+        conversationLoader.load();
 
+        conversationsController = conversationLoader.getController();
     }
 
 
@@ -101,8 +106,7 @@ public class conversationWindow{
         String msg = conversationWindowTextArea.getText();
         Message message = new Message(client.getUser().getUsername(), receiver.getUsername(), "MSG-TEXT", "user_to_user", msg);
         client.send(message);
-        conversation.addMessage(message);
-        addMessageToPane(message);
+        conversationWindow.conversationsController.addReceivedMessage(message);
         conversationWindowTextArea.clear();
     }
 
