@@ -4,15 +4,14 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import sample.Client;
 import sample.Conversation;
 import sample.Message;
+import sample.User;
+import sample.UserList;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
@@ -22,34 +21,23 @@ import java.util.*;
 
 public class conversations {
 
-
-
     @FXML
-    VBox conversationVbox = new VBox();
+    VBox conversationVbox;
     @FXML
-    Node conversationTile = new HBox();
     Gson gson = new Gson();
-    Parent conversationWindowP;
 
-    static contacts contactsController;
-
-    Client client = Client.getInstance();
     static HashMap<String, conversationWindow> conversationPanes = new HashMap<>();
     static HashMap<String, Stage> conversationStage = new HashMap<>();
     static HashMap<String, Conversation> conversationHashMap;
     static Path backupFile = Path.of("backup.cuppa");
 
-    public conversations() throws IOException {
+    UserList users = UserList.getInstance();
+
+    public conversations(){
     }
 
     @FXML
     public void initialize() throws IOException {
-        if(contactsController == null){
-            FXMLLoader contactsLoader = new FXMLLoader();
-            contactsLoader.setLocation(getClass().getResource("/mainPage/contacts/contacts.fxml"));
-            contactsLoader.load();
-            contactsController = contactsLoader.getController();
-        }
 
         if(conversationHashMap == null){
             conversationHashMap = new HashMap<>();
@@ -59,33 +47,17 @@ public class conversations {
         generateConversationTiles();
     }
 
-
-    public void addConversationPane(String participants, Stage stage, conversationWindow window) throws IOException {
-        List<String> participantsList = Arrays.asList(gson.fromJson(participants, String[].class));
-        Collections.sort(participantsList);
-        String key = participantsList.toString();
-        conversationStage.put(key, stage);
-        conversationPanes.put(key, window);
-        floodConversationPane(key);
-    }
-
-    public void floodConversationPane(String key) throws IOException {
-        if(conversationHashMap.containsKey(key)) {
-            conversationWindow window = conversationPanes.get(key);
-            Conversation convo = conversationHashMap.get(key);
-
-            for (Message msg : convo.getMessages()) {
-                window.addMessageToPane(msg);
-            }
-        }
-    }
-
-    public String generateKeyFromMessage(Message msg){
+    public String generateKey(Message msg){
         List<String> participantsList = new ArrayList<>();
         participantsList.add(msg.to);
         participantsList.add(msg.from);
         Collections.sort(participantsList);
         return participantsList.toString();
+    }
+
+    public String generateKey(ArrayList<String> participants){
+        Collections.sort(participants);
+        return participants.toString();
     }
 
     public void saveConvoToFile() throws IOException {
@@ -101,19 +73,21 @@ public class conversations {
         }
     }
 
-    public conversationWindow addConversationPane(String key, Message msg){
+    public conversationWindow createConversationWindow(Conversation convo) throws IOException{
+
+        String key = generateKey((ArrayList<String>) convo.getParticipants());
 
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/mainPage/conversations/conversationWindow.fxml"));
-        conversations convoController = loader.getController();
-
-        try {
-            conversationWindowP = loader.load();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        Parent conversationWindowP = loader.load();
         conversationWindow convoWindowController = loader.getController();
-        convoWindowController.setInfo(contactsController.getUserInfo(msg.from));
+
+
+
+        if(convo.getName().equals("default")) {
+            User user = users.getUser(convo.getParticipants().get(1));
+            convoWindowController.setInfo(user);
+        }
 
         Scene chatScene = new Scene(conversationWindowP);
         Stage chatStage = new Stage();
@@ -125,6 +99,16 @@ public class conversations {
         return convoWindowController;
     }
 
+    public void floodConversationPane(String key) throws IOException {
+        if(conversationHashMap.containsKey(key)) {
+            conversationWindow window = conversationPanes.get(key);
+            Conversation convo = conversationHashMap.get(key);
+
+            for (Message msg : convo.getMessages()) {
+                window.addMessageToPane(msg);
+            }
+        }
+    }
 
 
     public void openExistingConversationPane(String participants){
@@ -132,18 +116,23 @@ public class conversations {
         pane.show();
     }
 
-    public boolean doesConversationPaneExist(String participants){
+    public boolean doesConversationPaneNotExist(String key){
 
-        return conversationPanes.containsKey(participants);
+        return !conversationPanes.containsKey(key);
+    }
+
+    public boolean doesConversationExist(String key){
+
+        return conversationHashMap.containsKey(key);
     }
 
     public void addReceivedMessage(Message msg) throws IOException {
 
-        String key = generateKeyFromMessage(msg);
+        String key = generateKey(msg);
 
         conversationWindow window;
         if(!conversationHashMap.containsKey(key)){
-            Conversation convo = createConversation(msg);
+            createConversation(msg);
         }
 
         addMessageToConversation(msg);
@@ -152,7 +141,7 @@ public class conversations {
             window = conversationPanes.get(key);
         }
         else{
-           window = addConversationPane(key, msg);
+           window = createConversationWindow(conversationHashMap.get(key));
         }
 
         window.addMessageToPane(msg);
@@ -160,15 +149,27 @@ public class conversations {
         saveConvoToFile();
     }
 
-    public Conversation createConversation(Message msg){
+    public void createConversation(Message msg){
         ArrayList<String> participants = new ArrayList<>();
         participants.add(msg.to);
         participants.add(msg.from);
 
         Conversation convo = new Conversation(participants);
-        conversationHashMap.put(generateKeyFromMessage(msg), convo);
+        conversationHashMap.put(generateKey(msg), convo);
+
+    }
+
+    public Conversation createConversation(ArrayList<String> participants){
+        String key = generateKey(participants);
+        Conversation convo = new Conversation(participants);
+
+        conversationHashMap.put(key, convo);
 
         return convo;
+    }
+
+    public Conversation getConversation(String key){
+        return conversationHashMap.get(key);
     }
 
 //    public void addConversation(String participants, Conversation conversation){
@@ -183,7 +184,7 @@ public class conversations {
 
     public void addMessageToConversation(Message message)
     {
-        String key = generateKeyFromMessage(message);
+        String key = generateKey(message);
         conversationHashMap.get(key).addMessage(message);
     }
 
@@ -194,14 +195,11 @@ public class conversations {
             convoTileloader.setLocation(getClass().getResource("/mainPage/conversations/conversationTile.fxml"));
             Parent conversationTile = convoTileloader.load();
             conversationTile convoTileController = convoTileloader.getController();
-            convoTileController.setConversationInfo(this, entry.getValue());
+            convoTileController.setConversationInfo(this, entry.getKey(),entry.getValue());
             conversationVbox.getChildren().add(conversationTile);
         }
 
     }
 
-    private void openConversation(){
-
-    }
 
 }

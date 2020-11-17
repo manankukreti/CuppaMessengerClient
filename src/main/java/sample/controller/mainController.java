@@ -3,30 +3,19 @@ package sample.controller;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.BorderPane;
-import javafx.event.ActionEvent;
-import javafx.stage.Stage;
-import sample.Conversation;
 import sample.User;
 
 import java.io.IOException;
-import java.util.HashMap;
 
 public class mainController {
-
-    //hash map to store conversations
-    HashMap<String, Conversation> conversations = new HashMap<String, Conversation>();
 
     @FXML private Label nameCurrentUser;
     @FXML private Label jobTitleCurrentUser;
     @FXML private TextArea bioCurrentUser;
     @FXML private BorderPane mainPane;
-
-    private Parent root1;
-    private User currentUser;
 
     //Navigation mechanism start
 
@@ -56,9 +45,6 @@ public class mainController {
         Parent root1 = loader.load();
         mainPane.setCenter(root1);
     }
-
-
-
 
 
 }
