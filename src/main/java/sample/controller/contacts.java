@@ -44,7 +44,17 @@ public class contacts {
         contacts.users.addAll(Arrays.asList(users));
     }
 
+    public User getUserInfo(String username){
+        for(User user: users){
+            if(user.getUsername().equals(username))
+                return user;
+        }
+
+        return null;
+    }
+
     public void changeContactStatus(String username, String status){
+        System.out.println(username + ": " + tileControllers.get(username));
         tileControllers.get(username).changeStatus(status);
     }
 

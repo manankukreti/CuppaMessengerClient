@@ -16,6 +16,9 @@ import sample.Conversation;
 import sample.Message;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 
 public class conversationTile {
@@ -29,30 +32,76 @@ public class conversationTile {
     HBox conversationTile = new HBox();
 
     Client client = Client.getInstance();
+    static contacts contactsController;
+    static conversations convoController;
+
 
     public conversationTile() throws IOException {
+
+        FXMLLoader contactsLoader = new FXMLLoader();
+        contactsLoader.setLocation(getClass().getResource("/mainPage/contacts/contacts.fxml"));
+        try {
+            contactsLoader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        contactsController = contactsLoader.getController();
     }
 
 
-    public void setConversationInfo(Conversation conversation){
-        conversation.getMessages().add(new Message("manan", "shivain", "df", "dfd" ,"Blass"));
+    public void setConversationInfo(conversations convoController, Conversation conversation){
         int numOfmessages = conversation.getMessages().size() - 1;
-        conversationName.setText(client.getUser().getUsername());
+
+        List<String> participants = conversation.getParticipants();
+        Collections.sort(participants);
+
+        List<String> otherParticipants = new ArrayList<>();
+        for(String participant : participants){
+            if(participant.equals(client.getUser().getUsername())){
+                continue;
+            }
+            else{
+                otherParticipants.add(participant);
+            }
+        }
+
+        conversationName.setText(participants.toString().replace("[", "").replace("]", ""));
         conversationPreview.setText(conversation.getMessages().get(numOfmessages).message + "");
         conversationTile.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
 
             @Override
             public void handle(MouseEvent event) {
-                Parent conversationWindow = null;
-                try {
-                    conversationWindow = FXMLLoader.load(getClass().getResource("/mainPage/conversations/conversationWindow.fxml"));
-                } catch (IOException e) {
-                    e.printStackTrace();
+
+                if(convoController.doesConversationPaneExist(participants.toString())){
+                    convoController.openExistingConversationPane(participants.toString());
                 }
-                Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-                Scene conversationScene = new Scene(conversationWindow);
-                window.setScene(conversationScene);
-                window.show();
+                else{
+                    Parent conversationWindowP = null;
+                    FXMLLoader loader = new FXMLLoader();
+                    loader.setLocation(getClass().getResource("/mainPage/conversations/conversationWindow.fxml"));
+                    try {
+                        conversationWindowP = loader.load();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    conversationWindow convoWindowController = loader.getController();
+                    convoWindowController.setInfo(contactsController.getUserInfo(otherParticipants.get(0)));
+
+                    Scene chatScene = new Scene(conversationWindowP);
+                    Stage chatStage = new Stage();
+                    chatStage.setScene(chatScene);
+
+                    try {
+                        convoController.addConversationPane(participants.toString(), chatStage, convoWindowController);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
+
+                    chatStage.show();
+                }
+
+
             }
         });
 

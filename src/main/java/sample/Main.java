@@ -92,6 +92,10 @@ public class Main extends Application {
                     while((line = din.readUTF()) != null) {
                         msg = gson.fromJson(line, Message.class);
 
+                        //skip if the message is from yourself
+                        if(msg.from.equals(client.getUser().getUsername())){
+                            continue;
+                        }
 
                         if(msg.subject.equals("welcome_message")){
                            System.out.println("welcome to server.");
