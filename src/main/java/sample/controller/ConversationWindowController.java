@@ -18,6 +18,7 @@ import sample.User;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 
 public class ConversationWindowController {
@@ -39,6 +40,7 @@ public class ConversationWindowController {
 
     User sender = client.getUser();
     ArrayList<User> receivers = new ArrayList<>();
+    String conversationName = "default";
 
     @FXML
     public void initialize() throws IOException {
@@ -57,7 +59,7 @@ public class ConversationWindowController {
     
     public void setInfo(ArrayList<User> recipient, String name) throws IOException {
         receivers.addAll(recipient);
-
+        conversationName = name;
         FXMLLoader conversationWindowInfoLoader = new FXMLLoader();
         if (recipient.size() == 1){
             conversationWindowInfoLoader.setLocation(getClass().getResource("/mainPage/conversations/conversationWindowUserInfo.fxml"));
@@ -93,13 +95,22 @@ public class ConversationWindowController {
     }
 
     public void sendMessage() throws IOException {
+        String msg = conversationWindowTextArea.getText();
 
         if(receivers.size() == 1){
-            String msg = conversationWindowTextArea.getText();
             Message message = new Message(client.getUser().getUsername(), receivers.get(0).getUsername(), "MSG-TEXT", "user_to_user", msg);
             client.send(message);
             ConversationWindowController.conversationsController.addReceivedMessage(message);
             conversationWindowTextArea.clear();
+        }
+        else{
+            String[] rec = new String[receivers.size()];
+            for(int i = 0; i < receivers.size(); i++){
+                rec[i] =  receivers.get(i).getUsername();
+            }
+            client.sendToGroup(rec, msg, conversationName);
+            Message message = new Message(client.getUser().getUsername(), Arrays.toString(rec), "MSG-TEXT", "user_to_group:"+conversationName, msg);
+            ConversationWindowController.conversationsController.addReceivedMessage(message);
         }
 
     }

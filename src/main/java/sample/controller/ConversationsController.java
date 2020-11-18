@@ -131,12 +131,26 @@ public class ConversationsController {
     }
 
     public void addReceivedMessage(Message msg) throws IOException {
+        ArrayList<String> participants = new ArrayList<>();
+        String[] recipients = gson.fromJson(msg.to, String[].class);
+        for(String rec : recipients){
+            participants.add(rec);
+        }
+        participants.add(msg.from);
 
-        String key = generateKey(msg);
+        String key = generateKey(participants);
+        System.out.println(key);
 
+        String grpName = msg.subject.replace("user_to_group:", "");
         ConversationWindowController window;
         if(!conversationHashMap.containsKey(key)){
-            createConversation(msg);
+            if(participants.size() > 2){
+                createConversation(participants, grpName);
+            }
+            else{
+                createConversation(msg);
+            }
+
         }
 
         addMessageToConversation(msg);
@@ -164,6 +178,7 @@ public class ConversationsController {
     }
 
     public Conversation createConversation(ArrayList<String> participants, String name){
+
         String key = generateKey(participants);
         Conversation convo = new Conversation(participants);
         convo.setName(name);
@@ -187,10 +202,17 @@ public class ConversationsController {
 //    }
     //add message to conversations
 
-    public void addMessageToConversation(Message message)
+    public void addMessageToConversation(Message msg)
     {
-        String key = generateKey(message);
-        conversationHashMap.get(key).addMessage(message);
+        ArrayList<String> participants = new ArrayList<>();
+        String[] recipients = gson.fromJson(msg.to, String[].class);
+        for(String rec : recipients){
+            participants.add(rec);
+        }
+        participants.add(msg.from);
+
+        String key = generateKey(participants);
+        conversationHashMap.get(key).addMessage(msg);
     }
 
 

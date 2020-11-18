@@ -95,6 +95,8 @@ public class CreateNewGroupController {
         else {
             finalList.add(client.getUser().getUsername());
 
+            System.out.println(finalList.toString());
+
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/mainPage/conversations/conversations.fxml"));
             conversation = loader.load();
@@ -102,6 +104,7 @@ public class CreateNewGroupController {
 
             Conversation groupConversation = creater.createConversation(finalList, groupName.getText());
             creater.createConversationWindow(groupConversation);
+            System.out.println("create gc key "+ creater.generateKey(finalList));
             creater.openExistingConversationPane(creater.generateKey(finalList));
 
         }

@@ -18,6 +18,10 @@ import sample.controller.ContactsController;
 import sample.controller.ConversationsController;
 import sample.controller.LoginController;
 
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+
 public class Main extends Application {
 
     public Parent login;
@@ -117,6 +121,17 @@ public class Main extends Application {
                             }
                         });
 
+                    }
+                    else if(msg.type.equals("MSG-TEXT") && msg.subject.contains("user_to_group")){
+                        Message message = msg;
+                        String grpName = msg.subject.replace("user_to_group:", "");
+                        Platform.runLater(() -> {
+                            try {
+                                conversationsController.addReceivedMessage(message);
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        });
                     }
                     else if(msg.subject.equals("all_users")){
                         Type type = new TypeToken<ArrayList<User>>(){}.getType();

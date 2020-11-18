@@ -18,8 +18,7 @@ public class Client {
 
 	public Client() throws IOException {
 		user = new User();
-		socket = new Socket("localhost", 5000);
-		in = socket.getInputStream();
+		socket = new Socket("10.0.0.13" , 5000);	in = socket.getInputStream();
 		out = socket.getOutputStream();
 	}
 
@@ -47,8 +46,8 @@ public class Client {
 		send(new Message(user.getUsername(), to, "MSG-TEXT", "user_to_user", msg));
 	}
 
-	public void sendToGroup(String[] to, String msg) throws IOException {
-		send(new Message(Arrays.toString(to), "", "MSG-TEXT", "user_to_group", msg));
+	public void sendToGroup(String[] to, String msg, String groupName) throws IOException {
+		send(new Message(user.getUsername(), Arrays.toString(to), "MSG-TEXT", "user_to_group:" + groupName, msg));
 	}
 
 	//set user status
