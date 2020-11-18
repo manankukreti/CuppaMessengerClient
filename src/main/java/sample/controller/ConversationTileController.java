@@ -29,8 +29,13 @@ public class ConversationTileController {
         int numOfmessages = conversation.getMessages().size() - 1;
 
         conversationName.setText(conversation.getParticipants().toString().replace("[", "").replace("]", ""));
-        conversationPreview.setText(conversation.getMessages().get(numOfmessages).message + "");
 
+        if(numOfmessages >=0) {
+            conversationPreview.setText(conversation.getMessages().get(numOfmessages).message + "");
+        }
+        else{
+            conversationPreview.setText("");
+        }
         conversationTile.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
 
             try {
