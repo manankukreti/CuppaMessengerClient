@@ -237,7 +237,7 @@ public class ConversationsController {
                         break;
                     }
                 }
-                System.out.println(other);
+
                 title = users.getUser(other).getFullName();
             }
             else{
