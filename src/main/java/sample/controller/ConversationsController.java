@@ -238,7 +238,14 @@ public class ConversationsController {
                     }
                 }
 
-                title = users.getUser(other).getFullName();
+                User otherUser = users.getUser(other);
+                if(otherUser != null){
+                    title = otherUser.getFullName();
+                }
+                else{
+                    title = other;
+                }
+
             }
             else{
                 title = convo.getName();
