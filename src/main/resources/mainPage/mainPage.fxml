@@ -16,7 +16,7 @@
 <AnchorPane style="-fx-background-color: EDDFF4;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.MainController">
       <BorderPane fx:id="mainPane" layoutX="15.0" layoutY="15.0" prefHeight="645.0" prefWidth="1030.0" style="-fx-background-color: EDDFF4;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
           <center>
-              <AnchorPane prefHeight="657.0" prefWidth="805.0" style="-fx-background-color: FBFBFB;">
+              <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="645.0" prefWidth="770.0" style="-fx-background-color: FBFBFB;">
             <children>
                <Text layoutX="64.0" layoutY="342.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome to Cuppa Messenger">
                   <font>
