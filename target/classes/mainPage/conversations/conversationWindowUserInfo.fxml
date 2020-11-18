@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+
+<HBox prefHeight="116.0" prefWidth="805.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.ConversationWindowUserInfoController">
+   <children>
+      <ImageView fitHeight="116.0" fitWidth="116.0" pickOnBounds="true" preserveRatio="true" />
+      <VBox prefHeight="81.0" prefWidth="454.0" spacing="10.0">
+         <children>
+            <Label fx:id="conversationWindowName" text="fgbisbg">
+               <font>
+                  <Font name="System Bold" size="26.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </Label>
+            <Label fx:id="conversationWindowJobTitle" text="bkbk" />
+            <HBox alignment="CENTER_LEFT" prefHeight="38.0" prefWidth="282.0" spacing="5.0">
+               <children>
+                  <Circle fx:id="conversationWindowStatusIndicator" fill="DODGERBLUE" radius="6.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Label fx:id="conversationWindowStatusText" text="Label" />
+               </children>
+            </HBox>
+         </children>
+         <HBox.margin>
+            <Insets left="30.0" />
+         </HBox.margin>
+      </VBox>
+   </children>
+</HBox>

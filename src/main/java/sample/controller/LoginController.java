@@ -14,7 +14,7 @@ import sample.Message;
 
 import java.io.IOException;
 
-public class loginController {
+public class LoginController {
 
 
     @FXML
@@ -26,7 +26,7 @@ public class loginController {
     private final Client client = Client.getInstance();
     Gson gson = new Gson();
 
-    public loginController() throws IOException {
+    public LoginController() throws IOException {
     }
 
 
@@ -42,7 +42,7 @@ public class loginController {
         Scene mainScreenScene = new Scene(mainScreen);
         stage.setScene(mainScreenScene);
 
-        mainController controller = loader.getController();
+        MainController controller = loader.getController();
         controller.setCurrentEmployeeInfo(client.getUser());
         stage.show();
 

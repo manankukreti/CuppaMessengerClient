@@ -11,8 +11,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class contacts {
-    static HashMap<String, contactTiles> tileControllers = new HashMap<>();
+public class ContactsController {
+    static HashMap<String, ContactTilesController> tileControllers = new HashMap<>();
     @FXML
     GridPane list;
 
@@ -42,7 +42,7 @@ public class contacts {
                 FXMLLoader loader = new FXMLLoader();
                 loader.setLocation(getClass().getResource("/mainPage/contacts/contactTile.fxml"));
                 contactTile = loader.load();
-                contactTiles infoSet = loader.getController();
+                ContactTilesController infoSet = loader.getController();
 
                 infoSet.setContactInfo(user);
                 list.add(contactTile, j, k);

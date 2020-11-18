@@ -10,7 +10,7 @@ import sample.Conversation;
 import java.io.IOException;
 
 
-public class conversationTile {
+public class ConversationTileController {
 
     @FXML
     Label conversationName = new Label();
@@ -20,12 +20,12 @@ public class conversationTile {
     @FXML
     HBox conversationTile = new HBox();
 
-    public conversationTile(){
+    public ConversationTileController(){
 
     }
 
 
-    public void setConversationInfo(conversations convoController, String key, Conversation conversation){
+    public void setConversationInfo(ConversationsController convoController, String key, Conversation conversation){
         int numOfmessages = conversation.getMessages().size() - 1;
 
         conversationName.setText(conversation.getParticipants().toString().replace("[", "").replace("]", ""));

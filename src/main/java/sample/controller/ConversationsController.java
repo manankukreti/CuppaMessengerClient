@@ -19,21 +19,21 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.*;
 
-public class conversations {
+public class ConversationsController {
 
     @FXML
     VBox conversationVbox;
     @FXML
     Gson gson = new Gson();
 
-    static HashMap<String, conversationWindow> conversationPanes = new HashMap<>();
+    static HashMap<String, ConversationWindowController> conversationPanes = new HashMap<>();
     static HashMap<String, Stage> conversationStage = new HashMap<>();
     static HashMap<String, Conversation> conversationHashMap;
     static Path backupFile = Path.of("backup.cuppa");
 
     UserList users = UserList.getInstance();
 
-    public conversations(){
+    public ConversationsController(){
     }
 
     @FXML
@@ -73,14 +73,14 @@ public class conversations {
         }
     }
 
-    public conversationWindow createConversationWindow(Conversation convo) throws IOException{
+    public ConversationWindowController createConversationWindow(Conversation convo) throws IOException{
 
         String key = generateKey((ArrayList<String>) convo.getParticipants());
 
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/mainPage/conversations/conversationWindow.fxml"));
         Parent conversationWindowP = loader.load();
-        conversationWindow convoWindowController = loader.getController();
+        ConversationWindowController convoWindowController = loader.getController();
 
 
 
@@ -101,7 +101,7 @@ public class conversations {
 
     public void floodConversationPane(String key) throws IOException {
         if(conversationHashMap.containsKey(key)) {
-            conversationWindow window = conversationPanes.get(key);
+            ConversationWindowController window = conversationPanes.get(key);
             Conversation convo = conversationHashMap.get(key);
 
             for (Message msg : convo.getMessages()) {
@@ -130,7 +130,7 @@ public class conversations {
 
         String key = generateKey(msg);
 
-        conversationWindow window;
+        ConversationWindowController window;
         if(!conversationHashMap.containsKey(key)){
             createConversation(msg);
         }
@@ -194,7 +194,7 @@ public class conversations {
             FXMLLoader convoTileloader = new FXMLLoader();
             convoTileloader.setLocation(getClass().getResource("/mainPage/conversations/conversationTile.fxml"));
             Parent conversationTile = convoTileloader.load();
-            conversationTile convoTileController = convoTileloader.getController();
+            ConversationTileController convoTileController = convoTileloader.getController();
             convoTileController.setConversationInfo(this, entry.getKey(),entry.getValue());
             conversationVbox.getChildren().add(conversationTile);
         }

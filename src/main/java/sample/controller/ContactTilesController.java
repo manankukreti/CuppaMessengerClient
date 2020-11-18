@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 
-public class contactTiles {
+public class ContactTilesController {
 
     @FXML
     Label contactName;
@@ -30,10 +30,10 @@ public class contactTiles {
 
     //Internal Dependencies
     Client client = Client.getInstance();
-    conversations convoController;
+    ConversationsController convoController;
 
 
-    public contactTiles() throws IOException {
+    public ContactTilesController() throws IOException {
         FXMLLoader convoLoader = new FXMLLoader();
         convoLoader.setLocation(getClass().getResource("/mainPage/conversations/conversations.fxml"));
         try {

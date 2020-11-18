@@ -10,7 +10,7 @@ import sample.User;
 
 import java.io.IOException;
 
-public class mainController {
+public class MainController {
 
     @FXML private Label nameCurrentUser;
     @FXML private Label jobTitleCurrentUser;

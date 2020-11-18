@@ -14,16 +14,16 @@ import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.*;
 
-import sample.controller.contacts;
-import sample.controller.conversations;
-import sample.controller.loginController;
+import sample.controller.ContactsController;
+import sample.controller.ConversationsController;
+import sample.controller.LoginController;
 
 public class Main extends Application {
 
     public Parent login;
-    static loginController loginController;
-    static conversations conversationsController;
-    static contacts contactsController;
+    static LoginController loginController;
+    static ConversationsController conversationsController;
+    static ContactsController contactsController;
 
 
     @Override

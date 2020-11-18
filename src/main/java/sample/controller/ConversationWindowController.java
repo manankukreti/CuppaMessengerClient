@@ -18,7 +18,7 @@ import sample.User;
 import java.io.IOException;
 
 
-public class conversationWindow{
+public class ConversationWindowController {
 
     @FXML Label conversationWindowName;
     @FXML Label conversationWindowJobTitle;
@@ -35,7 +35,7 @@ public class conversationWindow{
     Client client = Client.getInstance();
 
     Conversation conversation = new Conversation();
-    static conversations conversationsController;
+    static ConversationsController conversationsController;
 
     User sender = client.getUser();
     User receiver;
@@ -50,7 +50,7 @@ public class conversationWindow{
     }
 
 
-    public conversationWindow() throws IOException {
+    public ConversationWindowController() throws IOException {
     }
 
 
@@ -106,7 +106,7 @@ public class conversationWindow{
         String msg = conversationWindowTextArea.getText();
         Message message = new Message(client.getUser().getUsername(), receiver.getUsername(), "MSG-TEXT", "user_to_user", msg);
         client.send(message);
-        conversationWindow.conversationsController.addReceivedMessage(message);
+        ConversationWindowController.conversationsController.addReceivedMessage(message);
         conversationWindowTextArea.clear();
     }
 
