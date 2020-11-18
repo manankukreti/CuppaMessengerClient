@@ -3,9 +3,12 @@ package sample.controller;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.Stage;
 import sample.User;
 
 import java.io.IOException;
@@ -14,8 +17,9 @@ public class MainController {
 
     @FXML private Label nameCurrentUser;
     @FXML private Label jobTitleCurrentUser;
-    @FXML private TextArea bioCurrentUser;
+    @FXML private Label bioCurrentUser;
     @FXML private BorderPane mainPane;
+    @FXML private Button editProfile;
 
     //Navigation mechanism start
 
@@ -41,8 +45,27 @@ public class MainController {
     }
 
     public void createNewGroup() throws IOException{
-        loadUI("/mainPage/createGroup/createNewGroup.fxml");
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/mainPage/createGroup/createNewGroup.fxml"));
+        Parent root = loader.load();
+        Scene createGroupScene = new Scene(root);
+        Stage createGroupStage = new Stage();
+        createGroupStage.setScene(createGroupScene);
+        createGroupStage.setTitle("Create group chat");
+        createGroupStage.show();
     }
+
+    public void editProfile() throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/mainPage/editProfile.fxml"));
+        Parent root = loader.load();
+        Scene editScene = new Scene(root);
+        Stage editStage = new Stage();
+        editStage.setScene(editScene);
+        editStage.setTitle("Edit Profile");
+        editStage.show();
+    }
+
     public void loadUI(String ui) throws IOException {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource(ui));

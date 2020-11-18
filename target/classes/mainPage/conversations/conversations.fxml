@@ -18,7 +18,7 @@
         </Text>
       <ScrollPane hbarPolicy="NEVER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="580.0" prefWidth="770.0" style="-fx-background-color: FBFBFB;">
          <content>
-            <VBox fx:id="conversationVbox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="580.0" prefWidth="770.0" spacing="40.0" style="-fx-background-color: FBFBFB;">
+            <VBox fx:id="conversationVbox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="580.0" prefWidth="770.0" spacing="25.0" style="-fx-background-color: FBFBFB;">
                <padding>
                   <Insets left="30.0" top="10.0" />
                </padding></VBox>
