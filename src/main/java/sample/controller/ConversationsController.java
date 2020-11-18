@@ -41,8 +41,10 @@ public class ConversationsController {
             conversationHashMap = new HashMap<>();
         }
 
-        loadConvoFromFile();
-        generateConversationTiles();
+        if(client.isAuth()){
+            loadConvoFromFile();
+            generateConversationTiles();
+        }
     }
 
     public String generateKey(Message msg){
@@ -59,7 +61,6 @@ public class ConversationsController {
     }
 
     public void saveConvoToFile() throws IOException {
-        System.out.println(conversationHashMap.toString());
         Files.writeString(backupFile, gson.toJson(conversationHashMap));
     }
 
@@ -132,19 +133,28 @@ public class ConversationsController {
 
     public void addReceivedMessage(Message msg) throws IOException {
         ArrayList<String> participants = new ArrayList<>();
-        String[] recipients = gson.fromJson(msg.to, String[].class);
-        for(String rec : recipients){
-            participants.add(rec);
+        String convoName;
+        if(msg.subject.contains("user_to_group:")){
+            String[] recipients = gson.fromJson(msg.to, String[].class);
+            for(String rec : recipients){
+                participants.add(rec);
+            }
+
+            convoName = msg.subject.replace("user_to_group:", "");
         }
+        else{
+            participants.add(msg.to);
+            convoName = "default";
+        }
+
         participants.add(msg.from);
 
         String key = generateKey(participants);
 
-        String grpName = msg.subject.replace("user_to_group:", "");
         ConversationWindowController window;
         if(!conversationHashMap.containsKey(key)){
             if(participants.size() > 2){
-                createConversation(participants, grpName);
+                createConversation(participants, convoName);
             }
             else{
                 createConversation(msg);
@@ -152,7 +162,7 @@ public class ConversationsController {
 
         }
 
-        addMessageToConversation(msg);
+        conversationHashMap.get(key).addMessage(msg);
 
         if(conversationPanes.containsKey(key)){
             window = conversationPanes.get(key);
@@ -182,7 +192,6 @@ public class ConversationsController {
         Conversation convo = new Conversation(participants);
         convo.setName(name);
 
-
         conversationHashMap.put(key, convo);
 
         return convo;
@@ -195,6 +204,8 @@ public class ConversationsController {
 
     public void addMessageToConversation(Message msg)
     {
+
+
         ArrayList<String> participants = new ArrayList<>();
         String[] recipients = gson.fromJson(msg.to, String[].class);
         for(String rec : recipients){
@@ -209,11 +220,37 @@ public class ConversationsController {
 
     private void generateConversationTiles() throws IOException {
         for (Map.Entry<String, Conversation> entry : conversationHashMap.entrySet()) {
+
             FXMLLoader convoTileloader = new FXMLLoader();
             convoTileloader.setLocation(getClass().getResource("/mainPage/conversations/conversationTile.fxml"));
             Parent conversationTile = convoTileloader.load();
             ConversationTileController convoTileController = convoTileloader.getController();
-            convoTileController.setConversationInfo(this, entry.getKey(),entry.getValue());
+
+            Conversation convo = entry.getValue();
+
+            String title;
+            if(convo.getName().equals("default") && convo.getParticipants().size() == 2){
+                String other = "";
+                for(String user: convo.getParticipants()){
+                    if(!user.equals(client.getUser().getUsername())){
+                        other = user;
+                        break;
+                    }
+                }
+                System.out.println(other);
+                title = users.getUser(other).getFullName();
+            }
+            else{
+                title = convo.getName();
+            }
+
+            String subtitle = "";
+            if(convo.getMessages().size() > 0) {
+               subtitle = convo.getMessages().get(convo.getMessages().size() - 1).message;
+            }
+
+
+            convoTileController.setConversationInfo(this, entry.getKey(), convo, title, subtitle);
             conversationVbox.getChildren().add(conversationTile);
         }
 

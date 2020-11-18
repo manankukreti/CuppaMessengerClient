@@ -124,8 +124,6 @@ public class Main extends Application {
                     }
                     else if(msg.type.equals("MSG-TEXT") && msg.subject.contains("user_to_group")){
                         Message message = msg;
-                        String grpName = msg.subject.replace("user_to_group:", "");
-                        System.out.println(msg.from + ", " + msg.subject + ", " + msg.message );
                         Platform.runLater(() -> {
                             try {
                                 conversationsController.addReceivedMessage(message);
