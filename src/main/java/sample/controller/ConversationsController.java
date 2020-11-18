@@ -81,16 +81,16 @@ public class ConversationsController {
         ConversationWindowController convoWindowController = loader.getController();
 
 
-            ArrayList<User> others = new ArrayList<>();
-            for(String user: convo.getParticipants()){
+        ArrayList<User> others = new ArrayList<>();
+        for(String user: convo.getParticipants()){
 
-                if(user.equals(client.getUser().getUsername()))
-                    continue;
+            if(user.equals(client.getUser().getUsername()))
+                continue;
 
-                others.add(users.getUser(user));
-            }
+            others.add(users.getUser(user));
+        }
 
-            convoWindowController.setInfo(others, convo.getName());
+        convoWindowController.setInfo(others, convo.getName());
 
 
         Scene chatScene = new Scene(conversationWindowP);
@@ -139,7 +139,6 @@ public class ConversationsController {
         participants.add(msg.from);
 
         String key = generateKey(participants);
-        System.out.println(key);
 
         String grpName = msg.subject.replace("user_to_group:", "");
         ConversationWindowController window;
@@ -183,6 +182,7 @@ public class ConversationsController {
         Conversation convo = new Conversation(participants);
         convo.setName(name);
 
+
         conversationHashMap.put(key, convo);
 
         return convo;
@@ -192,15 +192,6 @@ public class ConversationsController {
         return conversationHashMap.get(key);
     }
 
-//    public void addConversation(String participants, Conversation conversation){
-//        List<String> participantsList = Arrays.asList(gson.fromJson(participants, String[].class));
-//        Collections.sort(participantsList);
-//        String key = participantsList.toString();
-//
-//        if(!conversationHashMap.containsKey(key))
-//            conversationHashMap.put(key, conversation);
-//    }
-    //add message to conversations
 
     public void addMessageToConversation(Message msg)
     {
