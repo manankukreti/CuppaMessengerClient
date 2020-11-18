@@ -63,7 +63,7 @@ public class ContactTilesController {
                     if (convoController.doesConversationExist(key)) {
                         convoController.createConversationWindow(convoController.getConversation(key));
                     } else {
-                        convoController.createConversationWindow(convoController.createConversation(participants));
+                        convoController.createConversationWindow(convoController.createConversation(participants, "default"));
                     }
                     convoController.floodConversationPane(key);
                 }

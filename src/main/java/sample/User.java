@@ -2,11 +2,13 @@ package sample;
 import java.io.Serializable;
 
 public class User implements Serializable {
+
     private String fullName;
     private String username;
     private String jobTitle;
     private String bio;
     private String status;
+    private String avatar;
 
     public User(){
         fullName = "Guest";
@@ -14,12 +16,22 @@ public class User implements Serializable {
         jobTitle = "visitor";
         bio = "No bio set.";
         status = "online";
+        avatar = "default";
     }
-    public User(String username, String fullName, String jobTitle, String about) {
+    public User(String username, String fullName, String jobTitle, String bio) {
         this.fullName = fullName;
         this.username = username;
         this.jobTitle = jobTitle;
-        this.bio = about;
+        this.bio = bio;
+        this.avatar = avatar;
+        this.status = "online";
+    }
+    public User(String username, String fullName, String jobTitle, String bio, String avatar) {
+        this.fullName = fullName;
+        this.username = username;
+        this.jobTitle = jobTitle;
+        this.bio = bio;
+        this.avatar = avatar;
         this.status = "online";
     }
 
@@ -62,6 +74,15 @@ public class User implements Serializable {
     public void setStatus(String status){
         this.status = status;
     }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
+
 
     @Override
     public String toString() {

@@ -8,10 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import sample.Conversation;
-import sample.Message;
-import sample.User;
-import sample.UserList;
+import sample.*;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
@@ -32,8 +29,9 @@ public class ConversationsController {
     static Path backupFile = Path.of("backup.cuppa");
 
     UserList users = UserList.getInstance();
+    Client client = Client.getInstance();
 
-    public ConversationsController(){
+    public ConversationsController() throws IOException {
     }
 
     @FXML
@@ -83,11 +81,17 @@ public class ConversationsController {
         ConversationWindowController convoWindowController = loader.getController();
 
 
+            ArrayList<User> others = new ArrayList<>();
+            for(String user: convo.getParticipants()){
 
-        if(convo.getName().equals("default")) {
-            User user = users.getUser(convo.getParticipants().get(1));
-            convoWindowController.setInfo(user);
-        }
+                if(user.equals(client.getUser().getUsername()))
+                    continue;
+
+                others.add(users.getUser(user));
+            }
+
+            convoWindowController.setInfo(others, convo.getName());
+
 
         Scene chatScene = new Scene(conversationWindowP);
         Stage chatStage = new Stage();
@@ -111,8 +115,8 @@ public class ConversationsController {
     }
 
 
-    public void openExistingConversationPane(String participants){
-        Stage pane = conversationStage.get(participants);
+    public void openExistingConversationPane(String key){
+        Stage pane = conversationStage.get(key);
         pane.show();
     }
 
@@ -159,9 +163,10 @@ public class ConversationsController {
 
     }
 
-    public Conversation createConversation(ArrayList<String> participants){
+    public Conversation createConversation(ArrayList<String> participants, String name){
         String key = generateKey(participants);
         Conversation convo = new Conversation(participants);
+        convo.setName(name);
 
         conversationHashMap.put(key, convo);
 

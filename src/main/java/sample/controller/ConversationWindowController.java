@@ -7,6 +7,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
@@ -16,14 +17,13 @@ import sample.Message;
 import sample.User;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 
 public class ConversationWindowController {
 
-    @FXML Label conversationWindowName;
-    @FXML Label conversationWindowJobTitle;
-    @FXML Label conversationWindowStatusText;
-    @FXML  Circle conversationWindowStatusIndicator;
+    @FXML
+    Pane infoPane;
     @FXML
     TextArea conversationWindowTextArea;
     @FXML
@@ -31,14 +31,14 @@ public class ConversationWindowController {
     @FXML
     VBox messagesVbox;
 
+    HBox infoHbox;
 
     Client client = Client.getInstance();
 
-    Conversation conversation = new Conversation();
     static ConversationsController conversationsController;
 
     User sender = client.getUser();
-    User receiver;
+    ArrayList<User> receivers = new ArrayList<>();
 
     @FXML
     public void initialize() throws IOException {
@@ -54,35 +54,26 @@ public class ConversationWindowController {
     }
 
 
-    public void setStatus(String status_string){
-        status_string = status_string.toLowerCase().trim();
-        switch(status_string){
-            case "away":
-                conversationWindowStatusIndicator.setFill(Color.YELLOW);
-                conversationWindowStatusText.setText("Away");
-                break;
-            case "busy":
-                conversationWindowStatusIndicator.setFill(Color.RED);
-                conversationWindowStatusText.setText("Busy");
-                break;
-            case "offline":
-                conversationWindowStatusIndicator.setFill(Color.GRAY);
-                conversationWindowStatusText.setText("Offline");
-                break;
-            default:
-                conversationWindowStatusIndicator.setFill(Color.GREEN);
-                conversationWindowStatusText.setText("Online");
-
-        }
-    }
     
-    public void setInfo(User recipient){
-        receiver = recipient;
-        conversationWindowName.setText(recipient.getFullName() + " ");
-        conversationWindowJobTitle.setText(recipient.getJobTitle());
-        setStatus(recipient.getStatus());
-        conversation.addParticipant(sender.getUsername());
-        conversation.addParticipant(receiver.getUsername());
+    public void setInfo(ArrayList<User> recipient, String name) throws IOException {
+        receivers.addAll(recipient);
+
+        FXMLLoader conversationWindowInfoLoader = new FXMLLoader();
+        if (recipient.size() == 1){
+            conversationWindowInfoLoader.setLocation(getClass().getResource("/mainPage/conversations/conversationWindowUserInfo.fxml"));
+            infoHbox = conversationWindowInfoLoader.load();
+            ConversationWindowUserInfoController infoSetUser = conversationWindowInfoLoader.getController();
+            infoSetUser.setInfo(recipient.get(0));
+            infoPane.getChildren().add(infoHbox);
+        }else {
+            conversationWindowInfoLoader.setLocation(getClass().getResource("/mainPage/conversations/conversationWindowGroupInfo.fxml"));
+            infoHbox = conversationWindowInfoLoader.load();
+            ConversationWindowGroupInfoController infoSetGroup = conversationWindowInfoLoader.getController();
+            infoSetGroup.setInfo(recipient, name);
+            infoPane.getChildren().add(infoHbox);
+        }
+
+
     }
 
     public HBox returnMessageNode(Message message) throws IOException {
@@ -102,12 +93,15 @@ public class ConversationWindowController {
     }
 
     public void sendMessage() throws IOException {
-        System.out.println(receiver.getUsername());
-        String msg = conversationWindowTextArea.getText();
-        Message message = new Message(client.getUser().getUsername(), receiver.getUsername(), "MSG-TEXT", "user_to_user", msg);
-        client.send(message);
-        ConversationWindowController.conversationsController.addReceivedMessage(message);
-        conversationWindowTextArea.clear();
+
+        if(receivers.size() == 1){
+            String msg = conversationWindowTextArea.getText();
+            Message message = new Message(client.getUser().getUsername(), receivers.get(0).getUsername(), "MSG-TEXT", "user_to_user", msg);
+            client.send(message);
+            ConversationWindowController.conversationsController.addReceivedMessage(message);
+            conversationWindowTextArea.clear();
+        }
+
     }
 
     public void addMessageToPane(Message msg) throws IOException {

@@ -105,15 +105,6 @@ public class Main extends Application {
                             User user = gson.fromJson(msg.message, User.class);
                             client.setUser(user);
                             client.setAuth(true);
-                            //go from login to main screen
-                            Platform.runLater(() -> {
-                                try {
-                                    client.requestAllUsers();
-                                } catch (IOException e) {
-                                    e.printStackTrace();
-                                }
-                            });
-
                         }
                     }
                     else if(msg.subject.equals("user_to_user") && msg.type.equals("MSG-TEXT")){

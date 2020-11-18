@@ -47,7 +47,7 @@
                                   </Label>
                                   <Label fx:id="jobTitleCurrentUser" style="-fx-font-size: 14;" text="Senior titty boi" />
                   <TextArea fx:id="bioCurrentUser" prefHeight="200.0" prefWidth="200.0" text="efg" />
-                  <Button fx:id="editStatusBtn"  prefHeight="25.0" prefWidth="79.0" text="Update Text" />
+                  <Button fx:id="editStatusBtn" prefHeight="25.0" prefWidth="79.0" text="Update Text" />
                                   <HBox prefHeight="25.0" prefWidth="200.0">
 
                                           <Circle fill="#25ff1f" radius="7.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0">
@@ -96,7 +96,7 @@
                                   <Insets bottom="15.0" top="15.0" />
                               </padding>
                           </Button>
-                          <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="256.0" style="-fx-background-color: ffffff;" text="Button" textAlignment="CENTER">
+                          <Button mnemonicParsing="false" onAction="#createNewGroup" prefHeight="25.0" prefWidth="256.0" style="-fx-background-color: ffffff;" text="Create group chat" textAlignment="CENTER">
                               <padding>
                                   <Insets bottom="15.0" top="15.0" />
                               </padding>

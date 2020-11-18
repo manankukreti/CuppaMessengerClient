@@ -39,6 +39,10 @@ public class MainController {
     public void newsFeed() throws IOException {
         loadUI("/mainPage/newsFeed/newsFeed.fxml");
     }
+
+    public void createNewGroup() throws IOException{
+        loadUI("/mainPage/createGroup/createNewGroup.fxml");
+    }
     public void loadUI(String ui) throws IOException {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource(ui));

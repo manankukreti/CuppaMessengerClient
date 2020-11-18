@@ -8,24 +8,22 @@ import java.io.OutputStream;
 import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.Arrays;
-
 public class Client {
 	private static Client instance = null;
 	private User user;
 	private final Socket socket;
 	private final InputStream in;
 	private final OutputStream out;
-	private boolean isAuth = false;
+	private boolean isAuth;
 
-
-	private Client() throws IOException {
+	public Client() throws IOException {
 		user = new User();
 		socket = new Socket("localhost", 5000);
 		in = socket.getInputStream();
 		out = socket.getOutputStream();
 	}
 
-	private Client(String ip, int port) throws UnknownHostException, IOException {
+	public Client(String ip, int port) throws UnknownHostException, IOException {
 		socket = new Socket(ip, port);
 		in = socket.getInputStream();
 		out = socket.getOutputStream();
@@ -63,6 +61,16 @@ public class Client {
 			user.setStatus("Online");
 
 		send(new Message(user.getUsername(), "server", "MSG-REQ", "set_status", user.getStatus()));
+	}
+
+	public void setBio(String bio) throws IOException {
+		user.setBio(bio);
+		send(new Message(user.getUsername(), "server", "MSG-REQ", "set_bio", user.getBio()));
+	}
+
+	public void setAvatar(String avatar) throws IOException {
+		user.setAvatar(avatar);
+		send(new Message(user.getUsername(), "server", "MSG-REQ", "set_avatar", user.getAvatar()));
 	}
 
 	//request all users that are signed up

@@ -1,14 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="mainPage.conversations.ConversationWindowGroupInfo"
-            prefHeight="400.0" prefWidth="600.0">
-
-</AnchorPane>
+<HBox prefHeight="116.0" prefWidth="805.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.ConversationWindowGroupInfoController">
+   <children>
+      <ImageView fitHeight="116.0" fitWidth="116.0" pickOnBounds="true" preserveRatio="true" />
+      <VBox alignment="CENTER_LEFT" prefHeight="81.0" prefWidth="454.0" spacing="10.0">
+         <children>
+            <Label fx:id="conversationWindowName" prefHeight="38.0" prefWidth="475.0" text="fgbisbg">
+               <font>
+                  <Font name="System Bold" size="26.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </Label>
+            <Label fx:id="conversationWindowJobTitle" prefHeight="36.0" prefWidth="454.0" text="bkbk" />
+         </children>
+         <HBox.margin>
+            <Insets left="30.0" />
+         </HBox.margin>
+      </VBox>
+   </children>
+</HBox>
