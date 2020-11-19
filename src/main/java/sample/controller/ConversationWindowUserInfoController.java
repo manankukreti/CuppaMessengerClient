@@ -2,19 +2,26 @@ package sample.controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import sample.User;
+
 
 public class ConversationWindowUserInfoController {
 
 @FXML Label conversationWindowName;
 @FXML Label conversationWindowJobTitle;
+
 @FXML
     Circle conversationWindowStatusIndicator;
 @FXML Label conversationWindowStatusText;
+@FXML
+ImageView image;
 
     public void setInfo(User recipient){
+        image.setImage(new Image(getClass().getResource("/Avatars/" + recipient.getAvatar() + ".png").toExternalForm()));
         conversationWindowName.setText(recipient.getFullName() + " ");
         conversationWindowJobTitle.setText(recipient.getJobTitle());
         setStatus(recipient.getStatus());

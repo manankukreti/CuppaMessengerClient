@@ -8,9 +8,12 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<HBox prefHeight="116.0" prefWidth="805.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.ConversationWindowUserInfoController">
+<HBox alignment="CENTER_LEFT" prefHeight="116.0" prefWidth="805.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.ConversationWindowUserInfoController">
    <children>
-      <ImageView fitHeight="116.0" fitWidth="116.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="image" fitHeight="110.0" fitWidth="110.0" pickOnBounds="true" preserveRatio="true">
+         <HBox.margin>
+            <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+         </HBox.margin></ImageView>
       <VBox prefHeight="81.0" prefWidth="454.0" spacing="10.0">
          <children>
             <Label fx:id="conversationWindowName" text="fgbisbg">

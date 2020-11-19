@@ -1,14 +1,14 @@
 package sample.controller;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
+import javafx.scene.text.Text;
 import sample.Message;
 
 public class MessageController {
 
     @FXML
-    Label messageLabel;
+    Text messageLabel;
     @FXML
     HBox messageHbox;
 
@@ -16,8 +16,7 @@ public class MessageController {
 
     public void setMessageLabel(Message message){
         currentMessage = message;
-        messageLabel.setWrapText(true);
-        messageLabel.setText(message.message);
+        messageLabel.setText(currentMessage.message);
 
     }
 
