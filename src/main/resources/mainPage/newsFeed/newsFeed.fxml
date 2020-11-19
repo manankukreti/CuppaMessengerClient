@@ -5,6 +5,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
@@ -22,10 +23,14 @@
       <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0">
          <children>
             <Label text="Title" />
-            <TextField />
-            <Label />
-            <TextArea prefHeight="200.0" prefWidth="200.0" />
-            <Button mnemonicParsing="false" text="Button" />
+            <TextField fx:id="postTite" />
+            <Label text="Context" />
+            <TextArea fx:id="postContent" prefHeight="200.0" prefWidth="200.0" />
+            <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Button fx:id="postBtn" mnemonicParsing="false" text="Button" />
+               </children>
+            </HBox>
          </children>
          <VBox.margin>
             <Insets left="30.0" right="30.0" />

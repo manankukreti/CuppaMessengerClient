@@ -35,7 +35,6 @@ public class LoginController {
     }
 
     public void goToMainScreen() throws IOException {
-
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/mainPage/mainPage.fxml"));
         Parent mainScreen = loader.load();
@@ -45,6 +44,7 @@ public class LoginController {
         MainController controller = loader.getController();
         controller.setCurrentEmployeeInfo(client.getUser());
         stage.show();
+
 
     }
 

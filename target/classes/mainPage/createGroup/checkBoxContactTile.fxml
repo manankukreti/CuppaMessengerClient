@@ -8,8 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<HBox alignment="CENTER_LEFT" minHeight="-Infinity" minWidth="-Infinity" prefHeight="80.0" prefWidth="230.0" style="-fx-background-color: EDDFF4;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.CheckboxContactTileController">
+<HBox alignment="CENTER_LEFT" minHeight="-Infinity" minWidth="-Infinity" prefHeight="80.0" prefWidth="230.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.CheckboxContactTileController">
    <children>
       <ImageView fx:id="image" fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" />
       <VBox alignment="CENTER_LEFT" prefHeight="70.0" prefWidth="129.0">

@@ -3,12 +3,15 @@ package sample.controller;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import sample.Client;
 import sample.User;
+
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -17,6 +20,8 @@ import java.util.Collections;
 
 public class ContactTilesController {
 
+    @FXML
+    ImageView image;
     @FXML
     Label contactName;
     @FXML
@@ -45,6 +50,8 @@ public class ContactTilesController {
     }
 
     public void setContactInfo(User contact){
+
+        image.setImage(new Image(getClass().getResource("/Avatars/" + contact.getAvatar() + ".png").toExternalForm()));
         contactName.setText(contact.getFullName());
         contactJobTitle.setText(contact.getJobTitle());
         changeStatus(contact.getStatus());

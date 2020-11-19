@@ -2,6 +2,8 @@ package sample.controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 
@@ -16,7 +18,8 @@ public class ConversationTileController {
 
     @FXML
     Label conversationName = new Label();
-
+    @FXML
+    ImageView image;
     @FXML
     Label conversationPreview = new Label();
     @FXML
@@ -27,9 +30,9 @@ public class ConversationTileController {
     }
 
 
-    public void setConversationInfo(ConversationsController convoController, String key, Conversation conversation, String title, String subtitle){
+    public void setConversationInfo(ConversationsController convoController, String key, Conversation conversation, String title, String subtitle, String icon){
         ArrayList<String> participants = (ArrayList<String>) conversation.getParticipants();
-
+        image.setImage(new Image(getClass().getResource("/Avatars/" +  icon + ".png").toExternalForm()));
         conversationName.setText(title);
         conversationPreview.setText(subtitle);
 

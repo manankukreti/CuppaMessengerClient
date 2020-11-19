@@ -4,9 +4,9 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.HBox?>
 
-<HBox fx:id="messageHbox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="39.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.MessageController">
+<HBox fx:id="messageHbox" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minHeight="40.0" minWidth="-Infinity" prefHeight="45.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.MessageController">
    <children>
-      <Label fx:id="messageLabel" prefHeight="69.0" prefWidth="386.0" style="-fx-background-color: EDDFF4;" text="Label">
+      <Label fx:id="messageLabel" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" prefHeight="35.0" prefWidth="600.0" style="-fx-background-color: EDDFF4;" text="Label">
          <HBox.margin>
             <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
          </HBox.margin>

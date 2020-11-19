@@ -229,6 +229,7 @@ public class ConversationsController {
             Conversation convo = entry.getValue();
 
             String title;
+            String avatar = "";
             if(convo.getName().equals("default") && convo.getParticipants().size() == 2){
                 String other = "";
                 for(String user: convo.getParticipants()){
@@ -239,6 +240,7 @@ public class ConversationsController {
                 }
 
                 User otherUser = users.getUser(other);
+                avatar = otherUser.getAvatar();
                 if(otherUser != null){
                     title = otherUser.getFullName();
                 }
@@ -257,7 +259,8 @@ public class ConversationsController {
             }
 
 
-            convoTileController.setConversationInfo(this, entry.getKey(), convo, title, subtitle);
+
+            convoTileController.setConversationInfo(this, entry.getKey(), convo, title, subtitle, avatar);
             conversationVbox.getChildren().add(conversationTile);
         }
 

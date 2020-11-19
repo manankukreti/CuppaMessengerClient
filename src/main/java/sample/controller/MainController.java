@@ -7,6 +7,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import sample.User;
@@ -15,6 +17,7 @@ import java.io.IOException;
 
 public class MainController {
 
+    @FXML private ImageView profilePicture;
     @FXML private Label nameCurrentUser;
     @FXML private Label jobTitleCurrentUser;
     @FXML private Label bioCurrentUser;
@@ -25,6 +28,7 @@ public class MainController {
 
 
     public void setCurrentEmployeeInfo(User currentUser){
+        profilePicture.setImage(new Image(getClass().getResource("/Avatars/" + currentUser.getAvatar() + ".png").toExternalForm()));
         nameCurrentUser.setText(currentUser.getFullName());
         jobTitleCurrentUser.setText(currentUser.getJobTitle());
         bioCurrentUser.setText(currentUser.getBio());
@@ -59,8 +63,12 @@ public class MainController {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/mainPage/editProfile.fxml"));
         Parent root = loader.load();
+        EditProfileController editProfileController = loader.getController();
+
         Scene editScene = new Scene(root);
         Stage editStage = new Stage();
+
+        editProfileController.setMainControllerInstance(this, editStage);
         editStage.setScene(editScene);
         editStage.setTitle("Edit Profile");
         editStage.show();

@@ -9,7 +9,7 @@
 
 <HBox fx:id="conversationTile" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="78.0" prefWidth="600.0" styleClass="shadows" stylesheets="@../../styles.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.ConversationTileController">
    <children>
-      <ImageView fitHeight="97.0" fitWidth="93.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="image" fitHeight="97.0" fitWidth="93.0" pickOnBounds="true" preserveRatio="true" />
       <VBox alignment="CENTER_LEFT" prefHeight="86.0" prefWidth="477.0">
          <children>
             <Label fx:id="conversationName" text="Label">
