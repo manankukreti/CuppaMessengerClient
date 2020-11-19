@@ -18,7 +18,7 @@ public class Client {
 
 	public Client() throws IOException {
 		user = new User();
-		socket = new Socket("localhost" , 5000);	in = socket.getInputStream();
+		socket = new Socket("10.0.0.13" , 5000);	in = socket.getInputStream();
 		out = socket.getOutputStream();
 	}
 
