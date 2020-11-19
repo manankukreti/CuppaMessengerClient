@@ -84,6 +84,7 @@ public class ConversationWindowController {
         HBox messageHBox = messageLoader.load();
         MessageController messageController = messageLoader.getController();
         messageController.setMessageLabel(message);
+
         if (sender.getUsername().equals(message.from)){
             messageHBox.setAlignment(Pos.CENTER_RIGHT);
         }

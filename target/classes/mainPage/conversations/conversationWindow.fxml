@@ -8,22 +8,22 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="657.0" prefWidth="805.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.ConversationWindowController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.ConversationWindowController">
    <children>
       <Pane fx:id="infoPane" prefHeight="116.0" prefWidth="805.0" />
-      <ScrollPane>
+      <ScrollPane hbarPolicy="NEVER" prefHeight="423.0" prefWidth="700.0">
          <content>
-            <VBox fx:id="messagesVbox" prefHeight="435.0" prefWidth="787.0" />
+            <VBox fx:id="messagesVbox" prefHeight="410.0" prefWidth="695.0" />
          </content>
       </ScrollPane>
       <HBox alignment="CENTER_LEFT" prefHeight="124.0" prefWidth="600.0">
          <children>
-            <TextArea fx:id="conversationWindowTextArea" prefHeight="75.0" prefWidth="631.0">
+            <TextArea fx:id="conversationWindowTextArea" prefHeight="83.0" prefWidth="570.0">
                <HBox.margin>
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </HBox.margin>
             </TextArea>
-            <Button fx:id="sendBtn" alignment="CENTER" mnemonicParsing="false" onAction="#sendMessage" text="Send" textAlignment="CENTER" />
+            <Button fx:id="sendBtn" alignment="CENTER" mnemonicParsing="false" onAction="#sendMessage" prefHeight="71.0" prefWidth="52.0" text="Send" textAlignment="CENTER" />
          </children>
       </HBox>
    </children>
