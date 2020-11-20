@@ -112,6 +112,7 @@ public class ConversationsController {
             for (Message msg : convo.getMessages()) {
                 window.addMessageToPane(msg);
             }
+
         }
     }
 

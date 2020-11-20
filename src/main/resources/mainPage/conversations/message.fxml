@@ -1,10 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.TextFlow?>
 
-<HBox fx:id="messageHbox" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="82.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.MessageController">
+<HBox fx:id="messageHbox" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="53.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.MessageController">
    <children>
-      <TextFlow fx:id="messageTextFlow" maxHeight="1.7976931348623157E308" prefHeight="58.0" prefWidth="287.0" style="-fx-background-color: FFFFFF;" />
+      <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="47.0" prefWidth="273.0">
+         <children>
+            <Label text="Label" />
+            <TextFlow fx:id="messageTextFlow" lineSpacing="1.15" maxHeight="1.7976931348623157E308" prefHeight="30.0" prefWidth="223.0" style="-fx-background-color: F3C677;" />
+         </children>
+      </VBox>
    </children>
+   <padding>
+      <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+   </padding>
 </HBox>

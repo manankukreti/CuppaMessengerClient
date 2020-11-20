@@ -1,10 +1,12 @@
 package sample.controller;
 
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 import javafx.scene.text.TextFlow;
 import sample.Message;
 
@@ -22,10 +24,10 @@ public class MessageController {
 
     public void setMessageLabel(Message message){
         currentMessage = message;
+        messageB.setStyle("-fx-padding: 5px");
         System.out.print(messageB);
-        //messageTextFlow.setBackground(Color.RED);
+        messageTextFlow.setTextAlignment(TextAlignment.JUSTIFY);
         messageB.setText(message.message);
-        //List list = messageTextFlow.getChildren();
         messageTextFlow.getChildren().add(messageB);
     }
 

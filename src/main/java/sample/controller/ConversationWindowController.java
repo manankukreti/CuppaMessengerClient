@@ -32,6 +32,8 @@ public class ConversationWindowController {
     Button sendBtn;
     @FXML
     VBox messagesVbox;
+    @FXML
+    ScrollPane chatScrollPane;
 
     @FXML
     ScrollPane msgScrollPane;
@@ -59,6 +61,7 @@ public class ConversationWindowController {
             msgScrollPane.setVvalue(1D);
         });
     }
+
 
 
     public ConversationWindowController() throws IOException {
@@ -123,10 +126,12 @@ public class ConversationWindowController {
             ConversationWindowController.conversationsController.addReceivedMessage(message);
         }
 
+
     }
 
     public void addMessageToPane(Message msg) throws IOException {
         messagesVbox.getChildren().add(returnMessageNode(msg));
+        chatScrollPane.setVvalue(1.0);
     }
 
 
