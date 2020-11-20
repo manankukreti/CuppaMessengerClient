@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -32,6 +33,9 @@ public class ConversationWindowController {
     @FXML
     VBox messagesVbox;
 
+    @FXML
+    ScrollPane msgScrollPane;
+
     HBox infoHbox;
 
     Client client = Client.getInstance();
@@ -49,6 +53,11 @@ public class ConversationWindowController {
         conversationLoader.load();
 
         conversationsController = conversationLoader.getController();
+
+        //scroll pane to bottom when message is sent
+        messagesVbox.heightProperty().addListener(observable -> {
+            msgScrollPane.setVvalue(1D);
+        });
     }
 
 
