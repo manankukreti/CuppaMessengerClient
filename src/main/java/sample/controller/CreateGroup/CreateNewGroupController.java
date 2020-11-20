@@ -1,4 +1,4 @@
-package sample.controller;
+package sample.controller.CreateGroup;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,6 +10,7 @@ import sample.Client;
 import sample.Conversation;
 import sample.User;
 import sample.UserList;
+import sample.controller.Conversation.ConversationsController;
 
 import java.io.IOException;
 import java.util.ArrayList;

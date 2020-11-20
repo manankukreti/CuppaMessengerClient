@@ -1,4 +1,4 @@
-package sample.controller;
+package sample.controller.Contacts;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

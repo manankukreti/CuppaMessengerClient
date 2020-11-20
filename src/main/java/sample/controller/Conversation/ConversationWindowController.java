@@ -1,21 +1,18 @@
-package sample.controller;
+package sample.controller.Conversation;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
 import sample.Client;
-import sample.Conversation;
 import sample.Message;
 import sample.User;
+import sample.controller.MessageController;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -75,6 +72,7 @@ public class ConversationWindowController {
             conversationWindowInfoLoader.setLocation(getClass().getResource("/mainPage/conversations/conversationWindowUserInfo.fxml"));
             infoHbox = conversationWindowInfoLoader.load();
             ConversationWindowUserInfoController infoSetUser = conversationWindowInfoLoader.getController();
+            System.out.println(recipient.get(0));
             infoSetUser.setInfo(recipient.get(0));
             infoPane.getChildren().add(infoHbox);
         }else {

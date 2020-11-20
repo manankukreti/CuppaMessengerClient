@@ -1,4 +1,4 @@
-package sample.controller;
+package sample.controller.Conversation;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -88,7 +88,17 @@ public class ConversationsController {
             if(user.equals(client.getUser().getUsername()))
                 continue;
 
-            others.add(users.getUser(user));
+            if(users.getUser(user) == null){
+                User deactivated = new User("", user, "Deactivated User", "-" );
+                deactivated.setStatus("offline");
+                deactivated.setAvatar("1");
+                others.add(deactivated);
+
+            }
+            else{
+                others.add(users.getUser(user));
+            }
+
         }
 
         convoWindowController.setInfo(others, convo.getName());
@@ -241,11 +251,14 @@ public class ConversationsController {
                 }
 
                 User otherUser = users.getUser(other);
-                avatar = otherUser.getAvatar();
+
+
                 if(otherUser != null){
+                    avatar = otherUser.getAvatar();
                     title = otherUser.getFullName();
                 }
                 else{
+                    avatar = "1";
                     title = other;
                 }
 
@@ -262,7 +275,7 @@ public class ConversationsController {
 
 
             convoTileController.setConversationInfo(this, entry.getKey(), convo, title, subtitle, avatar);
-            conversationVbox.getChildren().add(conversationTile);
+            conversationVbox.getChildren().add(0, conversationTile);
         }
 
     }

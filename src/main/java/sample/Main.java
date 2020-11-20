@@ -14,13 +14,10 @@ import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.*;
 
-import sample.controller.ContactsController;
-import sample.controller.ConversationsController;
+import sample.controller.Contacts.ContactsController;
+import sample.controller.Conversation.ConversationsController;
 import sample.controller.LoginController;
-
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
+import sample.controller.NewsFeed.NewsFeedController;
 
 public class Main extends Application {
 
@@ -28,6 +25,8 @@ public class Main extends Application {
     static LoginController loginController;
     static ConversationsController conversationsController;
     static ContactsController contactsController;
+    static NewsFeedController newsFeedController;
+
 
 
     @Override
@@ -47,6 +46,13 @@ public class Main extends Application {
         contactsLoader.setLocation(getClass().getResource("/mainPage/contacts/contacts.fxml"));
         contactsLoader.load();
         contactsController = contactsLoader.getController();
+
+        FXMLLoader postLoader = new FXMLLoader();
+        postLoader.setLocation(getClass().getResource("/mainPage/newsFeed/newsFeed.fxml"));
+        postLoader.load();
+        newsFeedController = postLoader.getController();
+
+
 
 
         primaryStage.setTitle("Hello World");
@@ -155,6 +161,28 @@ public class Main extends Application {
                                 contactsController.changeContactStatus(message.from, message.message);
                             });
                         }
+                    }
+                    else if(msg.subject.equals("all_posts")){
+                        Post[] posts = gson.fromJson(msg.message, Post[].class);
+                        Platform.runLater(() -> {
+                            try {
+                                newsFeedController.floodPosts(posts);
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        });
+
+                    }
+                    else if(msg.subject.equals("user_new_post")){
+                        Post post = gson.fromJson(msg.message, Post.class);
+                        Platform.runLater(() -> {
+                            try {
+                                newsFeedController.addPostToFeed(post);
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        });
+
                     }
 
                     else{

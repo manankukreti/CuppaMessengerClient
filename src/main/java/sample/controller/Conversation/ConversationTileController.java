@@ -1,4 +1,4 @@
-package sample.controller;
+package sample.controller.Conversation;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -7,7 +7,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 
-import sample.Client;
 import sample.Conversation;
 
 import java.io.IOException;
@@ -32,7 +31,13 @@ public class ConversationTileController {
 
     public void setConversationInfo(ConversationsController convoController, String key, Conversation conversation, String title, String subtitle, String icon){
         ArrayList<String> participants = (ArrayList<String>) conversation.getParticipants();
-        image.setImage(new Image(getClass().getResource("/Avatars/" +  icon + ".png").toExternalForm()));
+        if (participants.size() ==2){
+            image.setImage(new Image(getClass().getResource("/Avatars/" +  icon + ".png").toExternalForm()));
+
+        }else{
+            image.setImage(new Image(getClass().getResource("/Avatars/group.png").toExternalForm()));
+
+        }
         conversationName.setText(title);
         conversationPreview.setText(subtitle);
 

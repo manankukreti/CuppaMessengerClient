@@ -35,11 +35,11 @@ public class EditProfileController {
     String imageAddress = "";
 
     public void initialize(){
-        //ImageView avatar = new ImageView(getClass().getResource("WIN_20200414_05_46_42_Pro.jpg").toExternalForm());/*image address + i*/
         int j = 0;
         int k = 0;
         for (int i = 1; i< 10; i++){
             ImageView avatar = new ImageView(getClass().getResource("/Avatars/"+ i + ".png").toExternalForm());/*image address + i*/
+            System.out.println(avatar);
             avatar.setFitHeight(90);
             avatar.setFitWidth(90);
             avatarGrid.add(avatar,k,j);

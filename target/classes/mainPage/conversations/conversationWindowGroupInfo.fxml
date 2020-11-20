@@ -7,9 +7,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox prefHeight="116.0" prefWidth="805.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.ConversationWindowGroupInfoController">
+<HBox prefHeight="116.0" prefWidth="805.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.Conversation.ConversationWindowGroupInfoController">
    <children>
-      <ImageView fitHeight="116.0" fitWidth="116.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="groupIcon" fitHeight="116.0" fitWidth="116.0" pickOnBounds="true" preserveRatio="true" />
       <VBox alignment="CENTER_LEFT" prefHeight="81.0" prefWidth="454.0" spacing="10.0">
          <children>
             <Label fx:id="conversationWindowName" prefHeight="38.0" prefWidth="475.0" text="fgbisbg">

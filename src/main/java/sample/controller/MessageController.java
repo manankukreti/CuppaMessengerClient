@@ -24,7 +24,7 @@ public class MessageController {
 
     public void setMessageLabel(Message message){
         currentMessage = message;
-        messageB.setStyle("-fx-padding: 5px");
+        messageTextFlow.setStyle("-fx-padding: 5px");
         System.out.print(messageB);
         messageTextFlow.setTextAlignment(TextAlignment.JUSTIFY);
         messageB.setText(message.message);

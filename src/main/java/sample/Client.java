@@ -1,5 +1,4 @@
 package sample;
-
 import com.google.gson.Gson;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -15,10 +14,12 @@ public class Client {
 	private final InputStream in;
 	private final OutputStream out;
 	private boolean isAuth;
+	Gson gson = new Gson();
 
 	public Client() throws IOException {
 		user = new User();
-		socket = new Socket("10.0.0.13" , 5000);	in = socket.getInputStream();
+		socket = new Socket("localhost", 5000);
+		in = socket.getInputStream();
 		out = socket.getOutputStream();
 	}
 
@@ -37,7 +38,7 @@ public class Client {
 
 	public void send(Message msg) throws IOException {
 		DataOutputStream dout = new DataOutputStream(out);
-		Gson gson = new Gson();
+
 		dout.writeUTF( gson.toJson(msg) + "\n");
 		dout.flush();
 	}
@@ -47,6 +48,7 @@ public class Client {
 	}
 
 	public void sendToGroup(String[] to, String msg, String groupName) throws IOException {
+		System.out.println(Arrays.toString(to));
 		send(new Message(user.getUsername(), Arrays.toString(to), "MSG-TEXT", "user_to_group:" + groupName, msg));
 	}
 
@@ -72,6 +74,10 @@ public class Client {
 		send(new Message(user.getUsername(), "server", "MSG-REQ", "set_avatar", user.getAvatar()));
 	}
 
+	public void submitPost(Post post) throws IOException {
+		send(new Message(user.getUsername(), "server", "MSG-POST", "new_post", gson.toJson(post)));
+	}
+
 	//request all users that are signed up
 	public void requestAllUsers() throws IOException {
 		send(new Message(user.getUsername(), "server", "MSG-REQ", "general", "all_users"));
@@ -80,6 +86,10 @@ public class Client {
 	//request all currently online users
 	public void requestOnlineUsers() throws IOException {
 		send(new Message(user.getUsername(), "server", "MSG-REQ", "general", "online_users"));
+	}
+
+	public void requestAllPosts() throws IOException{
+		send(new Message(user.getUsername(), "server", "MSG-REQ", "general", "all_posts"));
 	}
 
 	//send heartbeat to server

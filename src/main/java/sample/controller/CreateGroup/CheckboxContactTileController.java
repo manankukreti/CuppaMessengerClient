@@ -1,4 +1,4 @@
-package sample.controller;
+package sample.controller.CreateGroup;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
