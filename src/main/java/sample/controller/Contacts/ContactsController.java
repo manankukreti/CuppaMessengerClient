@@ -27,7 +27,6 @@ public class ContactsController {
     }
 
     public void changeContactStatus(String username, String status){
-        System.out.println(username + ": " + tileControllers.get(username));
         tileControllers.get(username).changeStatus(status);
     }
 

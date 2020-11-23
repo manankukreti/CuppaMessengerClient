@@ -25,7 +25,7 @@ public class NewsFeedTileController {
 
 
     public void setPostInfo(Post post){
-        System.out.println(post);
+
         image.setImage(new Image(getClass().getResource("/Avatars/" + post.getAuthor().getAvatar() + ".png").toExternalForm()));
         name.setText(post.getAuthor().getFullName());
         dateAndTime.setText(formatDate(post.getDate()));

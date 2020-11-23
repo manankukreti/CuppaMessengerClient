@@ -166,7 +166,12 @@ public class Main extends Application {
                         Post[] posts = gson.fromJson(msg.message, Post[].class);
                         Platform.runLater(() -> {
                             try {
-                                newsFeedController.floodPosts(posts);
+                                if (posts.length == 0){
+
+                                }
+                                else {
+                                    newsFeedController.importPosts(posts);
+                                }
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }

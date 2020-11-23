@@ -3,6 +3,7 @@ package sample.controller.NewsFeed;
 import com.google.gson.Gson;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -13,28 +14,29 @@ import sample.Post;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 public class NewsFeedController {
-
-;
-
-
     @FXML
     TextField postTitle;
     @FXML
     TextArea postContent;
-
     @FXML
     Button postBtn;
     @FXML
     VBox postVbox;
-    Client author = Client.getInstance();
 
+    Client author = Client.getInstance();
+    static ArrayList<Post> posts = new ArrayList<>();
 
 
 
     public NewsFeedController() throws IOException {
+    }
+    @FXML
+    public void initialize() throws IOException {
+        floodList();
     }
 
     public void createPost() throws IOException {
@@ -44,10 +46,16 @@ public class NewsFeedController {
         author.submitPost(post);
     }
 
-    public void floodPosts(Post[] list) throws IOException {
+    public void importPosts(Post[] list) throws IOException {
 
-        for (int i =0; i< list.length; i++){
-            addPostToFeed(list[i]);
+        for (int i = 0; i < list.length; i++){
+           posts.add(list[i]);
+        }
+    }
+
+    public void floodList() throws IOException {
+        for (int i = 0; i<posts.size(); i++){
+            addPostToFeed(posts.get(i));
         }
     }
 
@@ -60,9 +68,12 @@ public class NewsFeedController {
         postTileController.setPostInfo(post);
 
         System.out.println(postNode);
-        postVbox.getChildren().add(0,postNode);
+        postVbox.getChildren().add(1,postNode);
     }
 
 
 
 }
+
+
+

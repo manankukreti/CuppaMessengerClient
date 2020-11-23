@@ -42,7 +42,6 @@ public class ContactTilesController {
     public ContactTilesController() throws IOException {
         FXMLLoader convoLoader = new FXMLLoader();
         convoLoader.setLocation(getClass().getResource("/mainPage/conversations/conversations.fxml"));
-        System.out.print(" yatt " +  convoLoader);
         try {
             convoLoader.load();
         } catch (IOException e) {
@@ -52,7 +51,6 @@ public class ContactTilesController {
     }
 
     public void setContactInfo(User contact){
-        System.out.println( "  wsafsdfsd"+ contact.getAvatar());
         image.setImage(new Image(getClass().getResource("/Avatars/" + contact.getAvatar() + ".png").toExternalForm()));
         contactName.setText(contact.getFullName());
         contactJobTitle.setText(contact.getJobTitle());

@@ -17,7 +17,7 @@
             <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="563.0" prefWidth="900.0">
                <children>
                   <AnchorPane prefHeight="563.0" prefWidth="450.0" />
-                  <AnchorPane prefHeight="563.0" prefWidth="457.0" style="-fx-background-color: F4828A;">
+                  <AnchorPane prefHeight="563.0" prefWidth="457.0" styleClass="gradient" stylesheets="@../light.css">
                      <children>
                         <ImageView fitHeight="150.0" fitWidth="150.0" layoutX="152.0" layoutY="85.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="328.0" AnchorPane.leftAnchor="152.0" AnchorPane.rightAnchor="152.0" AnchorPane.topAnchor="85.0">
                            <image>

@@ -1,4 +1,4 @@
-package sample.controller;
+package sample.controller.Conversation;
 
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
@@ -18,13 +18,17 @@ public class MessageController {
     HBox messageHbox;
 
     @FXML
+    Label name;
+
+    @FXML
     TextFlow messageTextFlow;
 
     Message currentMessage;
 
     public void setMessageLabel(Message message){
         currentMessage = message;
-        messageTextFlow.setStyle("-fx-padding: 5px");
+        name.setText(message.from);
+        messageTextFlow.setStyle("-fx-padding: 5px; -fx-background-color: RED;");
         System.out.print(messageB);
         messageTextFlow.setTextAlignment(TextAlignment.JUSTIFY);
         messageB.setText(message.message);

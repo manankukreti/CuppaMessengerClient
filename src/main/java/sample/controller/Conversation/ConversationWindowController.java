@@ -12,7 +12,6 @@ import javafx.scene.layout.VBox;
 import sample.Client;
 import sample.Message;
 import sample.User;
-import sample.controller.MessageController;
 
 import java.io.IOException;
 import java.util.ArrayList;

@@ -13,12 +13,12 @@
       <Pane fx:id="infoPane" prefHeight="116.0" prefWidth="805.0" />
       <ScrollPane fx:id="msgScrollPane" hbarPolicy="NEVER" prefHeight="423.0" prefWidth="700.0">
          <content>
-            <VBox fx:id="messagesVbox" prefHeight="410.0" prefWidth="695.0" />
+            <VBox fx:id="messagesVbox" prefHeight="410.0" prefWidth="695.0" spacing="10.0" style="-fx-background-color: FFFFFF;" />
          </content>
       </ScrollPane>
       <HBox alignment="CENTER_LEFT" prefHeight="124.0" prefWidth="600.0">
          <children>
-            <TextArea fx:id="conversationWindowTextArea" prefHeight="83.0" prefWidth="570.0">
+            <TextArea fx:id="conversationWindowTextArea" prefHeight="83.0" prefWidth="570.0" wrapText="true">
                <HBox.margin>
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </HBox.margin>
