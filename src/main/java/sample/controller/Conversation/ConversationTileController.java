@@ -57,4 +57,8 @@ public class ConversationTileController {
         });
 
     }
+
+    public void setSubtitle(String text){
+        conversationPreview.setText(text);
+    }
 }

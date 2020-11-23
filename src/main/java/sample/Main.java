@@ -17,12 +17,14 @@ import java.util.*;
 import sample.controller.Contacts.ContactsController;
 import sample.controller.Conversation.ConversationsController;
 import sample.controller.LoginController;
+import sample.controller.MainController;
 import sample.controller.NewsFeed.NewsFeedController;
 
 public class Main extends Application {
 
     public Parent login;
     static LoginController loginController;
+    static MainController mainController;
     static ConversationsController conversationsController;
     static ContactsController contactsController;
     static NewsFeedController newsFeedController;
@@ -37,22 +39,16 @@ public class Main extends Application {
         loginController = logLoader.getController();
         loginController.setStage(primaryStage);
 
-        FXMLLoader convoPaneLoader = new FXMLLoader();
-        convoPaneLoader.setLocation(getClass().getResource("/mainPage/conversations/conversations.fxml"));
-        convoPaneLoader.load();
-        conversationsController = convoPaneLoader.getController();
-
-        FXMLLoader contactsLoader = new FXMLLoader();
-        contactsLoader.setLocation(getClass().getResource("/mainPage/contacts/contacts.fxml"));
-        contactsLoader.load();
-        contactsController = contactsLoader.getController();
-
-        FXMLLoader postLoader = new FXMLLoader();
-        postLoader.setLocation(getClass().getResource("/mainPage/newsFeed/newsFeed.fxml"));
-        postLoader.load();
-        newsFeedController = postLoader.getController();
+        FXMLLoader mainLoader = new FXMLLoader();
+        mainLoader.setLocation(getClass().getResource("/mainPage/mainPage.fxml"));
+        mainLoader.load();
+        mainController = mainLoader.getController();
 
 
+        conversationsController = mainController.getConvoController();
+        System.out.println("inside main class" + conversationsController);
+        contactsController = mainController.getContactsController();
+        newsFeedController = mainController.getNewsFeedController();
 
 
         primaryStage.setTitle("Hello World");
@@ -145,8 +141,11 @@ public class Main extends Application {
                         Platform.runLater(() -> {
                             try {
                                 userList.setUsers(users);
+                                conversationsController.loadConvoFromFile();
+                                conversationsController.generateConversationTiles();
                                 contactsController.loadContacts();
                                 loginController.goToMainScreen();
+
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
@@ -171,6 +170,7 @@ public class Main extends Application {
                                 }
                                 else {
                                     newsFeedController.importPosts(posts);
+                                    newsFeedController.floodList();
                                 }
                             } catch (IOException e) {
                                 e.printStackTrace();

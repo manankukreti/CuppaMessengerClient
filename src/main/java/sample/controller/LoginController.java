@@ -45,7 +45,6 @@ public class LoginController {
         controller.setCurrentEmployeeInfo(client.getUser());
         stage.show();
 
-
     }
 
     public void onClickLogin() throws IOException {

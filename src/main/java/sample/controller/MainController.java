@@ -18,9 +18,13 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import sample.Client;
 import sample.User;
+import sample.controller.Contacts.ContactsController;
+import sample.controller.Conversation.ConversationsController;
+import sample.controller.NewsFeed.NewsFeedController;
 
 import java.awt.*;
 import java.io.IOException;
+import java.util.HashMap;
 
 public class MainController {
 
@@ -31,12 +35,22 @@ public class MainController {
     @FXML private BorderPane mainPane;
     @FXML private Button editProfile;
 
+
+    private static HashMap<String, Parent> uiMap;
+    private static HashMap<String, Object> controllerMap;
     //Navigation mechanism start
     Client client = Client.getInstance();
 
-    @FXML
-    public void initialize(){
 
+    @FXML
+    public void initialize() throws IOException {
+        if(uiMap == null){
+            uiMap = new HashMap<>();
+            controllerMap = new HashMap<>();
+        }
+        newsFeed();
+        conversations();
+        contacts();
     }
 
     public MainController() throws IOException {
@@ -50,18 +64,51 @@ public class MainController {
     }
 
 
-
     public void contacts() throws IOException {
-        loadUI("/mainPage/contacts/contacts.fxml");
+        loadUI("contacts", "/mainPage/contacts/contacts.fxml");
+
     }
 
     public void conversations() throws IOException {
-        loadUI("/mainPage/conversations/conversations.fxml");
+        loadUI("conversations", "/mainPage/conversations/conversations.fxml");
     }
 
     public void newsFeed() throws IOException {
-        loadUI("/mainPage/newsFeed/newsFeed.fxml");
+        loadUI("newsfeed", "/mainPage/newsFeed/newsFeed.fxml");
     }
+
+    public void loadUI(String key, String ui) throws IOException {
+
+        if(uiMap.containsKey(key)){
+            Parent screen = uiMap.get(key);
+            mainPane.setCenter(screen);
+        }
+        else{
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource(ui));
+            Parent root1 = loader.load();
+
+            uiMap.put(key,root1);
+            controllerMap.put(key, loader.getController());
+            mainPane.setCenter(root1);
+        }
+
+
+    }
+
+    public ConversationsController getConvoController(){
+        return (ConversationsController) controllerMap.get("conversations");
+    }
+
+    public ContactsController getContactsController(){
+        return (ContactsController) controllerMap.get("contacts");
+    }
+
+    public NewsFeedController getNewsFeedController(){
+        return (NewsFeedController) controllerMap.get("newsfeed");
+    }
+
+
 
     public void createNewGroup() throws IOException{
         FXMLLoader loader = new FXMLLoader();
@@ -87,14 +134,6 @@ public class MainController {
         editStage.setScene(editScene);
         editStage.setTitle("Edit Profile");
         editStage.show();
-    }
-
-    public void loadUI(String ui) throws IOException {
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource(ui));
-        Parent root1 = loader.load();
-
-        mainPane.setCenter(root1);
     }
 
 

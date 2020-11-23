@@ -23,28 +23,28 @@ public class ConversationsController {
     @FXML
     Gson gson = new Gson();
 
-    static HashMap<String, ConversationWindowController> conversationPanes = new HashMap<>();
-    static HashMap<String, Stage> conversationStage = new HashMap<>();
-    static HashMap<String, Conversation> conversationHashMap;
+    static HashMap<String, ConversationWindowController> conversationPaneMap = new HashMap<>();
+    static HashMap<String, ConversationTileController> conversationTileMap = new HashMap<>();
+    static HashMap<String, Stage> conversationStageMap = new HashMap<>();
+    static HashMap<String, Conversation> conversationMap;
+
+
     static Path backupFile = Path.of("backup.cuppa");
 
     UserList users = UserList.getInstance();
     Client client = Client.getInstance();
 
     public ConversationsController() throws IOException {
+        //System.out.println("inside convo class" + this);
     }
 
     @FXML
     public void initialize() throws IOException {
 
-        if(conversationHashMap == null){
-            conversationHashMap = new HashMap<>();
+        if(conversationMap == null){
+            conversationMap = new HashMap<>();
         }
 
-        if(client.isAuth()){
-            loadConvoFromFile();
-            generateConversationTiles();
-        }
     }
 
     public String generateKey(Message msg){
@@ -61,14 +61,14 @@ public class ConversationsController {
     }
 
     public void saveConvoToFile() throws IOException {
-        Files.writeString(backupFile, gson.toJson(conversationHashMap));
+        Files.writeString(backupFile, gson.toJson(conversationMap));
     }
 
     public void loadConvoFromFile() throws IOException {
         Type type = new TypeToken<HashMap<String, Conversation>>(){}.getType();
         HashMap<String, Conversation> loadedConvo = gson.fromJson(Files.readString(backupFile), type);
         if(loadedConvo != null){
-            conversationHashMap = loadedConvo;
+            conversationMap = loadedConvo;
         }
     }
 
@@ -80,7 +80,7 @@ public class ConversationsController {
         loader.setLocation(getClass().getResource("/mainPage/conversations/conversationWindow.fxml"));
         Parent conversationWindowP = loader.load();
         ConversationWindowController convoWindowController = loader.getController();
-
+        convoWindowController.setConversationController(this);
 
         ArrayList<User> others = new ArrayList<>();
         for(String user: convo.getParticipants()){
@@ -108,16 +108,16 @@ public class ConversationsController {
         Stage chatStage = new Stage();
         chatStage.setScene(chatScene);
 
-        conversationStage.put(key, chatStage);
-        conversationPanes.put(key, convoWindowController);
+        conversationStageMap.put(key, chatStage);
+        conversationPaneMap.put(key, convoWindowController);
 
         return convoWindowController;
     }
 
     public void floodConversationPane(String key) throws IOException {
-        if(conversationHashMap.containsKey(key)) {
-            ConversationWindowController window = conversationPanes.get(key);
-            Conversation convo = conversationHashMap.get(key);
+        if(conversationMap.containsKey(key)) {
+            ConversationWindowController window = conversationPaneMap.get(key);
+            Conversation convo = conversationMap.get(key);
 
             for (Message msg : convo.getMessages()) {
                 window.addMessageToPane(msg);
@@ -128,18 +128,18 @@ public class ConversationsController {
 
 
     public void openExistingConversationPane(String key){
-        Stage pane = conversationStage.get(key);
+        Stage pane = conversationStageMap.get(key);
         pane.show();
     }
 
     public boolean doesConversationPaneNotExist(String key){
 
-        return !conversationPanes.containsKey(key);
+        return !conversationPaneMap.containsKey(key);
     }
 
     public boolean doesConversationExist(String key){
 
-        return conversationHashMap.containsKey(key);
+        return conversationMap.containsKey(key);
     }
 
     public void addReceivedMessage(Message msg) throws IOException {
@@ -163,7 +163,7 @@ public class ConversationsController {
         String key = generateKey(participants);
 
         ConversationWindowController window;
-        if(!conversationHashMap.containsKey(key)){
+        if(!conversationMap.containsKey(key)){
             if(participants.size() > 2){
                 createConversation(participants, convoName);
             }
@@ -173,13 +173,13 @@ public class ConversationsController {
 
         }
 
-        conversationHashMap.get(key).addMessage(msg);
+        conversationMap.get(key).addMessage(msg);
 
-        if(conversationPanes.containsKey(key)){
-            window = conversationPanes.get(key);
+        if(conversationPaneMap.containsKey(key)){
+            window = conversationPaneMap.get(key);
         }
         else{
-           window = createConversationWindow(conversationHashMap.get(key));
+           window = createConversationWindow(conversationMap.get(key));
         }
 
         window.addMessageToPane(msg);
@@ -193,7 +193,7 @@ public class ConversationsController {
         participants.add(msg.from);
 
         Conversation convo = new Conversation(participants);
-        conversationHashMap.put(generateKey(msg), convo);
+        conversationMap.put(generateKey(msg), convo);
 
     }
 
@@ -203,19 +203,18 @@ public class ConversationsController {
         Conversation convo = new Conversation(participants);
         convo.setName(name);
 
-        conversationHashMap.put(key, convo);
+        conversationMap.put(key, convo);
 
         return convo;
     }
 
     public Conversation getConversation(String key){
-        return conversationHashMap.get(key);
+        return conversationMap.get(key);
     }
 
 
     public void addMessageToConversation(Message msg)
     {
-
 
         ArrayList<String> participants = new ArrayList<>();
         String[] recipients = gson.fromJson(msg.to, String[].class);
@@ -225,26 +224,38 @@ public class ConversationsController {
         participants.add(msg.from);
 
         String key = generateKey(participants);
-        conversationHashMap.get(key).addMessage(msg);
+        conversationMap.get(key).addMessage(msg);
+    }
+
+    //update the title's subtitle when a message is sent
+    public void updateConversationTile(Message msg){
+        String key = generateKey(msg);
+        if(conversationTileMap.containsKey(key)){
+            conversationTileMap.get(key).setSubtitle(msg.message);
+        }
+    }
+
+    public void generateConversationTiles() throws IOException {
+
+        for (Map.Entry<String, Conversation> entry : conversationMap.entrySet()) {
+            addConversationTile(entry.getKey(), entry.getValue());
+        }
     }
 
 
-    private void generateConversationTiles() throws IOException {
-        for (Map.Entry<String, Conversation> entry : conversationHashMap.entrySet()) {
-
+    public void addConversationTile(String key, Conversation convo) throws IOException {
+        if(!conversationTileMap.containsKey(key)) {
             FXMLLoader convoTileloader = new FXMLLoader();
             convoTileloader.setLocation(getClass().getResource("/mainPage/conversations/conversationTile.fxml"));
             Parent conversationTile = convoTileloader.load();
             ConversationTileController convoTileController = convoTileloader.getController();
 
-            Conversation convo = entry.getValue();
-
             String title;
             String avatar = "";
-            if(convo.getName().equals("default") && convo.getParticipants().size() == 2){
+            if (convo.getName().equals("default") && convo.getParticipants().size() == 2) {
                 String other = "";
-                for(String user: convo.getParticipants()){
-                    if(!user.equals(client.getUser().getUsername())){
+                for (String user : convo.getParticipants()) {
+                    if (!user.equals(client.getUser().getUsername())) {
                         other = user;
                         break;
                     }
@@ -253,32 +264,32 @@ public class ConversationsController {
                 User otherUser = users.getUser(other);
 
 
-                if(otherUser != null){
+                if (otherUser != null) {
                     avatar = otherUser.getAvatar();
                     title = otherUser.getFullName();
-                }
-                else{
+                } else {
                     avatar = "1";
                     title = other;
                 }
 
-            }
-            else{
+            } else {
                 title = convo.getName();
             }
 
             String subtitle = "";
-            if(convo.getMessages().size() > 0) {
-               subtitle = convo.getMessages().get(convo.getMessages().size() - 1).message;
+            if (convo.getMessages().size() > 0) {
+                subtitle = convo.getMessages().get(convo.getMessages().size() - 1).message;
             }
 
-
-
-            convoTileController.setConversationInfo(this, entry.getKey(), convo, title, subtitle, avatar);
+            System.out.println("convo controller" + this);
+            convoTileController.setConversationInfo(this, key, convo, title, subtitle, avatar);
+            conversationTileMap.put(key, convoTileController);
             conversationVbox.getChildren().add(0, conversationTile);
         }
-
     }
+
+
+
 
 
 }

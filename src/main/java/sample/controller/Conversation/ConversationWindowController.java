@@ -44,11 +44,6 @@ public class ConversationWindowController {
 
     @FXML
     public void initialize() throws IOException {
-        FXMLLoader conversationLoader = new FXMLLoader();
-        conversationLoader.setLocation(getClass().getResource("/mainPage/conversations/conversations.fxml"));
-        conversationLoader.load();
-
-        conversationsController = conversationLoader.getController();
 
         //scroll pane to bottom when message is sent
         messagesVbox.heightProperty().addListener(observable -> {
@@ -62,6 +57,10 @@ public class ConversationWindowController {
     }
 
 
+    public void setConversationController(ConversationsController controller){
+        conversationsController = controller;
+    }
+
     
     public void setInfo(ArrayList<User> recipient, String name) throws IOException {
         receivers.addAll(recipient);
@@ -71,7 +70,6 @@ public class ConversationWindowController {
             conversationWindowInfoLoader.setLocation(getClass().getResource("/mainPage/conversations/conversationWindowUserInfo.fxml"));
             infoHbox = conversationWindowInfoLoader.load();
             ConversationWindowUserInfoController infoSetUser = conversationWindowInfoLoader.getController();
-            System.out.println(recipient.get(0));
             infoSetUser.setInfo(recipient.get(0));
             infoPane.getChildren().add(infoHbox);
         }else {
@@ -104,11 +102,12 @@ public class ConversationWindowController {
 
     public void sendMessage() throws IOException {
         String msg = conversationWindowTextArea.getText();
+        Message message;
 
         if(receivers.size() == 1){
-            Message message = new Message(client.getUser().getUsername(), receivers.get(0).getUsername(), "MSG-TEXT", "user_to_user", msg);
+            message = new Message(client.getUser().getUsername(), receivers.get(0).getUsername(), "MSG-TEXT", "user_to_user", msg);
             client.send(message);
-            ConversationWindowController.conversationsController.addReceivedMessage(message);
+            conversationsController.addReceivedMessage(message);
             conversationWindowTextArea.clear();
         }
         else{
@@ -117,10 +116,11 @@ public class ConversationWindowController {
                 rec[i] =  receivers.get(i).getUsername();
             }
             client.sendToGroup(rec, msg, conversationName);
-            Message message = new Message(client.getUser().getUsername(), Arrays.toString(rec), "MSG-TEXT", "user_to_group:"+conversationName, msg);
-            ConversationWindowController.conversationsController.addReceivedMessage(message);
+            message = new Message(client.getUser().getUsername(), Arrays.toString(rec), "MSG-TEXT", "user_to_group:"+conversationName, msg);
+            conversationsController.addReceivedMessage(message);
         }
 
+        conversationsController.updateConversationTile(message);
 
     }
 

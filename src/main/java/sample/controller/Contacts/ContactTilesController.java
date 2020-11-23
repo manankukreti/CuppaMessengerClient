@@ -10,8 +10,10 @@ import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import sample.Client;
+import sample.Conversation;
 import sample.User;
 import sample.controller.Conversation.ConversationsController;
+import sample.controller.MainController;
 
 
 import java.io.IOException;
@@ -36,18 +38,20 @@ public class ContactTilesController {
 
     //Internal Dependencies
     Client client = Client.getInstance();
+    MainController mainController;
     ConversationsController convoController;
 
 
     public ContactTilesController() throws IOException {
-        FXMLLoader convoLoader = new FXMLLoader();
-        convoLoader.setLocation(getClass().getResource("/mainPage/conversations/conversations.fxml"));
+        FXMLLoader mainLoader = new FXMLLoader();
+        mainLoader.setLocation(getClass().getResource("/mainPage/mainPage.fxml"));
         try {
-            convoLoader.load();
+            mainLoader.load();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        convoController = convoLoader.getController();
+        mainController = mainLoader.getController();
+        convoController = mainController.getConvoController();
     }
 
     public void setContactInfo(User contact){
@@ -70,7 +74,9 @@ public class ContactTilesController {
                     if (convoController.doesConversationExist(key)) {
                         convoController.createConversationWindow(convoController.getConversation(key));
                     } else {
-                        convoController.createConversationWindow(convoController.createConversation(participants, "default"));
+                        Conversation convo = convoController.createConversation(participants, "default");
+                        convoController.createConversationWindow(convo);
+                        convoController.addConversationTile(key, convo);
                     }
                     convoController.floodConversationPane(key);
                 }
