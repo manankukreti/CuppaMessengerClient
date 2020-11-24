@@ -13,8 +13,8 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane style="-fx-background-color: F4DA89;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.MainController">
-      <BorderPane fx:id="mainPane" layoutX="15.0" layoutY="15.0" prefHeight="645.0" prefWidth="1030.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+<AnchorPane styleClass="anchorPane-main"  xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.MainController">
+      <BorderPane styleClass="borderPane-main"  fx:id="mainPane" layoutX="15.0" layoutY="15.0" prefHeight="645.0" prefWidth="1030.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
           <center>
               <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="645.0" prefWidth="770.0">
             <children>
@@ -40,14 +40,14 @@
                           </ImageView>
                           <VBox alignment="CENTER_LEFT" prefHeight="148.0" prefWidth="210.0" spacing="5.0">
 
-                                  <Label fx:id="nameCurrentUser" style="-fx-font-size: 24;" text="Shivain Kumar">
+                                  <Label styleClass="basicText" fx:id="nameCurrentUser" style="-fx-font-size: 24;" text="">
                                       <VBox.margin>
                                           <Insets />
                                       </VBox.margin>
                                   </Label>
-                                  <Label fx:id="jobTitleCurrentUser" style="-fx-font-size: 14;" text="Senior titty boi" />
-                  <Label fx:id="bioCurrentUser" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="40.0" prefWidth="210.0" text="Label" wrapText="true" />
-                  <Button fx:id="editProfile" onAction="#editProfile" prefHeight="35.0" prefWidth="79.0" text="Edit Profile" />
+                                  <Label styleClass="basicText" fx:id="jobTitleCurrentUser" style="-fx-font-size: 14;" text="" />
+                  <Label styleClass="basicText" fx:id="bioCurrentUser" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="40.0" prefWidth="210.0" text="Label" wrapText="true" />
+                  <Button styleClass="primaryBtn" fx:id="editProfile" onAction="#editProfile" prefHeight="35.0" prefWidth="79.0" text="Edit Profile" />
                                   <HBox prefHeight="25.0" prefWidth="200.0">
 
                                           <Circle fill="#25ff1f" radius="7.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0">
@@ -55,7 +55,7 @@
                                                   <Insets bottom="5.0" right="5.0" top="5.0" />
                                               </HBox.margin>
                                           </Circle>
-                                          <Label text="Online">
+                                          <Label styleClass="basicText" text="Online">
                                               <HBox.margin>
                                                   <Insets bottom="5.0" left="5.0" top="5.0" />
                                               </HBox.margin>
@@ -72,7 +72,7 @@
                   </VBox>
                   <VBox alignment="CENTER" prefHeight="324.0" prefWidth="250.0" spacing="15.0">
 
-                          <Button fx:id="contacts" mnemonicParsing="false" onAction="#contacts" prefHeight="25.0" prefWidth="263.0" style="-fx-background-color: ffffff;" text="Contacts" textAlignment="CENTER">
+                          <Button styleClass="main-tab-button" fx:id="contacts" mnemonicParsing="false" onAction="#contacts" prefHeight="25.0" prefWidth="263.0" text="Contacts" textAlignment="CENTER">
                               <VBox.margin>
                                   <Insets bottom="2.0" top="2.0" />
                               </VBox.margin>
@@ -80,7 +80,7 @@
                                   <Insets bottom="15.0" top="15.0" />
                               </padding>
                           </Button>
-                          <Button fx:id="conversation" mnemonicParsing="false" onAction="#conversations" prefHeight="25.0" prefWidth="251.0" style="-fx-background-color: ffffff;" text="Conversations" textAlignment="CENTER">
+                          <Button styleClass="main-tab-button" fx:id="conversation" mnemonicParsing="false" onAction="#conversations" prefHeight="25.0" prefWidth="251.0" text="Conversations" textAlignment="CENTER">
                               <VBox.margin>
                                   <Insets bottom="2.0" top="2.0" />
                               </VBox.margin>
@@ -88,7 +88,7 @@
                                   <Insets bottom="15.0" top="15.0" />
                               </padding>
                           </Button>
-                          <Button mnemonicParsing="false" onAction="#newsFeed" prefHeight="25.0" prefWidth="256.0" style="-fx-background-color: ffffff;" text="News Feed" textAlignment="CENTER">
+                          <Button styleClass="main-tab-button" mnemonicParsing="false" onAction="#newsFeed" prefHeight="25.0" prefWidth="256.0" text="News Feed" textAlignment="CENTER">
                               <VBox.margin>
                                   <Insets bottom="2.0" top="2.0" />
                               </VBox.margin>
@@ -96,7 +96,7 @@
                                   <Insets bottom="15.0" top="15.0" />
                               </padding>
                           </Button>
-                          <Button mnemonicParsing="false" onAction="#createNewGroup" prefHeight="25.0" prefWidth="256.0" style="-fx-background-color: ffffff;" text="Create group chat" textAlignment="CENTER">
+                          <Button styleClass="main-tab-button" mnemonicParsing="false" onAction="#createNewGroup" prefHeight="25.0" prefWidth="256.0" text="Create group chat" textAlignment="CENTER">
                               <padding>
                                   <Insets bottom="15.0" top="15.0" />
                               </padding>
@@ -105,8 +105,8 @@
                   </VBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="15.0">
                <children>
-                  <Button fx:id="logoutBtn" mnemonicParsing="false" onAction="#logout" text="Log out" />
-                  <Button fx:id="settingsBtn" alignment="CENTER" mnemonicParsing="false" onAction="#settings" text="Settings" />
+                  <Button styleClass="primaryBtn" fx:id="logoutBtn" mnemonicParsing="false" onAction="#logout" text="Log out" />
+                  <Button styleClass="primaryBtn" fx:id="settingsBtn" alignment="CENTER" mnemonicParsing="false" onAction="#settings" text="Settings" />
                </children>
             </HBox>
       

@@ -8,33 +8,33 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox maxWidth="-Infinity" minWidth="-Infinity" prefHeight="157.0" prefWidth="707.0" spacing="5.0" style="-fx-background-color: DBCACA;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.NewsFeed.NewsFeedTileController">
+<VBox maxWidth="-Infinity" minWidth="-Infinity" prefHeight="157.0" prefWidth="707.0" spacing="5.0" styleClass="vbox-newsfeedTile" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.NewsFeed.NewsFeedTileController">
    <children>
-      <HBox prefHeight="44.0" prefWidth="600.0">
+      <HBox prefHeight="44.0" prefWidth="600.0" styleClass="hbox-newsfeedTile">
          <children>
             <ImageView fx:id="image" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                <HBox.margin>
                   <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                </HBox.margin>
             </ImageView>
-            <VBox prefHeight="54.0" prefWidth="548.0" spacing="2.0">
+            <VBox styleClass="info-newsfeedTile" prefHeight="54.0" prefWidth="548.0" spacing="2.0">
                <children>
-                  <Label fx:id="name" text="Sidhu Moose wala">
+                  <Label fx:id="name" styleClass="basicText" text="Sidhu Moose wala">
                      <font>
                         <Font size="17.0" />
                      </font>
                   </Label>
-                  <Label fx:id="dateAndTime" text="Label" />
+                  <Label fx:id="dateAndTime" styleClass="basicText2" text="Label" />
                </children>
             </VBox>
          </children>
       </HBox>
-      <Label fx:id="title" text="Title for the past">
+      <Label fx:id="title" styleClass="basicText" text="Title for the past">
          <font>
-            <Font size="20.0" />
+            <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <Text fx:id="body" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="669.13671875">
+      <Text fx:id="body" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="body-newsfeedTile" text="Text" wrappingWidth="669.13671875">
          <font>
             <Font size="14.0" />
          </font></Text>

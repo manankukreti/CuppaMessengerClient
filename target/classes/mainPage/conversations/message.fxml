@@ -10,7 +10,7 @@
    <children>
       <VBox maxHeight="500.0" maxWidth="500.0" minHeight="45.0" minWidth="20.0">
          <children>
-            <Label fx:id="name" text="Label">
+            <Label styleClass="basicText2" fx:id="name" text="Label">
                <VBox.margin>
                   <Insets left="20.0" right="20.0" />
                </VBox.margin></Label>

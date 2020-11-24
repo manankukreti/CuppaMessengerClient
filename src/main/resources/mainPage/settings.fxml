@@ -49,7 +49,7 @@
             </HBox>
             <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <children>
-                  <Button mnemonicParsing="false" prefHeight="36.0" prefWidth="52.0" style="-fx-background-color: FBFBFB;" text="Light" />
+                  <Button mnemonicParsing="false" onAction="#lightButton" prefHeight="36.0" prefWidth="52.0" style="-fx-background-color: FBFBFB;" text="Light" />
                   <Button mnemonicParsing="false" onAction="#darkButton" prefHeight="36.0" prefWidth="52.0" style="-fx-background-color: DARKSLATEGRAY;" text="Dark" textFill="WHITE" />
                </children>
             </HBox>

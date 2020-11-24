@@ -7,17 +7,17 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox fx:id="conversationTile" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="78.0" prefWidth="600.0" styleClass="shadows" stylesheets="@../../light.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.Conversation.ConversationTileController">
+<HBox fx:id="conversationTile" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="78.0" prefWidth="600.0" styleClass="shadows" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.Conversation.ConversationTileController">
    <children>
       <ImageView fx:id="image" fitHeight="97.0" fitWidth="93.0" pickOnBounds="true" preserveRatio="true" />
       <VBox alignment="CENTER_LEFT" prefHeight="86.0" prefWidth="477.0">
          <children>
-            <Label fx:id="conversationName" text="Label">
+            <Label styleClass="basicText" fx:id="conversationName" text="Label">
                <font>
                   <Font size="21.0" />
                </font>
             </Label>
-            <Label fx:id="conversationPreview" text="Label" />
+            <Label styleClass="basicText2" fx:id="conversationPreview" text="Label" />
          </children>
          <HBox.margin>
             <Insets bottom="10.0" left="30.0" />

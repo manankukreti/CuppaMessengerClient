@@ -8,22 +8,22 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.Conversation.ConversationWindowController">
+<VBox styleClass="primaryBg" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.Conversation.ConversationWindowController">
    <children>
       <Pane fx:id="infoPane" prefHeight="116.0" prefWidth="805.0" />
-      <ScrollPane fx:id="msgScrollPane" hbarPolicy="NEVER" prefHeight="423.0" prefWidth="695.0">
+      <ScrollPane styleClass="primaryBg" fx:id="msgScrollPane" hbarPolicy="NEVER" prefHeight="423.0" prefWidth="695.0">
          <content>
-            <VBox fx:id="messagesVbox" prefHeight="416.0" prefWidth="695.0" spacing="8.0" style="-fx-background-color: FFFFFF;" />
+            <VBox styleClass="primaryBg" fx:id="messagesVbox" prefHeight="416.0" prefWidth="695.0" spacing="8.0" />
          </content>
       </ScrollPane>
-      <HBox alignment="CENTER_LEFT" prefHeight="124.0" prefWidth="600.0">
+      <HBox styleClass="primaryBg" alignment="CENTER_LEFT" prefHeight="124.0" prefWidth="600.0">
          <children>
-            <TextArea fx:id="conversationWindowTextArea" prefHeight="99.0" prefWidth="574.0" wrapText="true">
+            <TextArea styleClass="inputField" fx:id="conversationWindowTextArea" prefHeight="99.0" prefWidth="574.0" wrapText="true">
                <HBox.margin>
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </HBox.margin>
             </TextArea>
-            <Button fx:id="sendBtn" alignment="CENTER" mnemonicParsing="false" onAction="#sendMessage" prefHeight="43.0" prefWidth="74.0" style="-fx-background-color: #B3D89C;" text="Send" textAlignment="CENTER" />
+            <Button styleClass="primaryBtn" fx:id="sendBtn" alignment="CENTER" mnemonicParsing="false" onAction="#sendMessage" prefHeight="43.0" prefWidth="74.0" text="Send" textAlignment="CENTER" />
          </children>
       </HBox>
    </children>

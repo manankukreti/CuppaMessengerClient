@@ -1,11 +1,20 @@
 package sample.controller;
-import javafx.fxml.FXMLLoader;
-
 
 import java.io.IOException;
 
 public class SettingsController {
-    public void darkButton() throws IOException {
 
+    MainController mainController;
+
+    public void darkButton() throws IOException {
+        mainController.setTheme("dark");
+    }
+
+    public void lightButton() throws IOException {
+        mainController.setTheme("light");
+    }
+
+    public void setMainController(MainController controller){
+        mainController = controller;
     }
 }

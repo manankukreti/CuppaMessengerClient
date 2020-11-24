@@ -23,6 +23,10 @@ public class ConversationsController {
     @FXML
     Gson gson = new Gson();
 
+    String currentTheme = "";
+    String lightThemeURL = getClass().getResource("/light.css").toExternalForm();
+    String darkThemeURL = getClass().getResource("/dark.css").toExternalForm();
+
     static HashMap<String, ConversationWindowController> conversationPaneMap = new HashMap<>();
     static HashMap<String, ConversationTileController> conversationTileMap = new HashMap<>();
     static HashMap<String, Stage> conversationStageMap = new HashMap<>();
@@ -35,16 +39,35 @@ public class ConversationsController {
     Client client = Client.getInstance();
 
     public ConversationsController() throws IOException {
-        //System.out.println("inside convo class" + this);
+
     }
 
     @FXML
     public void initialize() throws IOException {
-
         if(conversationMap == null){
             conversationMap = new HashMap<>();
         }
+    }
 
+    public void setTheme(String theme){
+        for (Map.Entry<String, Stage> entry : conversationStageMap.entrySet()) {
+            if(theme.equals("light")){
+                if(currentTheme.equals("dark")){
+                    entry.getValue().getScene().getStylesheets().remove(darkThemeURL);
+                }
+                entry.getValue().getScene().getStylesheets().add(lightThemeURL);
+            }
+            else if(theme.equals("dark")){
+                if(currentTheme.equals("light")){
+                    entry.getValue().getScene().getStylesheets().remove(darkThemeURL);
+                }
+                entry.getValue().getScene().getStylesheets().add(darkThemeURL);
+
+            }
+
+        }
+
+        currentTheme = theme;
     }
 
     public String generateKey(Message msg){
@@ -105,6 +128,19 @@ public class ConversationsController {
 
 
         Scene chatScene = new Scene(conversationWindowP);
+
+        if(currentTheme.equals("light")){
+            System.out.println("theme set " + currentTheme);
+            chatScene.getStylesheets().add(lightThemeURL);
+        }
+        else if(currentTheme.equals("dark")){
+            System.out.println("theme set " + currentTheme);
+            chatScene.getStylesheets().add(darkThemeURL);
+        }
+        else{
+            System.out.println("no theme set " + currentTheme);
+        }
+
         Stage chatStage = new Stage();
         chatStage.setScene(chatScene);
 
@@ -125,7 +161,6 @@ public class ConversationsController {
 
         }
     }
-
 
     public void openExistingConversationPane(String key){
         Stage pane = conversationStageMap.get(key);
@@ -221,21 +256,6 @@ public class ConversationsController {
         return conversationMap.get(key);
     }
 
-
-    public void addMessageToConversation(Message msg)
-    {
-
-        ArrayList<String> participants = new ArrayList<>();
-        String[] recipients = gson.fromJson(msg.to, String[].class);
-        for(String rec : recipients){
-            participants.add(rec);
-        }
-        participants.add(msg.from);
-
-        String key = generateKey(participants);
-        conversationMap.get(key).addMessage(msg);
-    }
-
     //update the title's subtitle when a message is sent
     public void updateConversationTile(Message msg){
         String key = generateKey(msg);
@@ -271,7 +291,6 @@ public class ConversationsController {
                 }
 
                 User otherUser = users.getUser(other);
-
 
                 if (otherUser != null) {
                     avatar = otherUser.getAvatar();

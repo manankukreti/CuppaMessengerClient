@@ -11,9 +11,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="645.0" prefWidth="770.0" spacing="5.0" style="-fx-background-color: FFFFFF;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.NewsFeed.NewsFeedController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="645.0" prefWidth="770.0" spacing="5.0" styleClass="vbox-newsfeed" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.NewsFeed.NewsFeedController">
     <children>
-        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="News Feed" wrappingWidth="683.13671875">
+        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="tab-title" text="News Feed" wrappingWidth="683.13671875">
             <font>
                 <Font size="40.0" />
             </font>
@@ -21,19 +21,19 @@
                 <Insets left="30.0" top="10.0" />
             </VBox.margin>
         </Text>
-      <ScrollPane hbarPolicy="NEVER" prefHeight="579.0" prefWidth="768.0" style="-fx-background-color: white;" vbarPolicy="ALWAYS">
+      <ScrollPane hbarPolicy="NEVER" prefHeight="579.0" prefWidth="768.0" styleClass="scrollPane-newsfeed" vbarPolicy="ALWAYS">
          <content>
-            <VBox fx:id="postVbox" alignment="TOP_CENTER" prefHeight="577.0" prefWidth="767.0" spacing="5.0" style="-fx-background-color: FFFFFF;">
+            <VBox fx:id="postVbox" alignment="TOP_CENTER" prefHeight="577.0" prefWidth="767.0" spacing="5.0" styleClass="vboxScrollPane-newsfeed">
                <children>
                   <VBox prefHeight="175.0" prefWidth="707.0" spacing="4.0">
                      <children>
-                        <Label text="Title" />
-                        <TextField fx:id="postTitle" />
-                        <Label text="Content" />
-                        <TextArea fx:id="postContent" prefHeight="90.0" prefWidth="707.0" wrapText="true" />
+                        <Label styleClass="basicText" text="Title" />
+                        <TextField fx:id="postTitle" styleClass="inputField" />
+                        <Label styleClass="basicText" text="Content" />
+                        <TextArea fx:id="postContent" minHeight="-Infinity" prefHeight="150.0" prefWidth="707.0" styleClass="inputField" wrapText="true" />
                         <HBox alignment="CENTER_RIGHT" prefHeight="33.0" prefWidth="710.0">
                            <children>
-                              <Button fx:id="postBtn" mnemonicParsing="false" onAction="#createPost" text="Post" />
+                              <Button styleClass="primaryBtn" fx:id="postBtn" mnemonicParsing="false" onAction="#createPost" text="Post" />
                            </children>
                         </HBox>
                      </children>

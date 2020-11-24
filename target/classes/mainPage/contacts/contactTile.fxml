@@ -13,7 +13,7 @@
       <ImageView fx:id="image" fitHeight="100.0" fitWidth="94.0" pickOnBounds="true" preserveRatio="true" />
       <VBox prefHeight="100.0" prefWidth="206.0">
          <children>
-            <Label fx:id="contactName" text="Full Name">
+            <Label styleClass="basicText"  fx:id="contactName" text="Full Name">
                <font>
                   <Font size="20.0" />
                </font>
@@ -21,15 +21,15 @@
                   <Insets bottom="5.0" top="10.0" />
                </VBox.margin>
             </Label>
-            <Label fx:id="contactJobTitle" text="And the title">
+            <Label styleClass="basicText" fx:id="contactJobTitle" text="And the title">
                <VBox.margin>
                   <Insets bottom="5.0" />
                </VBox.margin>
             </Label>
-            <HBox prefHeight="25.0" prefWidth="111.0">
+            <HBox styleClass="basicText"  prefHeight="25.0" prefWidth="111.0">
                <children>
                   <Circle fx:id="contactStatusIndicator" fill="#1fff35" radius="7.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-                  <Label fx:id="contactStatusText" text="Status">
+                  <Label styleClass="basicText"  fx:id="contactStatusText" text="Status">
                      <HBox.margin>
                         <Insets left="10.0" />
                      </HBox.margin>

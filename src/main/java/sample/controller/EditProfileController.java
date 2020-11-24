@@ -39,7 +39,6 @@ public class EditProfileController {
         int k = 0;
         for (int i = 1; i< 10; i++){
             ImageView avatar = new ImageView(getClass().getResource("/Avatars/"+ i + ".png").toExternalForm());/*image address + i*/
-            System.out.println(avatar);
             avatar.setFitHeight(90);
             avatar.setFitWidth(90);
             avatarGrid.add(avatar,k,j);

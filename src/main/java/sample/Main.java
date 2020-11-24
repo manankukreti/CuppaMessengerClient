@@ -32,7 +32,7 @@ public class Main extends Application {
     static ConversationsController conversationsController;
     static ContactsController contactsController;
     static NewsFeedController newsFeedController;
-    static AudioInputStream audioInputStream;
+    //static AudioInputStream audioInputStream;
 
 
     @Override
@@ -54,7 +54,7 @@ public class Main extends Application {
         contactsController = mainController.getContactsController();
         newsFeedController = mainController.getNewsFeedController();
 
-        audioInputStream = AudioSystem.getAudioInputStream(getClass().getResource("/Audio/notification.wav"));
+       //audioInputStream = AudioSystem.getAudioInputStream(getClass().getResource("/Audio/notification.wav"));
 
 
         primaryStage.setTitle("Hello World");
@@ -120,9 +120,9 @@ public class Main extends Application {
                         }
                     }
                     else if(msg.type.equals("MSG-TEXT")){
-                        Clip clip = AudioSystem.getClip();
-                        clip.open(audioInputStream);
-                        clip.start();
+//                        Clip clip = AudioSystem.getClip();
+//                        clip.open(audioInputStream);
+//                        clip.start();
 
                         if(msg.subject.equals("user_to_user")){
                             Message message = msg;

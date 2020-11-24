@@ -1,6 +1,39 @@
-.black-font{
-    -fx-fill: black;
+.anchorPane-main{
+    -fx-background-color: #EDDFF4;
 }
-.light-background{
-    -fx-background-color: white;
+
+.borderPane-main, .scrollPane-contacts, .vbox-contacts, .grid-contacts, .vbox-conversations, .scrollPane-conversations, .vboxScrollPane-conversations, .vbox-newsfeed, .scrollPane-newsfeed, .vboxScrollPane-newsfeed, .vbox-newGroup, .scrollPane-newGroup, .grid-newGroup, .vbox-editProfile, .hbox-editProfile, .primaryBg{
+    -fx-background-color: #ffffff;
+}
+
+.main-tab-button{
+    -fx-background-color: #ffffff;
+    -fx-text-fill: #252525;
+}
+
+.vbox-newsfeedTile, .hbox-newsfeedTile, .info-newsfeedTile{
+    -fx-background-color:#fafafa;
+}
+
+.tab-title, .body-newsfeedTile{
+    -fx-fill:#252525;
+}
+
+.inputField{
+    -fx-control-inner-background:#fafafa;
+    -fx-text-fill:#ffffff;
+}
+
+.basicText{
+    -fx-text-fill: #252525;
+}
+
+.basicText2{
+    -fx-text-fill: #252525;
+}
+
+.primaryBtn{
+    -fx-background-color:#8275e6;
+    -fx-text-fill:#ffffff;
+    -fx-padding: 5 10 5 10;
 }

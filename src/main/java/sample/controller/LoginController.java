@@ -38,12 +38,15 @@ public class LoginController {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/mainPage/mainPage.fxml"));
         Parent mainScreen = loader.load();
-        Scene mainScreenScene = new Scene(mainScreen);
-        stage.setScene(mainScreenScene);
-
         MainController controller = loader.getController();
+
         controller.setCurrentEmployeeInfo(client.getUser());
+
+        Scene mainScreenScene = new Scene(mainScreen);
+        controller.setTheme("light");
+        stage.setScene(mainScreenScene);
         stage.show();
+
 
     }
 

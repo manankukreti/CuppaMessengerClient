@@ -107,7 +107,7 @@ public class ContactTilesController {
                 break;
             default:
                 contactStatusIndicator.setFill(Color.GREEN);
-                contactStatusText.setText("Green");
+                contactStatusText.setText("Online");
 
         }
     }
