@@ -130,15 +130,10 @@ public class ConversationsController {
         Scene chatScene = new Scene(conversationWindowP);
 
         if(currentTheme.equals("light")){
-            System.out.println("theme set " + currentTheme);
             chatScene.getStylesheets().add(lightThemeURL);
         }
         else if(currentTheme.equals("dark")){
-            System.out.println("theme set " + currentTheme);
             chatScene.getStylesheets().add(darkThemeURL);
-        }
-        else{
-            System.out.println("no theme set " + currentTheme);
         }
 
         Stage chatStage = new Stage();

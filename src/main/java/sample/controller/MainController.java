@@ -16,6 +16,7 @@ import sample.Client;
 import sample.User;
 import sample.controller.Contacts.ContactsController;
 import sample.controller.Conversation.ConversationsController;
+import sample.controller.CreateGroup.CreateNewGroupController;
 import sample.controller.NewsFeed.NewsFeedController;
 
 import java.io.IOException;
@@ -172,6 +173,8 @@ public class MainController {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/mainPage/createGroup/createNewGroup.fxml"));
             Parent root = loader.load();
+            CreateNewGroupController controller = loader.getController();
+            controller.setConversationController(getConvoController());
 
             Scene createGroupScene = new Scene(root);
             uiScene.put("createNewGroup", createGroupScene);

@@ -12,9 +12,12 @@ import sample.Conversation;
 import sample.User;
 import sample.UserList;
 import sample.controller.Conversation.ConversationsController;
+import sample.controller.MainController;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 
 public class CreateNewGroupController {
     Client client = Client.getInstance();
@@ -24,14 +27,8 @@ public class CreateNewGroupController {
 
     @FXML
     Node contactTile;
-
-    @FXML
-    Node conversation;
-
     @FXML
     GridPane list;
-
-
     @FXML
     Button createBtn;
     @FXML
@@ -41,6 +38,8 @@ public class CreateNewGroupController {
     @FXML
     Label warningMessage;
 
+    private static ConversationsController convoController;
+
     public CreateNewGroupController() throws IOException {
     }
 
@@ -49,6 +48,10 @@ public class CreateNewGroupController {
     public void initialize() throws IOException {
         warningMessage.setText("");
         loadContacts();
+    }
+
+    public void setConversationController(ConversationsController controller){
+        convoController = controller;
     }
 
     public void loadContacts() throws IOException {
@@ -95,21 +98,22 @@ public class CreateNewGroupController {
 
     public void createGroup() throws IOException {
         ArrayList<String> finalList = selectedUsers(checkBoxContactControllers);
-        if(finalList.size() == 0 || groupName.getText().trim() == ""){
-            warningMessage.setText("Enter a group name and select participants!");
+        finalList.add(client.getUser().getUsername());
+        Collections.sort(finalList);
+        String key = finalList.toString();
+
+        if(groupName.getText().trim().equals("")){
+            warningMessage.setText("Please enter a group name.");
+        }
+        else if(finalList.size() <= 2){
+            warningMessage.setText("Please select more than one participant.");
         }
         else {
-            finalList.add(client.getUser().getUsername());
 
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("/mainPage/conversations/conversations.fxml"));
-            conversation = loader.load();
-            ConversationsController creater = loader.getController();
-
-            Conversation groupConversation = creater.createConversation(finalList, groupName.getText());
-            creater.createConversationWindow(groupConversation);
-            creater.openExistingConversationPane(creater.generateKey(finalList));
-
+            Conversation groupConversation = convoController.createConversation(finalList, groupName.getText());
+            convoController.createConversationWindow(groupConversation);
+            convoController.openExistingConversationPane(convoController.generateKey(finalList));
+            convoController.addConversationTile(key, groupConversation);
         }
         loadContacts();
     }

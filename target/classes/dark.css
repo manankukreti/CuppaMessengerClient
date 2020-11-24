@@ -22,6 +22,7 @@
 .inputField{
     -fx-control-inner-background:#454545;
     -fx-text-fill:#ffffff;
+    -fx-text-inner-color:#ffffff;
 }
 
 .basicText{
