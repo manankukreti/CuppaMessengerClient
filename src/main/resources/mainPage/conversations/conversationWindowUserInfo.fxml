@@ -7,25 +7,40 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.TextFlow?>
 
-<HBox alignment="CENTER_LEFT" prefHeight="116.0" prefWidth="805.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.Conversation.ConversationWindowUserInfoController">
+<HBox alignment="CENTER_LEFT" prefHeight="116.0" prefWidth="805.0" spacing="30.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.Conversation.ConversationWindowUserInfoController">
    <children>
       <ImageView fx:id="image" fitHeight="110.0" fitWidth="110.0" pickOnBounds="true" preserveRatio="true">
          <HBox.margin>
-            <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+            <Insets bottom="2.0" left="25.0" right="2.0" top="2.0" />
          </HBox.margin></ImageView>
-      <VBox prefHeight="81.0" prefWidth="454.0" spacing="10.0">
+      <VBox alignment="CENTER_LEFT" prefHeight="116.0" prefWidth="608.0">
          <children>
-            <Label fx:id="conversationWindowName" text="fgbisbg">
-               <font>
-                  <Font name="System Bold" size="26.0" />
-               </font>
+            <HBox alignment="CENTER_LEFT" prefHeight="38.0" prefWidth="483.0">
+               <children>
+                  <TextFlow fx:id="nameBox" prefHeight="65.0" prefWidth="604.0">
+                     <children>
+                        <Label fx:id="conversationWindowName" maxWidth="300.0" prefHeight="28.0" text="name">
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="conversationWindowJobTitle" maxWidth="300.0" prefHeight="27.0" text="title">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </TextFlow>
+               </children>
+            </HBox>
+            <Label fx:id="bio" prefHeight="17.0" prefWidth="455.0" text="bio">
                <VBox.margin>
-                  <Insets top="10.0" />
+                  <Insets bottom="5.0" />
                </VBox.margin>
             </Label>
-            <Label fx:id="conversationWindowJobTitle" text="bkbk" />
-            <HBox alignment="CENTER_LEFT" prefHeight="38.0" prefWidth="282.0" spacing="5.0">
+            <HBox alignment="CENTER_LEFT" prefHeight="23.0" prefWidth="454.0" spacing="5.0">
                <children>
                   <Circle fx:id="conversationWindowStatusIndicator" fill="DODGERBLUE" radius="6.0" stroke="BLACK" strokeType="INSIDE" />
                   <Label fx:id="conversationWindowStatusText" text="Label" />
@@ -33,7 +48,7 @@
             </HBox>
          </children>
          <HBox.margin>
-            <Insets left="30.0" />
+            <Insets left="20.0" />
          </HBox.margin>
       </VBox>
    </children>

@@ -6,24 +6,32 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import javafx.scene.text.TextFlow;
 import sample.User;
 
 
 public class ConversationWindowUserInfoController {
 
-@FXML Label conversationWindowName;
-@FXML Label conversationWindowJobTitle;
-
-@FXML
+    @FXML
+    Label conversationWindowName;
+    @FXML
+    TextFlow nameBox;
+    @FXML
+    Label conversationWindowJobTitle;
+    @FXML
     Circle conversationWindowStatusIndicator;
-@FXML Label conversationWindowStatusText;
-@FXML
-ImageView image;
+    @FXML
+    Label conversationWindowStatusText;
+    @FXML
+    ImageView image;
+    @FXML
+    Label bio;
 
     public void setInfo(User recipient){
         image.setImage(new Image(getClass().getResource("/Avatars/" + recipient.getAvatar() + ".png").toExternalForm()));
         conversationWindowName.setText(recipient.getFullName() + " ");
-        conversationWindowJobTitle.setText(recipient.getJobTitle());
+        conversationWindowJobTitle.setText(" - " + recipient.getJobTitle());
+        bio.setText(recipient.getBio());
         setStatus(recipient.getStatus());
     }
 

@@ -25,6 +25,11 @@ public class ConversationWindowGroupInfoController {
         String recepientsList = "";
         for (int i = 0; i< recipients.size();i++){
             recepientsList+=recipients.get(i).getFullName();
+            if (i == recipients.size() - 1){
+
+            }else{
+                recepientsList += ", ";
+            }
         }
         conversationWindowJobTitle.setText(recepientsList);
     }

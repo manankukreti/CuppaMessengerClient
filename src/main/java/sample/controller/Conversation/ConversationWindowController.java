@@ -102,26 +102,32 @@ public class ConversationWindowController {
     }
 
     public void sendMessage() throws IOException {
-        String msg = conversationWindowTextArea.getText();
+        String msg = conversationWindowTextArea.getText().trim();
         Message message;
 
-        if(receivers.size() == 1){
-            message = new Message(client.getUser().getUsername(), receivers.get(0).getUsername(), "MSG-TEXT", "user_to_user", msg);
-            client.send(message);
-            conversationsController.addReceivedMessage(message);
-            conversationWindowTextArea.clear();
+        if (msg.equals("")){
+
         }
         else{
-            String[] rec = new String[receivers.size()];
-            for(int i = 0; i < receivers.size(); i++){
-                rec[i] =  receivers.get(i).getUsername();
+            if(receivers.size() == 1){
+                message = new Message(client.getUser().getUsername(), receivers.get(0).getUsername(), "MSG-TEXT", "user_to_user", msg);
+                client.send(message);
+                conversationsController.addReceivedMessage(message);
             }
-            client.sendToGroup(rec, msg, conversationName);
-            message = new Message(client.getUser().getUsername(), Arrays.toString(rec), "MSG-TEXT", "user_to_group:"+conversationName, msg);
-            conversationsController.addReceivedMessage(message);
+            else{
+                String[] rec = new String[receivers.size()];
+                for(int i = 0; i < receivers.size(); i++){
+                    rec[i] =  receivers.get(i).getUsername();
+                }
+                client.sendToGroup(rec, msg, conversationName);
+                message = new Message(client.getUser().getUsername(), Arrays.toString(rec), "MSG-TEXT", "user_to_group:"+conversationName, msg);
+                conversationsController.addReceivedMessage(message);
+            }
+
+            conversationsController.updateConversationTile(message);
+            conversationWindowTextArea.clear();
         }
 
-        conversationsController.updateConversationTile(message);
 
     }
 

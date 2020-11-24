@@ -21,16 +21,16 @@
                 <Insets left="30.0" top="10.0" />
             </VBox.margin>
         </Text>
-      <ScrollPane hbarPolicy="NEVER" prefHeight="579.0" prefWidth="768.0" vbarPolicy="ALWAYS">
+      <ScrollPane hbarPolicy="NEVER" prefHeight="579.0" prefWidth="768.0" style="-fx-background-color: white;" vbarPolicy="ALWAYS">
          <content>
             <VBox fx:id="postVbox" alignment="TOP_CENTER" prefHeight="577.0" prefWidth="767.0" spacing="5.0" style="-fx-background-color: FFFFFF;">
                <children>
-                  <VBox prefHeight="146.0" prefWidth="710.0" spacing="4.0">
+                  <VBox prefHeight="175.0" prefWidth="707.0" spacing="4.0">
                      <children>
                         <Label text="Title" />
                         <TextField fx:id="postTitle" />
-                        <Label text="Context" />
-                        <TextArea fx:id="postContent" prefHeight="52.0" prefWidth="710.0" wrapText="true" />
+                        <Label text="Content" />
+                        <TextArea fx:id="postContent" prefHeight="90.0" prefWidth="707.0" wrapText="true" />
                         <HBox alignment="CENTER_RIGHT" prefHeight="33.0" prefWidth="710.0">
                            <children>
                               <Button fx:id="postBtn" mnemonicParsing="false" onAction="#createPost" text="Post" />

@@ -13,9 +13,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="645.0" prefWidth="770.0" style="-fx-background-color: FBFBFB;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.CreateGroup.CreateNewGroupController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="646.0" prefWidth="818.0" spacing="10.0" style="-fx-background-color: WHITE;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.CreateGroup.CreateNewGroupController">
 
-        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Create a new group chat" wrappingWidth="804.13671875">
+        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Create a new group chat" wrappingWidth="750.13671875">
             <font>
                 <Font size="40.0" />
             </font>
@@ -23,19 +23,30 @@
                 <Insets bottom="10.0" top="10.0" />
             </VBox.margin>
         </Text>
-   <HBox prefHeight="42.0" prefWidth="805.0">
+   <HBox alignment="CENTER_LEFT" prefHeight="91.0" prefWidth="778.0">
       <children>
-         <Label prefHeight="25.0" prefWidth="109.0" text="Enter Group Name:" />
-         <TextField fx:id="groupName" prefHeight="37.0" prefWidth="193.0" />
+         <Label prefHeight="25.0" prefWidth="144.0" text="Enter Group Name:">
+            <font>
+               <Font size="15.0" />
+            </font></Label>
+         <TextField fx:id="groupName" focusTraversable="false" prefHeight="38.0" prefWidth="627.0">
+            <font>
+               <Font size="15.0" />
+            </font></TextField>
       </children>
    </HBox>
-    <ScrollPane hbarPolicy="NEVER" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="594.0" prefWidth="770.0">
+   <Label fx:id="warningMessage" prefHeight="20.0" prefWidth="436.0" textFill="RED">
+      <font>
+         <Font size="14.0" />
+      </font>
+   </Label>
+    <ScrollPane hbarPolicy="NEVER" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="414.0" prefWidth="797.0" style="-fx-background-color: white;">
 
-            <GridPane fx:id="list" alignment="TOP_CENTER" hgap="50.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="770.0" style="-fx-background-color: FBFBFB; -fx-border-style: none;" vgap="30.0">
+            <GridPane fx:id="list" alignment="TOP_CENTER" hgap="30.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="364.0" prefWidth="783.0" style="-fx-background-color: white;" vgap="30.0">
                 <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="230.0" prefWidth="230.0" />
-                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="230.0" prefWidth="230.0" />
-                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="230.0" prefWidth="230.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="220.0" prefWidth="220.0" />
+                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="220.0" prefWidth="220.0" />
+                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="220.0" prefWidth="220.0" />
                 </columnConstraints>
                 <rowConstraints>
             <RowConstraints maxHeight="-Infinity" minHeight="80.0" prefHeight="80.0" vgrow="SOMETIMES" />
@@ -43,7 +54,7 @@
                     <RowConstraints maxHeight="-Infinity" minHeight="80.0" prefHeight="80.0" vgrow="SOMETIMES" />
                 </rowConstraints>
                 <padding>
-                    <Insets left="30.0" top="10.0" />
+                    <Insets top="10.0" />
                 </padding>
             </GridPane>
 
@@ -54,4 +65,7 @@
          <Button fx:id="clearBtn" mnemonicParsing="false" text="Clear selection" />
       </children>
    </HBox>
+   <padding>
+      <Insets left="20.0" right="20.0" />
+   </padding>
 </VBox>

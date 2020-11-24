@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.layout.GridPane;
+import sample.Client;
 import sample.User;
 import sample.UserList;
 
@@ -18,9 +19,14 @@ public class ContactsController {
 
     @FXML
     Node contactTile;
+    Client client = Client.getInstance();
 
     static UserList userList  = UserList.getInstance();
     static ArrayList<User> users;
+
+    public ContactsController() throws IOException {
+    }
+
     @FXML
     public void initialize() throws IOException {
         loadContacts();
@@ -38,19 +44,25 @@ public class ContactsController {
         if(users != null){
             for (User user : users) {
 
-                FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(getClass().getResource("/mainPage/contacts/contactTile.fxml"));
-                contactTile = loader.load();
-                ContactTilesController infoSet = loader.getController();
+                if (user.getUsername().equals(client.getUser().getUsername())){
 
-                infoSet.setContactInfo(user);
-                list.add(contactTile, j, k);
-                tileControllers.put(user.getUsername(), infoSet);
-                //adding to the grid
-                j++;
-                if (j % 2 == 0 && j != 0) {
-                    k++;
-                    j = 0;
+                }
+                else {
+                    FXMLLoader loader = new FXMLLoader();
+                    loader.setLocation(getClass().getResource("/mainPage/contacts/contactTile.fxml"));
+                    contactTile = loader.load();
+                    ContactTilesController infoSet = loader.getController();
+
+                    infoSet.setContactInfo(user);
+                    list.add(contactTile, j, k);
+                    tileControllers.put(user.getUsername(), infoSet);
+                    //adding to the grid
+                    j++;
+                    if (j % 2 == 0 && j != 0) {
+                        k++;
+                        j = 0;
+                    }
+
                 }
             }
         }
