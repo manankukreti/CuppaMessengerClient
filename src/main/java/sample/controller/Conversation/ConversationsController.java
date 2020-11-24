@@ -161,20 +161,23 @@ public class ConversationsController {
         participants.add(msg.from);
 
         String key = generateKey(participants);
-
         ConversationWindowController window;
+
+        //check if conversation exists
+        Conversation thisConvo = null;
         if(!conversationMap.containsKey(key)){
             if(participants.size() > 2){
-                createConversation(participants, convoName);
+                thisConvo = createConversation(participants, convoName);
             }
             else{
-                createConversation(msg);
+                thisConvo = createConversation(msg);
             }
 
         }
 
         conversationMap.get(key).addMessage(msg);
 
+        //check if window exists
         if(conversationPaneMap.containsKey(key)){
             window = conversationPaneMap.get(key);
         }
@@ -184,10 +187,15 @@ public class ConversationsController {
 
         window.addMessageToPane(msg);
 
+        //check if title exists
+        if(!conversationTileMap.containsKey(key)){
+            addConversationTile(key, thisConvo);
+        }
+
         saveConvoToFile();
     }
 
-    public void createConversation(Message msg){
+    public Conversation createConversation(Message msg){
         ArrayList<String> participants = new ArrayList<>();
         participants.add(msg.to);
         participants.add(msg.from);
@@ -195,6 +203,7 @@ public class ConversationsController {
         Conversation convo = new Conversation(participants);
         conversationMap.put(generateKey(msg), convo);
 
+        return convo;
     }
 
     public Conversation createConversation(ArrayList<String> participants, String name){
@@ -281,7 +290,6 @@ public class ConversationsController {
                 subtitle = convo.getMessages().get(convo.getMessages().size() - 1).message;
             }
 
-            System.out.println("convo controller" + this);
             convoTileController.setConversationInfo(this, key, convo, title, subtitle, avatar);
             conversationTileMap.put(key, convoTileController);
             conversationVbox.getChildren().add(0, conversationTile);

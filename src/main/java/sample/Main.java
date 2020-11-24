@@ -20,6 +20,10 @@ import sample.controller.LoginController;
 import sample.controller.MainController;
 import sample.controller.NewsFeed.NewsFeedController;
 
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+
 public class Main extends Application {
 
     public Parent login;
@@ -28,11 +32,12 @@ public class Main extends Application {
     static ConversationsController conversationsController;
     static ContactsController contactsController;
     static NewsFeedController newsFeedController;
-
+    static AudioInputStream audioInputStream;
 
 
     @Override
     public void start(Stage primaryStage) throws Exception{
+
         FXMLLoader logLoader = new FXMLLoader();
         logLoader.setLocation(getClass().getResource("/logInPage/LoginPage.fxml"));
         login = logLoader.load();
@@ -46,9 +51,10 @@ public class Main extends Application {
 
 
         conversationsController = mainController.getConvoController();
-        System.out.println("inside main class" + conversationsController);
         contactsController = mainController.getContactsController();
         newsFeedController = mainController.getNewsFeedController();
+
+        audioInputStream = AudioSystem.getAudioInputStream(getClass().getResource("/Audio/notification.wav"));
 
 
         primaryStage.setTitle("Hello World");
@@ -113,26 +119,33 @@ public class Main extends Application {
                             client.setAuth(true);
                         }
                     }
-                    else if(msg.subject.equals("user_to_user") && msg.type.equals("MSG-TEXT")){
-                        Message message = msg;
-                        Platform.runLater(() -> {
-                            try {
-                                conversationsController.addReceivedMessage(message);
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
-                        });
+                    else if(msg.type.equals("MSG-TEXT")){
+                        Clip clip = AudioSystem.getClip();
+                        clip.open(audioInputStream);
+                        clip.start();
 
-                    }
-                    else if(msg.type.equals("MSG-TEXT") && msg.subject.contains("user_to_group")){
-                        Message message = msg;
-                        Platform.runLater(() -> {
-                            try {
-                                conversationsController.addReceivedMessage(message);
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
-                        });
+                        if(msg.subject.equals("user_to_user")){
+                            Message message = msg;
+                            Platform.runLater(() -> {
+                                try {
+                                    conversationsController.addReceivedMessage(message);
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+                            });
+
+                        }
+                        else if(msg.subject.contains("user_to_group")){
+                            Message message = msg;
+
+                            Platform.runLater(() -> {
+                                try {
+                                    conversationsController.addReceivedMessage(message);
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+                            });
+                        }
                     }
                     else if(msg.subject.equals("all_users")){
                         Type type = new TypeToken<ArrayList<User>>(){}.getType();
