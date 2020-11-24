@@ -12,6 +12,8 @@ import javafx.stage.Stage;
 import java.io.DataInputStream;
 import java.io.IOException;
 import java.lang.reflect.Type;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 import java.util.*;
 
 import sample.controller.Contacts.ContactsController;
@@ -20,6 +22,9 @@ import sample.controller.LoginController;
 import sample.controller.MainController;
 import sample.controller.NewsFeed.NewsFeedController;
 
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
@@ -129,7 +134,7 @@ public class Main extends Application {
                             Platform.runLater(() -> {
                                 try {
                                     conversationsController.addReceivedMessage(message);
-                                } catch (IOException e) {
+                                } catch (Exception e) {
                                     e.printStackTrace();
                                 }
                             });
@@ -141,7 +146,7 @@ public class Main extends Application {
                             Platform.runLater(() -> {
                                 try {
                                     conversationsController.addReceivedMessage(message);
-                                } catch (IOException e) {
+                                } catch (Exception e) {
                                     e.printStackTrace();
                                 }
                             });
@@ -159,7 +164,7 @@ public class Main extends Application {
                                 contactsController.loadContacts();
                                 loginController.goToMainScreen();
 
-                            } catch (IOException e) {
+                            } catch (Exception e) {
                                 e.printStackTrace();
                             }
                         });

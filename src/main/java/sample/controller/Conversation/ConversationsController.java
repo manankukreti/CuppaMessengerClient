@@ -10,10 +10,16 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import sample.*;
 
+import javax.crypto.*;
+import javax.crypto.spec.SecretKeySpec;
+import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.security.InvalidKeyException;
+import java.security.Key;
+import java.security.NoSuchAlgorithmException;
 import java.util.*;
 
 public class ConversationsController {
@@ -32,11 +38,11 @@ public class ConversationsController {
     static HashMap<String, Stage> conversationStageMap = new HashMap<>();
     static HashMap<String, Conversation> conversationMap;
 
-
-    static Path backupFile = Path.of("backup.cuppa");
-
     UserList users = UserList.getInstance();
     Client client = Client.getInstance();
+
+
+
 
     public ConversationsController() throws IOException {
 
@@ -83,16 +89,32 @@ public class ConversationsController {
         return participants.toString();
     }
 
-    public void saveConvoToFile() throws IOException {
-        Files.writeString(backupFile, gson.toJson(conversationMap));
+    public void saveConvoToFile() throws IOException, InvalidKeyException, NoSuchPaddingException, NoSuchAlgorithmException, BadPaddingException, IllegalBlockSizeException {
+        Path backupFile = Path.of("backups/backup_"+ client.getUser().getUsername()+".cuppa");
+        if(!Files.exists(backupFile)){
+            File file = backupFile.toFile();
+            file.createNewFile();
+        }
+        //not secure but will do for the sake of simplicity
+        String content = gson.toJson(conversationMap);
+        String encrypted = Encryptor.encrypt(content, "ThWmZq4t6w9z$C&F" + client.getUser().getUsername() + "/A?D(G+KbPeShVmYq3t6w9y$B&E)H@Mc");
+
+        Files.writeString(backupFile, encrypted);
     }
 
-    public void loadConvoFromFile() throws IOException {
-        Type type = new TypeToken<HashMap<String, Conversation>>(){}.getType();
-        HashMap<String, Conversation> loadedConvo = gson.fromJson(Files.readString(backupFile), type);
-        if(loadedConvo != null){
-            conversationMap = loadedConvo;
+    public void loadConvoFromFile() throws IOException, NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException, BadPaddingException, IllegalBlockSizeException {
+        Path backupFile = Path.of("backups/backup_"+ client.getUser().getUsername()+".cuppa");
+        if(Files.exists(backupFile)){
+            String encryptedContent = Files.readString(backupFile);
+            String decrypted = Encryptor.decrypt(encryptedContent, "ThWmZq4t6w9z$C&F" + client.getUser().getUsername() + "/A?D(G+KbPeShVmYq3t6w9y$B&E)H@Mc");
+
+            Type type = new TypeToken<HashMap<String, Conversation>>(){}.getType();
+            HashMap<String, Conversation> loadedConvo = gson.fromJson(decrypted, type);
+            if(loadedConvo != null){
+                conversationMap = loadedConvo;
+            }
         }
+
     }
 
     public ConversationWindowController createConversationWindow(Conversation convo) throws IOException{
@@ -172,7 +194,7 @@ public class ConversationsController {
         return conversationMap.containsKey(key);
     }
 
-    public void addReceivedMessage(Message msg) throws IOException {
+    public void addReceivedMessage(Message msg) throws IOException, NoSuchAlgorithmException, BadPaddingException, NoSuchPaddingException, IllegalBlockSizeException, InvalidKeyException {
         ArrayList<String> participants = new ArrayList<>();
         String convoName;
         if(msg.subject.contains("user_to_group:")){
@@ -266,7 +288,6 @@ public class ConversationsController {
         }
     }
 
-
     public void addConversationTile(String key, Conversation convo) throws IOException {
         if(!conversationTileMap.containsKey(key)) {
             FXMLLoader convoTileloader = new FXMLLoader();
@@ -309,9 +330,5 @@ public class ConversationsController {
             conversationVbox.getChildren().add(0, conversationTile);
         }
     }
-
-
-
-
 
 }

@@ -14,7 +14,12 @@ import sample.Client;
 import sample.Message;
 import sample.User;
 
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
 import java.io.IOException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -101,7 +106,7 @@ public class ConversationWindowController {
         return messageHBox;
     }
 
-    public void sendMessage() throws IOException {
+    public void sendMessage() throws IOException, IllegalBlockSizeException, NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException, BadPaddingException {
         String msg = conversationWindowTextArea.getText().trim();
         Message message;
 
