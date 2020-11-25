@@ -62,6 +62,12 @@ public class EditProfileController {
         this.stage = stage;
     }
 
+    public void initializeControls(){
+        imageAddress = client.getUser().getAvatar();
+        avatarPreview.setImage(new Image(getClass().getResource("/Avatars/"+ imageAddress + ".png").toExternalForm()));
+        bioTextArea.setText(client.getUser().getBio());
+    }
+
     public void updateProfile() throws IOException {
         client.setAvatar(imageAddress);
         client.setBio(bioTextArea.getText());
@@ -71,7 +77,6 @@ public class EditProfileController {
 
     public void updateInfo() throws IOException {
         mainController.setCurrentEmployeeInfo(client.getUser());
-
     }
 
 }

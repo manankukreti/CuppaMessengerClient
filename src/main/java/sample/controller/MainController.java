@@ -151,20 +151,6 @@ public class MainController {
 
     }
 
-    public ConversationsController getConvoController(){
-        return (ConversationsController) controllerMap.get("conversations");
-    }
-
-    public ContactsController getContactsController(){
-        return (ContactsController) controllerMap.get("contacts");
-    }
-
-    public NewsFeedController getNewsFeedController(){
-        return (NewsFeedController) controllerMap.get("newsfeed");
-    }
-
-
-
     public void createNewGroup() throws IOException{
         if(uiScene.containsKey("createNewGroup")){
             uiStage.get("createNewGroup").show();
@@ -200,12 +186,15 @@ public class MainController {
 
         if(uiScene.containsKey("editProfile")){
             uiStage.get("editProfile").show();
+            getEditProfileController().initializeControls();
         }
         else {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/mainPage/editProfile.fxml"));
             Parent root = loader.load();
+
             EditProfileController editProfileController = loader.getController();
+            controllerMap.put("editProfile", editProfileController);
 
             Scene editScene = new Scene(root);
             uiScene.put("editProfile", editScene);
@@ -221,13 +210,12 @@ public class MainController {
             uiStage.put("editProfile", editStage);
 
             editProfileController.setMainControllerInstance(this, editStage);
+            editProfileController.initializeControls();
             editStage.setScene(editScene);
             editStage.setTitle("Edit Profile");
             editStage.show();
         }
     }
-
-
 
     public void logout(ActionEvent actionEvent) throws IOException {
         FXMLLoader loader = new FXMLLoader();
@@ -252,6 +240,20 @@ public class MainController {
         stage.setScene(mainScreenScene);
         stage.show();
     }
+
+    public ConversationsController getConvoController(){
+        return (ConversationsController) controllerMap.get("conversations");
+    }
+
+    public ContactsController getContactsController(){
+        return (ContactsController) controllerMap.get("contacts");
+    }
+
+    public NewsFeedController getNewsFeedController(){
+        return (NewsFeedController) controllerMap.get("newsfeed");
+    }
+
+    public EditProfileController getEditProfileController(){return (EditProfileController) controllerMap.get("editProfile");}
 
 
 }

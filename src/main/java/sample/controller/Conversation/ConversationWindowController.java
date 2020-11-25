@@ -59,16 +59,13 @@ public class ConversationWindowController {
     }
 
 
-
     public ConversationWindowController() throws IOException {
     }
-
 
     public void setConversationController(ConversationsController controller){
         conversationsController = controller;
     }
 
-    
     public void setInfo(ArrayList<User> recipient, String name) throws IOException {
         receivers.addAll(recipient);
         conversationName = name;
