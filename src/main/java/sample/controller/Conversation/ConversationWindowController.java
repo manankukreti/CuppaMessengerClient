@@ -43,6 +43,7 @@ public class ConversationWindowController {
     Client client = Client.getInstance();
 
     static ConversationsController conversationsController;
+    ConversationWindowUserInfoController convoInfoController;
 
     User sender = client.getUser();
     ArrayList<User> receivers = new ArrayList<>();
@@ -75,8 +76,8 @@ public class ConversationWindowController {
         if (recipient.size() == 1){
             conversationWindowInfoLoader.setLocation(getClass().getResource("/mainPage/conversations/conversationWindowUserInfo.fxml"));
             infoHbox = conversationWindowInfoLoader.load();
-            ConversationWindowUserInfoController infoSetUser = conversationWindowInfoLoader.getController();
-            infoSetUser.setInfo(recipient.get(0));
+            convoInfoController = conversationWindowInfoLoader.getController();
+            convoInfoController.setInfo(recipient.get(0));
             infoPane.getChildren().add(infoHbox);
         }else {
             conversationWindowInfoLoader.setLocation(getClass().getResource("/mainPage/conversations/conversationWindowGroupInfo.fxml"));
@@ -86,8 +87,22 @@ public class ConversationWindowController {
             infoPane.getChildren().add(infoHbox);
         }
 
-
     }
+
+    public void updateInfo(String type, String value){
+        if(convoInfoController != null){
+            if(type.equals("status")){
+                convoInfoController.setStatus(value);
+            }
+            else if(type.equals("avatar")){
+                convoInfoController.setAvatar(value);
+            }
+            else if(type.equals("bio")){
+                convoInfoController.setBio(value);
+            }
+        }
+    }
+
 
     public HBox returnMessageNode(Message message) throws IOException {
         FXMLLoader messageLoader = new FXMLLoader();

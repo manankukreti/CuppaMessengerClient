@@ -55,10 +55,10 @@ public class ContactTilesController {
     }
 
     public void setContactInfo(User contact){
-        image.setImage(new Image(getClass().getResource("/Avatars/" + contact.getAvatar() + ".png").toExternalForm()));
         contactName.setText(contact.getFullName());
-        contactJobTitle.setText(contact.getJobTitle());
-        changeStatus(contact.getStatus());
+        setAvatar(contact.getAvatar());
+        setJobTitle(contact.getJobTitle());
+        setStatus(contact.getStatus());
 
 
         contactTile.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
@@ -89,8 +89,15 @@ public class ContactTilesController {
         });
     }
 
+    public void setAvatar(String avatar){
+        image.setImage(new Image(getClass().getResource("/Avatars/" + avatar + ".png").toExternalForm()));
+    }
 
-    public void changeStatus(String status_string){
+    public void setJobTitle(String job){
+        contactJobTitle.setText(job);
+    }
+
+    public void setStatus(String status_string){
         status_string = status_string.toLowerCase().trim();
         switch(status_string){
             case "away":

@@ -273,6 +273,10 @@ public class ConversationsController {
         return conversationMap.get(key);
     }
 
+    public ConversationWindowController getWindowController(String key){
+        return conversationPaneMap.get(key);
+    }
+
     //update the title's subtitle when a message is sent
     public void updateConversationTile(Message msg){
         String key = generateKey(msg);

@@ -28,11 +28,23 @@ public class ConversationWindowUserInfoController {
     Label bio;
 
     public void setInfo(User recipient){
-        image.setImage(new Image(getClass().getResource("/Avatars/" + recipient.getAvatar() + ".png").toExternalForm()));
         conversationWindowName.setText(recipient.getFullName() + " ");
-        conversationWindowJobTitle.setText(" - " + recipient.getJobTitle());
-        bio.setText(recipient.getBio());
+        setJobTitle(" - " + recipient.getJobTitle());
+        setBio(recipient.getBio());
+        setAvatar(recipient.getAvatar());
         setStatus(recipient.getStatus());
+    }
+
+    public void setJobTitle(String job){
+        conversationWindowJobTitle.setText(job);
+    }
+
+    public void setBio(String bio){
+        this.bio.setText(bio);
+    }
+
+    public void setAvatar(String avatar){
+        image.setImage(new Image(getClass().getResource("/Avatars/" + avatar + ".png").toExternalForm()));
     }
 
     public void setStatus(String status_string) {

@@ -32,9 +32,21 @@ public class ContactsController {
         loadContacts();
     }
 
-    public void changeContactStatus(String username, String status){
-        tileControllers.get(username).changeStatus(status);
+    public void updateContactTile(String username, String type, String value){
+        ContactTilesController tile = tileControllers.get(username);
+        if(tile != null){
+            if(type.equals("status")){
+                tile.setStatus(value);
+            }
+            else if(type.equals("avatar")){
+                tile.setAvatar(value);
+            }
+            else if(type.equals("jobTitle")){
+                tile.setJobTitle(value);
+            }
+        }
     }
+
 
 
     public void loadContacts() throws IOException {

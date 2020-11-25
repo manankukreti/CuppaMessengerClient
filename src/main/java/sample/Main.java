@@ -108,7 +108,6 @@ public class Main extends Application {
                     if(msg.from.equals(client.getUser().getUsername())){
                         continue;
                     }
-
                     if(msg.subject.equals("welcome_message")){
                        System.out.println("welcome to server.");
                     }
@@ -124,6 +123,7 @@ public class Main extends Application {
                             client.setAuth(true);
                         }
                     }
+                    //TEXT MESSAGES (USER OR GROUP)
                     else if(msg.type.equals("MSG-TEXT")){
 //                        Clip clip = AudioSystem.getClip();
 //                        clip.open(audioInputStream);
@@ -152,6 +152,7 @@ public class Main extends Application {
                             });
                         }
                     }
+                    //LIST OF ALL USERS RECEIVED ON LOGIN SUCCESS
                     else if(msg.subject.equals("all_users")){
                         Type type = new TypeToken<ArrayList<User>>(){}.getType();
                         ArrayList<User>users = gson.fromJson(msg.message, type);
@@ -170,15 +171,44 @@ public class Main extends Application {
                         });
 
                     }
+                    //NOTIFICATIONS SUCH AS STATUS UPDATES, AVATAR UPDATES, ETC
                     else if(msg.type.equalsIgnoreCase("MSG-NOTIFY")){
+                        Message message = msg;
+                        String key = conversationsController.generateKey(msg);
+
                         if(msg.subject.equalsIgnoreCase("user_status_change")){
-                            Message message = msg;
+
                             Platform.runLater(() -> {
                                 userList.setUserStatus(message.from, message.message);
-                                contactsController.changeContactStatus(message.from, message.message);
+                                contactsController.updateContactTile(message.from, "status" ,message.message);
+                                if(!conversationsController.doesConversationPaneNotExist(key)) {
+                                    conversationsController.getWindowController(key).updateInfo("status", message.message);
+                                }
+                            });
+                        }
+                        else if(msg.subject.equalsIgnoreCase("user_avatar_change")){
+
+                            Platform.runLater(() -> {
+                                userList.setUserBio(message.from, message.message);
+                                contactsController.updateContactTile(message.from, "avatar" ,message.message);
+                                if(!conversationsController.doesConversationPaneNotExist(key)){
+                                    conversationsController.getWindowController(key).updateInfo("avatar", message.message);
+                                }
+
+                            });
+                        }
+                        else if(msg.subject.equalsIgnoreCase("user_bio_change")){
+
+                            Platform.runLater(() -> {
+                                userList.setUserAvatar(message.from, message.message);
+                                contactsController.updateContactTile(message.from, "bio" ,message.message);
+                                if(!conversationsController.doesConversationPaneNotExist(key)) {
+                                    conversationsController.getWindowController(key).updateInfo("bio", message.message);
+                                }
                             });
                         }
                     }
+                    //ALL POSTS RECEIVED ON LOGIN
                     else if(msg.subject.equals("all_posts")){
                         Post[] posts = gson.fromJson(msg.message, Post[].class);
                         Platform.runLater(() -> {
@@ -207,7 +237,6 @@ public class Main extends Application {
                         });
 
                     }
-
                     else{
                         System.out.println(line);
                     }

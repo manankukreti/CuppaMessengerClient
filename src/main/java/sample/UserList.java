@@ -38,7 +38,15 @@ public class UserList {
         return null;
     }
 
+    public void setUserBio(String username, String bio){
+        Objects.requireNonNull(getUser(username)).setBio(bio);
+    }
+
     public void setUserStatus(String username, String status){
         Objects.requireNonNull(getUser(username)).setStatus(status);
+    }
+
+    public void setUserAvatar(String username, String avatar){
+        Objects.requireNonNull(getUser(username)).setAvatar(avatar);
     }
 }
