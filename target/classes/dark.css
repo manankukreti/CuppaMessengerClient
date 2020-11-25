@@ -38,3 +38,12 @@
     -fx-text-fill:#ffffff;
     -fx-padding: 5 10 5 10;
 }
+
+.gradient{
+ -fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #D5ACA9, #EBCFB2);
+}
+
+.anchorPane-main{
+ -fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #D5ACA9, #EBCFB2);
+
+}

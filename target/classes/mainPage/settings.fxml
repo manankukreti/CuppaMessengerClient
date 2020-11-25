@@ -25,35 +25,20 @@
         <rowConstraints>
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label text="Label">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Label>
-            <Label text="Label" GridPane.rowIndex="1">
+            <Label text="Theme">
                <font>
                   <Font size="15.0" />
                </font>
             </Label>
             <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.columnIndex="1">
                <children>
-                  <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" />
-                  <Button mnemonicParsing="false" prefHeight="36.0" prefWidth="30.0" />
-                  <Button mnemonicParsing="false" prefHeight="36.0" prefWidth="30.0" />
-                  <Button mnemonicParsing="false" prefHeight="36.0" prefWidth="30.0" />
-                  <Button mnemonicParsing="false" prefHeight="36.0" prefWidth="30.0" />
-               </children>
-            </HBox>
-            <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
-               <children>
                   <Button mnemonicParsing="false" onAction="#lightButton" prefHeight="36.0" prefWidth="52.0" style="-fx-background-color: FBFBFB;" text="Light" />
                   <Button mnemonicParsing="false" onAction="#darkButton" prefHeight="36.0" prefWidth="52.0" style="-fx-background-color: DARKSLATEGRAY;" text="Dark" textFill="WHITE" />
                </children>
             </HBox>
-            <Button mnemonicParsing="false" prefHeight="43.0" prefWidth="79.0" text="Apply" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Button fx:id="backupBtn" mnemonicParsing="false" prefHeight="30.0" prefWidth="108.0" styleClass="primaryBtn" text="Create Backup" GridPane.columnIndex="1" GridPane.rowIndex="1" />
          </children>
       </GridPane>
    </children>

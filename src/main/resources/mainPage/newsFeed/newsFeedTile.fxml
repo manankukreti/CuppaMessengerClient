@@ -14,10 +14,10 @@
          <children>
             <ImageView fx:id="image" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                <HBox.margin>
-                  <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                  <Insets bottom="2.0" left="2.0" right="15.0" top="2.0" />
                </HBox.margin>
             </ImageView>
-            <VBox styleClass="info-newsfeedTile" prefHeight="54.0" prefWidth="548.0" spacing="2.0">
+            <VBox prefHeight="54.0" prefWidth="548.0" spacing="2.0" styleClass="info-newsfeedTile">
                <children>
                   <Label fx:id="name" styleClass="basicText" text="Sidhu Moose wala">
                      <font>
