@@ -7,6 +7,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
 import sample.Client;
 import sample.Conversation;
 import sample.User;
@@ -23,7 +24,7 @@ public class CreateNewGroupController {
     Client client = Client.getInstance();
     static UserList userList  = UserList.getInstance();
     static ArrayList<User> users;
-    ArrayList<CheckboxContactTileController> checkBoxContactControllers = new ArrayList<>();
+    ArrayList<CheckboxContactTileController> checkBoxContactControllers;
 
     @FXML
     Node contactTile;
@@ -37,6 +38,7 @@ public class CreateNewGroupController {
     TextField groupName;
     @FXML
     Label warningMessage;
+    Stage stage = null;
 
     private static ConversationsController convoController;
 
@@ -50,11 +52,16 @@ public class CreateNewGroupController {
         loadContacts();
     }
 
+    public void setStage(Stage stage){
+        this.stage = stage;
+    }
+
     public void setConversationController(ConversationsController controller){
         convoController = controller;
     }
 
     public void loadContacts() throws IOException {
+        checkBoxContactControllers = new ArrayList<>();
         users = userList.getUsers();
         int j = 0;
         int k = 0;
@@ -109,11 +116,19 @@ public class CreateNewGroupController {
             warningMessage.setText("Please select more than one participant.");
         }
         else {
+            if(convoController.doesConversationExist(key)){
+                warningMessage.setText("A group with these participants already exists.");
+            }
+            else{
+                Conversation groupConversation = convoController.createConversation(finalList, groupName.getText());
+                convoController.createConversationWindow(groupConversation);
+                convoController.openExistingConversationPane(convoController.generateKey(finalList));
+                convoController.addConversationTile(key, groupConversation);
+                warningMessage.setText("");
 
-            Conversation groupConversation = convoController.createConversation(finalList, groupName.getText());
-            convoController.createConversationWindow(groupConversation);
-            convoController.openExistingConversationPane(convoController.generateKey(finalList));
-            convoController.addConversationTile(key, groupConversation);
+                stage.close();
+            }
+
         }
         loadContacts();
     }

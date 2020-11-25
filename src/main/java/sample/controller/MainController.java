@@ -162,6 +162,7 @@ public class MainController {
             CreateNewGroupController controller = loader.getController();
             controller.setConversationController(getConvoController());
 
+
             Scene createGroupScene = new Scene(root);
             uiScene.put("createNewGroup", createGroupScene);
 
@@ -173,6 +174,7 @@ public class MainController {
             }
 
             Stage createGroupStage = new Stage();
+            controller.setStage(createGroupStage);
             uiStage.put("createNewGroup", createGroupStage);
 
             createGroupStage.setScene(createGroupScene);
