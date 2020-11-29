@@ -1,5 +1,6 @@
 package sample.controller.Conversation;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
@@ -10,7 +11,9 @@ import javafx.scene.control.TextArea;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import sample.Client;
+import sample.Main;
 import sample.Message;
 import sample.User;
 
@@ -36,7 +39,9 @@ public class ConversationWindowController {
     VBox messagesVbox;
     @FXML
     ScrollPane msgScrollPane;
-
+    private double xOffset = 0;
+    private double yOffset = 0;
+    @FXML private HBox paneControllers;
 
     HBox infoHbox;
 
@@ -51,7 +56,7 @@ public class ConversationWindowController {
 
     @FXML
     public void initialize() throws IOException {
-
+        makeStageDraggable();
         //scroll pane to bottom when message is sent
         messagesVbox.heightProperty().addListener(observable -> {
             msgScrollPane.setVvalue(1D);
@@ -152,5 +157,31 @@ public class ConversationWindowController {
         messagesVbox.getChildren().add(returnMessageNode(msg));
     }
 
+    public void minimize(ActionEvent actionEvent) {
+        ((Stage)((Button)actionEvent.getSource()).getScene().getWindow()).setIconified(true);
+    }
+
+    public void close(ActionEvent actionEvent) {
+        ((Stage)((Button)actionEvent.getSource()).getScene().getWindow()).hide();
+    }
+    private  void makeStageDraggable(){
+        paneControllers.setOnMousePressed((event -> {
+            xOffset = event.getSceneX();
+            yOffset = event.getSceneY();
+        }));
+        paneControllers.setOnMouseDragged((event -> {
+            ConversationsController.stage.setX(event.getScreenX()- xOffset);
+            ConversationsController.stage.setY(event.getScreenY()- yOffset);
+            ConversationsController.stage.setOpacity(0.8f);
+        }));
+
+        paneControllers.setOnDragDone((event ->{
+            ConversationsController.stage.setOpacity(1.0f);
+
+        }));
+        paneControllers.setOnMouseReleased((event -> {
+            ConversationsController.stage.setOpacity(1.0f);
+        }));
+    }
 
 }

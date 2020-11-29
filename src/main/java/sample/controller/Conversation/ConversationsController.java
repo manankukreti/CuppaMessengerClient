@@ -8,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import sample.*;
 
 import javax.crypto.*;
@@ -28,6 +29,8 @@ public class ConversationsController {
     VBox conversationVbox;
     @FXML
     Gson gson = new Gson();
+
+    static Stage stage = null;
 
     String currentTheme = "";
     String lightThemeURL = getClass().getResource("/light.css").toExternalForm();
@@ -72,7 +75,6 @@ public class ConversationsController {
             }
 
         }
-
         currentTheme = theme;
     }
 
@@ -102,8 +104,8 @@ public class ConversationsController {
         Files.writeString(backupFile, encrypted);
     }
 
-    public void loadConvoFromFile() throws IOException, NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException, BadPaddingException, IllegalBlockSizeException {
-        Path backupFile = Path.of("backups/backup_"+ client.getUser().getUsername()+".cuppa");
+    public void loadConvoFromFile(String path) throws IOException, NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException, BadPaddingException, IllegalBlockSizeException {
+        Path backupFile = Path.of(path);
         if(Files.exists(backupFile)){
             String encryptedContent = Files.readString(backupFile);
             String decrypted = Encryptor.decrypt(encryptedContent, "ThWmZq4t6w9z$C&F" + client.getUser().getUsername() + "/A?D(G+KbPeShVmYq3t6w9y$B&E)H@Mc");
@@ -159,6 +161,8 @@ public class ConversationsController {
         }
 
         Stage chatStage = new Stage();
+        stage = chatStage;
+        chatStage.initStyle(StageStyle.UNDECORATED);
         chatStage.setScene(chatScene);
 
         conversationStageMap.put(key, chatStage);

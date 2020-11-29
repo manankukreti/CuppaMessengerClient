@@ -1,10 +1,38 @@
 package sample.controller;
 
-import java.io.IOException;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.stage.DirectoryChooser;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
+import sample.Client;
+import sample.controller.Conversation.ConversationsController;
+
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
+import java.io.*;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 
 public class SettingsController {
 
     MainController mainController;
+    @FXML private TextField saveAddress;
+    @FXML private TextField restoreAddress;
+    @FXML private TextField fileName;
+    @FXML private Label errorMessage;
+    File selectedDirectory;
+    File selectedFile;
+    Client client =Client.getInstance();
+
+    public SettingsController() throws IOException {
+    }
 
     public void darkButton() throws IOException {
         mainController.setTheme("dark");
@@ -16,5 +44,66 @@ public class SettingsController {
 
     public void setMainController(MainController controller){
         mainController = controller;
+    }
+
+    public void setSaveLocation(ActionEvent actionEvent) {
+
+        DirectoryChooser directoryChooser = new DirectoryChooser();
+        Stage stage = new Stage();
+        selectedDirectory = directoryChooser.showDialog(stage);
+        saveAddress.setText(selectedDirectory.getAbsolutePath());
+    }
+    public void setRestoreLocation(ActionEvent actionEvent) {
+
+        FileChooser directoryChooser = new FileChooser();
+        Stage stage = new Stage();
+        selectedFile = directoryChooser.showOpenDialog(stage);
+        restoreAddress.setText(selectedFile.getAbsolutePath());
+    }
+
+    public void saveBackup(ActionEvent actionEvent) throws IOException {
+        if (saveAddress.getText().trim() == "" || fileName.getText().trim() == ""){
+            errorMessage.setText("Enter a name and file path");
+        }
+        var source = new File("./././backups/backup_" + client.getUser().getUsername() + ".cuppa");
+        var dest = new File(saveAddress.getText() + fileName.getText() + ".cuppa");
+        System.out.println(selectedDirectory.getAbsolutePath());
+        if (dest.createNewFile())
+        {
+            try (var fis = new FileInputStream(source);
+                 var fos = new FileOutputStream(dest)) {
+
+                byte[] buffer = new byte[1024];
+                int length;
+
+                while ((length = fis.read(buffer)) > 0) {
+
+                    fos.write(buffer, 0, length);
+                }
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            errorMessage.setText("Backup has been created at " + selectedDirectory.getAbsolutePath());
+        } else {
+            errorMessage.setText("File already exists.");
+        }
+
+    }
+
+    public void restoreBackup(ActionEvent actionEvent) throws NoSuchPaddingException, NoSuchAlgorithmException, IOException, BadPaddingException, IllegalBlockSizeException, InvalidKeyException {
+
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/mainPage/conversations/conversations.fxml"));
+        loader.load();
+        ConversationsController controller = loader.getController();
+        controller.loadConvoFromFile(restoreAddress.getText());
+
+        FXMLLoader loader1 = new FXMLLoader();
+        loader1.setLocation(getClass().getResource("/mainPage/mainPage.fxml"));
+        loader1.load();
+        MainController controller1 = loader1.getController();
+
     }
 }

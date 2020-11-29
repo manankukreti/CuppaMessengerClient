@@ -1,16 +1,20 @@
 package sample.controller;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import sample.Client;
+import sample.controller.Conversation.ConversationsController;
 
 
 import java.io.IOException;
@@ -27,7 +31,12 @@ public class EditProfileController {
 
     Client client = Client.getInstance();
     MainController mainController = null;
-    Stage stage = null;
+    static Stage stage = null;
+
+
+    private double xOffset = 0;
+    private double yOffset = 0;
+    @FXML private HBox paneControllers;
 
     public EditProfileController() throws IOException {
     }
@@ -75,8 +84,35 @@ public class EditProfileController {
         stage.close();
     }
 
-    public void updateInfo() throws IOException {
+    public void updateInfo() {
         mainController.setCurrentEmployeeInfo(client.getUser());
     }
+    public void minimize(ActionEvent actionEvent) {
+        ((Stage)((Button)actionEvent.getSource()).getScene().getWindow()).setIconified(true);
+    }
+
+    public void close(ActionEvent actionEvent) {
+        ((Stage)((Button)actionEvent.getSource()).getScene().getWindow()).hide();
+    }
+    private  void makeStageDraggable(){
+        paneControllers.setOnMousePressed((event -> {
+            xOffset = event.getSceneX();
+            yOffset = event.getSceneY();
+        }));
+        paneControllers.setOnMouseDragged((event -> {
+            EditProfileController.stage.setX(event.getScreenX()- xOffset);
+            EditProfileController.stage.setY(event.getScreenY()- yOffset);
+            EditProfileController.stage.setOpacity(0.8f);
+        }));
+
+        paneControllers.setOnDragDone((event ->{
+            EditProfileController.stage.setOpacity(1.0f);
+
+        }));
+        paneControllers.setOnMouseReleased((event -> {
+            EditProfileController.stage.setOpacity(1.0f);
+        }));
+    }
+
 
 }

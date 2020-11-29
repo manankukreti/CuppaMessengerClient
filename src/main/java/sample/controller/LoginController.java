@@ -1,14 +1,18 @@
 package sample.controller;
 
 import com.google.gson.Gson;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import sample.Client;
+import sample.Main;
 import sample.Message;
 
 import java.io.IOException;
@@ -26,6 +30,16 @@ public class LoginController {
     Stage stage;
     private final Client client = Client.getInstance();
     Gson gson = new Gson();
+
+    private double xOffset = 0;
+    private double yOffset = 0;
+    @FXML private HBox paneControllers;
+
+
+    @FXML
+    public void initialize(){
+        makeStageDraggable();
+    }
 
     public LoginController() throws IOException {
     }
@@ -68,6 +82,32 @@ public class LoginController {
         errorMessage.setText("Incorrect Credentials!");
     }
 
+    public void minimize(ActionEvent actionEvent) {
+        ((Stage)((Button)actionEvent.getSource()).getScene().getWindow()).setIconified(true);
+    }
 
+    public void close(ActionEvent actionEvent) {
+        ((Stage)((Button)actionEvent.getSource()).getScene().getWindow()).hide();
+        System.exit(0);
+    }
+    private  void makeStageDraggable(){
+        paneControllers.setOnMousePressed((event -> {
+            xOffset = event.getSceneX();
+            yOffset = event.getSceneY();
+        }));
+        paneControllers.setOnMouseDragged((event -> {
+            Main.stage.setX(event.getScreenX()- xOffset);
+            Main.stage.setY(event.getScreenY()- yOffset);
+            Main.stage.setOpacity(0.8f);
+        }));
+
+        paneControllers.setOnDragDone((event ->{
+            Main.stage.setOpacity(1.0f);
+
+        }));
+        paneControllers.setOnMouseReleased((event -> {
+            Main.stage.setOpacity(1.0f);
+        }));
+    }
 
 }

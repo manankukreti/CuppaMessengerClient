@@ -119,4 +119,8 @@ public class Client {
 		return isAuth;
 	}
 
+	public void closeClient() throws IOException {
+		socket.close();
+	}
+
 }

@@ -15,6 +15,7 @@ import java.lang.reflect.Type;
 
 import java.util.*;
 
+import javafx.stage.StageStyle;
 import sample.controller.Contacts.ContactsController;
 import sample.controller.Conversation.ConversationsController;
 import sample.controller.LoginController;
@@ -31,6 +32,7 @@ public class Main extends Application {
     static ContactsController contactsController;
     static NewsFeedController newsFeedController;
     //static AudioInputStream audioInputStream;
+    public static Stage stage = null;
 
 
     @Override
@@ -54,7 +56,8 @@ public class Main extends Application {
 
        //audioInputStream = AudioSystem.getAudioInputStream(getClass().getResource("/Audio/notification.wav"));
 
-
+        stage =primaryStage;
+        primaryStage.initStyle(StageStyle.UNDECORATED);
         primaryStage.setTitle("Hello World");
         primaryStage.setScene(new Scene(login));
         primaryStage.isResizable();
@@ -156,7 +159,7 @@ public class Main extends Application {
                         Platform.runLater(() -> {
                             try {
                                 userList.setUsers(users);
-                                conversationsController.loadConvoFromFile();
+                                conversationsController.loadConvoFromFile("backups/backup_"+ client.getUser().getUsername()+".cuppa");
                                 conversationsController.generateConversationTiles();
                                 contactsController.loadContacts();
                                 loginController.goToMainScreen();
@@ -233,6 +236,8 @@ public class Main extends Application {
                         });
 
                     }
+
+
                     else{
                         System.out.println(line);
                     }

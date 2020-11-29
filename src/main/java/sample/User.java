@@ -16,6 +16,7 @@ public class User implements Serializable {
         jobTitle = "visitor";
         bio = "No bio set.";
         status = "online";
+
         avatar = "default";
     }
     public User(String username, String fullName, String jobTitle, String bio) {

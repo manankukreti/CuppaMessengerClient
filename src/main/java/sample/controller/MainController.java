@@ -7,12 +7,17 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import sample.Client;
+import sample.Main;
 import sample.User;
 import sample.controller.Contacts.ContactsController;
 import sample.controller.Conversation.ConversationsController;
@@ -30,10 +35,18 @@ public class MainController {
     @FXML private Label bioCurrentUser;
     @FXML private BorderPane mainPane;
     @FXML private Button editProfile;
+    @FXML private ComboBox statusBox;
+    @FXML private Circle statusIndicator;
+
 
     String currentTheme = "";
     String lightThemeURL = getClass().getResource("/light.css").toExternalForm();
     String darkThemeURL = getClass().getResource("/dark.css").toExternalForm();
+
+
+    private double xOffset = 0;
+    private double yOffset = 0;
+    @FXML private HBox paneControllers;
 
 
     private static HashMap<String, Parent> uiMap;
@@ -53,9 +66,41 @@ public class MainController {
             controllerMap = new HashMap<>();
 
         }
+
+        statusBox.getItems().addAll("Online", "Away", "Busy");
+        statusBox.setValue(client.getUser().getStatus().substring(0, 1).toUpperCase() + client.getUser().getStatus().substring(1));
+        makeStageDraggable();
         newsFeed();
         conversations();
         contacts();
+    }
+
+    public void updateStatus() throws IOException {
+        int status_int = 0;
+        System.out.println(statusBox.getValue().toString().trim().toLowerCase());
+        if(statusBox.getValue().toString().trim().toLowerCase().equals("busy")){
+            status_int = 1;
+        }
+        else if (statusBox.getValue().toString().trim().toLowerCase().equals("away")){
+            status_int = 2;
+        }
+        client.setStatus(status_int);
+        setStatus(statusBox.getValue().toString());
+    }
+
+    public void setStatus(String status_string) {
+        status_string = status_string.toLowerCase().trim();
+        switch (status_string) {
+            case "away":
+                statusIndicator.setFill(Color.YELLOW);
+                break;
+            case "busy":
+                statusIndicator.setFill(Color.RED);
+                break;
+            default:
+                statusIndicator.setFill(Color.GREEN);
+
+        }
     }
 
     public void setTheme(String theme){
@@ -257,5 +302,32 @@ public class MainController {
 
     public EditProfileController getEditProfileController(){return (EditProfileController) controllerMap.get("editProfile");}
 
+    public void minimize(ActionEvent actionEvent) {
+        ((Stage)((Button)actionEvent.getSource()).getScene().getWindow()).setIconified(true);
+    }
+
+    public void close(ActionEvent actionEvent) {
+        ((Stage)((Button)actionEvent.getSource()).getScene().getWindow()).hide();
+        System.exit(0);
+    }
+    private  void makeStageDraggable(){
+        paneControllers.setOnMousePressed((event -> {
+            xOffset = event.getSceneX();
+            yOffset = event.getSceneY();
+        }));
+        paneControllers.setOnMouseDragged((event -> {
+            Main.stage.setX(event.getScreenX()- xOffset);
+            Main.stage.setY(event.getScreenY()- yOffset);
+            Main.stage.setOpacity(0.8f);
+        }));
+
+        paneControllers.setOnDragDone((event ->{
+            Main.stage.setOpacity(1.0f);
+
+        }));
+        paneControllers.setOnMouseReleased((event -> {
+            Main.stage.setOpacity(1.0f);
+        }));
+    }
 
 }
