@@ -1,10 +1,8 @@
 package sample.controller;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.DirectoryChooser;
@@ -46,14 +44,13 @@ public class SettingsController {
         mainController = controller;
     }
 
-    public void setSaveLocation(ActionEvent actionEvent) {
-
+    public void setSaveLocation() {
         DirectoryChooser directoryChooser = new DirectoryChooser();
         Stage stage = new Stage();
         selectedDirectory = directoryChooser.showDialog(stage);
         saveAddress.setText(selectedDirectory.getAbsolutePath());
     }
-    public void setRestoreLocation(ActionEvent actionEvent) {
+    public void setRestoreLocation() {
 
         FileChooser directoryChooser = new FileChooser();
         Stage stage = new Stage();
@@ -61,13 +58,15 @@ public class SettingsController {
         restoreAddress.setText(selectedFile.getAbsolutePath());
     }
 
-    public void saveBackup(ActionEvent actionEvent) throws IOException {
-        if (saveAddress.getText().trim() == "" || fileName.getText().trim() == ""){
+    public void saveBackup() throws IOException {
+
+        if (saveAddress.getText().trim().equals("") || fileName.getText().trim().equals("")){
             errorMessage.setText("Enter a name and file path");
         }
+
         var source = new File("./././backups/backup_" + client.getUser().getUsername() + ".cuppa");
-        var dest = new File(saveAddress.getText() + fileName.getText() + ".cuppa");
-        System.out.println(selectedDirectory.getAbsolutePath());
+        var dest = new File(saveAddress.getText() + "\\" + fileName.getText() + ".cuppa");
+
         if (dest.createNewFile())
         {
             try (var fis = new FileInputStream(source);
@@ -77,22 +76,20 @@ public class SettingsController {
                 int length;
 
                 while ((length = fis.read(buffer)) > 0) {
-
                     fos.write(buffer, 0, length);
                 }
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            errorMessage.setText("Backup has been created at " + selectedDirectory.getAbsolutePath());
+
+            errorMessage.setText("Backup created at " + saveAddress.getText() + "\\" + fileName.getText() + ".cuppa");
         } else {
             errorMessage.setText("File already exists.");
         }
 
     }
 
-    public void restoreBackup(ActionEvent actionEvent) throws NoSuchPaddingException, NoSuchAlgorithmException, IOException, BadPaddingException, IllegalBlockSizeException, InvalidKeyException {
+    public void restoreBackup() throws NoSuchPaddingException, NoSuchAlgorithmException, IOException, BadPaddingException, IllegalBlockSizeException, InvalidKeyException {
 
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/mainPage/conversations/conversations.fxml"));

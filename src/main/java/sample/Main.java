@@ -70,7 +70,6 @@ public class Main extends Application {
         Client client = Client.getInstance();
         UserList userList = UserList.getInstance();
 
-
         Thread listenThread;
 
         Timer heartbeat = new Timer();

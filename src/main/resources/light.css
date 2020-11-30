@@ -6,9 +6,10 @@
     -fx-background-color: #ffffff;
 }
 
-.main-tab-button{
+.main-tab-button, .status-select{
     -fx-background-color: #ffffff;
     -fx-text-fill: #252525;
+    -fx-text-base-color:#252525;
 }
 
 .vbox-newsfeedTile, .hbox-newsfeedTile, .info-newsfeedTile{
@@ -36,7 +37,7 @@
 .primaryBtn{
     -fx-background-color:#8275e6;
     -fx-text-fill:#ffffff;
-    -fx-padding: 5 10 5 10;
+    -fx-padding: 4 8 4 8;
 }
 .gradient{
  -fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #9bf6ff, #ffc6ff);

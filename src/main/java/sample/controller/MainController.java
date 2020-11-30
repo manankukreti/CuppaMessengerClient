@@ -34,8 +34,7 @@ public class MainController {
     @FXML private Label jobTitleCurrentUser;
     @FXML private Label bioCurrentUser;
     @FXML private BorderPane mainPane;
-    @FXML private Button editProfile;
-    @FXML private ComboBox statusBox;
+    @FXML private ComboBox<String> statusBox;
     @FXML private Circle statusIndicator;
 
 
