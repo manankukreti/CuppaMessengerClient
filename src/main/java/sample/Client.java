@@ -94,6 +94,10 @@ public class Client {
 		send(new Message(user.getUsername(), "server", "MSG-REQ", "general", "all_posts"));
 	}
 
+	public void logout() throws IOException{
+		send(new Message(user.getUsername(), "server", "MSG-REQ", "logout", "logout"));
+	}
+
 	//send heartbeat to server
 	public void pulse() throws IOException {
 		Message heartbeat = new Message(user.getUsername(), "server", "client_status", "heartbeat", "alive");

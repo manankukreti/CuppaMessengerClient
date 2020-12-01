@@ -21,50 +21,60 @@ import sample.controller.Conversation.ConversationsController;
 import sample.controller.LoginController;
 import sample.controller.MainController;
 import sample.controller.NewsFeed.NewsFeedController;
+import sample.controller.SetupController;
 
 
 public class Main extends Application {
 
-    public Parent login;
     static LoginController loginController;
     static MainController mainController;
     static ConversationsController conversationsController;
     static ContactsController contactsController;
     static NewsFeedController newsFeedController;
-    //static AudioInputStream audioInputStream;
     public static Stage stage = null;
 
     @Override
     public void start(Stage primaryStage) throws Exception{
 
-        FXMLLoader logLoader = new FXMLLoader();
-        logLoader.setLocation(getClass().getResource("/logInPage/LoginPage.fxml"));
-        login = logLoader.load();
-        loginController = logLoader.getController();
-        loginController.setStage(primaryStage);
+        FXMLLoader setupLoader = new FXMLLoader();
+        setupLoader.setLocation(getClass().getResource("/logInPage/cuppaSetup.fxml"));
+        Parent setup = setupLoader.load();
+        SetupController setupController = setupLoader.getController();
+        setupController.setStage(primaryStage);
 
-        FXMLLoader mainLoader = new FXMLLoader();
-        mainLoader.setLocation(getClass().getResource("/mainPage/mainPage.fxml"));
-        mainLoader.load();
-        mainController = mainLoader.getController();
-        mainController.setUpMainController();
-
-       //audioInputStream = AudioSystem.getAudioInputStream(getClass().getResource("/Audio/notification.wav"));
-
-        stage =primaryStage;
+        stage = primaryStage;
         primaryStage.initStyle(StageStyle.UNDECORATED);
         primaryStage.setTitle("Hello World");
-        primaryStage.setScene(new Scene(login));
+        primaryStage.setScene(new Scene(setup));
         primaryStage.isResizable();
         primaryStage.show();
     }
 
     public static void main(String[] args) throws IOException {
 
-        Gson gson = new Gson();
-        Client client = Client.getInstance();
-        UserList userList = UserList.getInstance();
 
+
+        launch(args);
+    }
+
+    public static void startSystem() throws IOException {
+
+        FXMLLoader mainLoader = new FXMLLoader();
+        mainLoader.setLocation(Main.class.getResource("/mainPage/mainPage.fxml"));
+        mainLoader.load();
+        mainController = mainLoader.getController();
+        mainController.setUpMainController();
+
+        FXMLLoader loginLoader = new FXMLLoader();
+        loginLoader.setLocation(Main.class.getResource("/logInPage/LoginPage.fxml"));
+        loginLoader.load();
+        loginController = loginLoader.getController();
+
+
+
+        Gson gson = new Gson();
+        UserList userList = UserList.getInstance();
+        Client client = Client.getInstance();
         Thread listenThread;
 
         Timer heartbeat = new Timer();
@@ -99,7 +109,7 @@ public class Main extends Application {
                         continue;
                     }
                     if(msg.subject.equals("welcome_message")){
-                       System.out.println("welcome to server.");
+                        System.out.println("welcome to server.");
                     }
                     else if(msg.subject.equals("login_credentials")){
 
@@ -248,7 +258,5 @@ public class Main extends Application {
         });
 
         listenThread.start();
-
-        launch(args);
     }
 }

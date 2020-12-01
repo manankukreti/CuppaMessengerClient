@@ -9,8 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="532.0" prefWidth="422.0" spacing="50.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox fx:controller="sample.controller.SetupController" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="532.0" prefWidth="422.0" spacing="50.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label text="Cuppa Setup">
          <font>
@@ -25,7 +24,7 @@
       <VBox spacing="5.0">
          <children>
             <Label text="Server IP:" />
-            <TextField prefHeight="25.0" prefWidth="175.0">
+            <TextField fx:id="ipTextbox" prefHeight="25.0" prefWidth="175.0">
                <VBox.margin>
                   <Insets />
                </VBox.margin>
@@ -35,6 +34,6 @@
             <Insets left="40.0" right="40.0" />
          </VBox.margin>
       </VBox>
-      <Button mnemonicParsing="false" text="Continue" />
+      <Button mnemonicParsing="false" onAction="#continueToLogin" text="Continue" />
    </children>
 </VBox>

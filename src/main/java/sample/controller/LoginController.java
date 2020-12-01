@@ -27,7 +27,7 @@ public class LoginController {
     @FXML
     Label errorMessage;
 
-    Stage stage;
+    static Stage stage;
     private final Client client = Client.getInstance();
     Gson gson = new Gson();
 
