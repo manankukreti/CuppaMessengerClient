@@ -16,3 +16,9 @@
     -fx-text-fill:#ffffff;
     -fx-padding: 6 8 6 8;
 }
+.lightBtn{
+  -fx-background-color: #ffffff;
+}
+.darkBtn{
+  -fx-background-color: #8275e6;
+}
