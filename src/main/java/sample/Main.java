@@ -47,6 +47,7 @@ public class Main extends Application {
         primaryStage.setTitle("Hello World");
         primaryStage.setScene(new Scene(setup));
         primaryStage.isResizable();
+        setupController.readSettings();
         primaryStage.show();
     }
 

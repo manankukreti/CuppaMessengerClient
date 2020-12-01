@@ -36,6 +36,10 @@ public class Client {
 		return instance;
 	}
 
+	public boolean isConnected(){
+		return socket.isConnected();
+	}
+
 
 	public void send(Message msg) throws IOException {
 		DataOutputStream dout = new DataOutputStream(out);
