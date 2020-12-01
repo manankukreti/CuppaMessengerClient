@@ -232,24 +232,30 @@ public class ConversationsController {
             else{
                 thisConvo = createConversation(msg);
             }
-
+        }
+        else{
+            thisConvo = conversationMap.get(key);
         }
 
-        conversationMap.get(key).addMessage(msg);
+        thisConvo.addMessage(msg);
 
         //check if window exists
+        System.out.println("Does convo window exist : " + conversationWindowMap.containsKey(key));
         if(conversationWindowMap.containsKey(key)){
             window = conversationWindowMap.get(key);
+            window.addMessageToPane(msg);
         }
         else{
            window = createConversationWindow(conversationMap.get(key));
+           floodConversationPane(key);
         }
-
-        window.addMessageToPane(msg);
 
         //check if title exists
         if(!conversationTileMap.containsKey(key)){
             addConversationTile(key, thisConvo);
+        }
+        else{
+            conversationTileMap.get(key).setSubtitle(msg.message);
         }
 
         saveConvoToFile();

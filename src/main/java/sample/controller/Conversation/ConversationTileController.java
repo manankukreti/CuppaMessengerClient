@@ -44,15 +44,15 @@ public class ConversationTileController {
 
         conversationTile.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
 
-        try {
-            if (convoController.doesConversationPaneNotExist(key)) {
-                convoController.createConversationWindow(conversation);
-                convoController.floodConversationPane(key);
+            try {
+                if (convoController.doesConversationPaneNotExist(key)) {
+                    convoController.createConversationWindow(conversation);
+                    convoController.floodConversationPane(key);
+                }
             }
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
+            catch (IOException e) {
+                e.printStackTrace();
+            }
             convoController.openExistingConversationPane(key);
         });
 
