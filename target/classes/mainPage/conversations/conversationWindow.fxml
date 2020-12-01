@@ -46,7 +46,7 @@
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </HBox.margin>
             </TextArea>
-            <Button fx:id="sendBtn" alignment="CENTER" mnemonicParsing="false" onAction="#sendMessage" onKeyPressed="#sendMessage" prefHeight="43.0" prefWidth="74.0" styleClass="primaryBtn" text="Send" textAlignment="CENTER" />
+            <Button fx:id="sendBtn" alignment="CENTER" mnemonicParsing="false" onAction="#sendMessage" prefHeight="43.0" prefWidth="74.0" styleClass="primaryBtn" text="Send" textAlignment="CENTER" />
          </children>
       </HBox>
    </children>

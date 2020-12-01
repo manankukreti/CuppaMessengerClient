@@ -114,6 +114,9 @@ public class MainController {
                 if(uiScene.containsKey("editProfile")){
                     uiScene.get("editProfile").getStylesheets().remove(lightThemeURL);
                 }
+                if(uiScene.containsKey("settingScene")){
+                    uiScene.get("settingScene").getStylesheets().remove(lightThemeURL);
+                }
             }
 
             mainPane.getScene().getStylesheets().add(darkThemeURL);
@@ -122,6 +125,9 @@ public class MainController {
             }
             if(uiScene.containsKey("editProfile")) {
                 uiScene.get("editProfile").getStylesheets().add(darkThemeURL);
+            }
+            if(uiScene.containsKey("settingScene")){
+                uiScene.get("settingScene").getStylesheets().add(darkThemeURL);
             }
 
         }
@@ -134,6 +140,9 @@ public class MainController {
                 if(uiScene.containsKey("editProfile")){
                     uiScene.get("editProfile").getStylesheets().remove(darkThemeURL);
                 }
+                if(uiScene.containsKey("settingScene")){
+                    uiScene.get("settingScene").getStylesheets().remove(darkThemeURL);
+                }
             }
             mainPane.getScene().getStylesheets().add(lightThemeURL);
             if(uiScene.containsKey("createNewGroup")){
@@ -142,7 +151,9 @@ public class MainController {
             if(uiScene.containsKey("editProfile")){
                 uiScene.get("editProfile").getStylesheets().add(lightThemeURL);
             }
-
+            if(uiScene.containsKey("settingScene")){
+                uiScene.get("settingScene").getStylesheets().add(lightThemeURL);
+            }
             getConvoController().setTheme("light");
 
         }
@@ -272,6 +283,9 @@ public class MainController {
     }
 
     public void settings() throws IOException {
+        if(uiScene.containsKey("settingScene")){
+            uiStage.get("settingStage").show();
+        }
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/mainPage/settings.fxml"));
         Parent mainScreen = loader.load();
@@ -279,7 +293,18 @@ public class MainController {
         controller.setMainController(this);
 
         Scene mainScreenScene = new Scene(mainScreen);
+        uiScene.put("settingScene", mainScreenScene);
+
+        if(currentTheme.equals("light")){
+            mainScreenScene.getStylesheets().add(lightThemeURL);
+        }
+        else{
+            mainScreenScene.getStylesheets().add(darkThemeURL);
+        }
+
         Stage stage = new Stage();
+        uiStage.put("settingStage", stage);
+
         stage.setScene(mainScreenScene);
         stage.show();
     }
