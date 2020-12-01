@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="logIn" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.LoginController">
+<BorderPane fx:id="logIn" styleClass="primaryBg" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.LoginController">
    <center>
       <VBox>
          <children>
@@ -64,14 +64,14 @@
       </VBox>
    </center>
    <top>
-      <HBox  fx:id="paneControllers" alignment="CENTER_RIGHT" prefHeight="40.0" prefWidth="1030.0" spacing="5.0" styleClass="primaryBg" BorderPane.alignment="CENTER">
+      <HBox fx:id="paneControllers" alignment="CENTER_RIGHT" prefHeight="40.0" prefWidth="1030.0" spacing="5.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="minimizeBtn" mnemonicParsing="false" onAction="#minimize" prefHeight="40.0" prefWidth="40.0" styleClass="primaryBg" text="__">
+            <Button fx:id="minimizeBtn" mnemonicParsing="false" onAction="#minimize" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: white;" text="__" textFill="#08bdff">
                <font>
                   <Font size="15.0" />
                </font>
             </Button>
-            <Button fx:id="closeBtn" mnemonicParsing="false" onAction="#close" prefHeight="40.0" prefWidth="40.0" styleClass="primaryBg" text="X">
+            <Button fx:id="closeBtn" mnemonicParsing="false" onAction="#close" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: white;" text="X" textFill="#08bdff">
                <font>
                   <Font size="15.0" />
                </font>

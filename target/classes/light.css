@@ -47,3 +47,9 @@
  -fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #D5ACA9, #EBCFB2);
 
 }
+.lightBtn{
+  -fx-background-color: #8275e6;
+}
+.darkBtn{
+  -fx-background-color: #ffffff;
+}

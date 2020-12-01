@@ -40,10 +40,10 @@
                   <Font size="15.0" />
                </font>
             </Label>
-            <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.columnIndex="1">
+            <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
                <children>
-                  <Button mnemonicParsing="false" onAction="#lightButton" prefHeight="36.0" prefWidth="52.0" style="-fx-background-color: FBFBFB;" text="Light" />
-                  <Button mnemonicParsing="false" onAction="#darkButton" prefHeight="36.0" prefWidth="52.0" style="-fx-background-color: DARKSLATEGRAY;" text="Dark" textFill="WHITE" />
+                  <Button mnemonicParsing="false" onAction="#lightButton" prefHeight="36.0" prefWidth="52.0" styleClass="lightBtn" text="Light" />
+                  <Button mnemonicParsing="false" onAction="#darkButton" prefHeight="36.0" prefWidth="52.0" style="-fx-border-color: black;" styleClass="darkBtn" text="Dark" />
                </children>
             </HBox>
          </children>
@@ -61,13 +61,13 @@
       <HBox alignment="CENTER" prefHeight="50.0" prefWidth="618.0" spacing="20.0">
          <children>
             <Label styleClass="basicText" text="File Name:" />
-            <TextField styleClass="inputField" fx:id="fileName" prefHeight="25.0" prefWidth="419.0" />
+            <TextField fx:id="fileName" prefHeight="25.0" prefWidth="419.0" styleClass="inputField" />
          </children>
       </HBox>
       <HBox alignment="CENTER" prefHeight="42.0" prefWidth="468.0" spacing="20.0">
          <children>
             <Label styleClass="basicText" text="File location:" />
-            <TextField styleClass="inputField" fx:id="saveAddress" prefHeight="27.0" prefWidth="350.0" />
+            <TextField fx:id="saveAddress" prefHeight="27.0" prefWidth="350.0" styleClass="inputField" />
             <Button mnemonicParsing="false" onAction="#setSaveLocation" prefHeight="25.0" prefWidth="55.0" styleClass="primaryBtn" text="Browse" />
          </children>
       </HBox>
