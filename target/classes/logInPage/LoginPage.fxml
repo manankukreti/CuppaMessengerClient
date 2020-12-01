@@ -14,13 +14,13 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="logIn" prefHeight="579.0" prefWidth="803.0" styleClass="primaryBg" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.LoginController">
+<BorderPane fx:id="loginPane" prefHeight="579.0" prefWidth="803.0" styleClass="primaryBg" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.LoginController">
    <center>
       <VBox>
          <children>
             <BorderPane>
                <center>
-                  <AnchorPane prefHeight="409.0" prefWidth="454.0" style="-fx-background-color: white;" stylesheets="@../light.css">
+                  <AnchorPane prefHeight="409.0" prefWidth="454.0" style="-fx-background-color: white;" stylesheets="@../styles/light.css">
                      <children>
                         <Label fx:id="errorMessage" layoutX="172.0" layoutY="465.0" prefHeight="17.0" prefWidth="120.0" style="-fx-background-color: white;" textFill="RED" visible="false" />
                         <ImageView fitHeight="150.0" fitWidth="150.0" layoutX="158.0" layoutY="95.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="332.3268127441406" AnchorPane.leftAnchor="158.0" AnchorPane.rightAnchor="146.0" AnchorPane.topAnchor="95.0">
@@ -28,27 +28,42 @@
                               <Image url="@../Avatars/loginImage.png" />
                            </image>
                         </ImageView>
-                        <HBox layoutX="133.0" layoutY="282.0" prefHeight="23.0" prefWidth="199.0" style="-fx-border-radius: 100px;">
+                        <HBox layoutX="133.0" layoutY="282.0" prefHeight="23.0" prefWidth="250.0" style="-fx-border-radius: 100px;">
                            <children>
-                              <ImageView fitHeight="33.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="1.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" x="10.0">
                                  <image>
                                     <Image url="@art/usernameIcon.png" />
                                  </image>
+                                 <HBox.margin>
+                                    <Insets left="5.0" top="7.0" />
+                                 </HBox.margin>
                               </ImageView>
-                              <TextField fx:id="usernameID" prefHeight="33.0" prefWidth="201.0" promptText="Usename" />
+                              <TextField fx:id="usernameID" minHeight="-Infinity" minWidth="-Infinity" prefHeight="33.0" prefWidth="201.0" promptText="Usename" styleClass="inputField" style="-fx-text-fill:#0bba86; -fx-text-inner-color:#0bba86;">
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                                 <font>
+                                    <Font size="13.0" />
+                                 </font></TextField>
                            </children>
                         </HBox>
-                        <HBox layoutX="133.0" layoutY="340.0" prefHeight="30.0" prefWidth="199.0">
+                        <HBox layoutX="133.0" layoutY="340.0" prefHeight="30.0" prefWidth="250.0">
                            <children>
-                              <ImageView fitHeight="30.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@art/passwordIcon.png" />
                                  </image>
+                                 <HBox.margin>
+                                    <Insets left="5.0" top="7.0" />
+                                 </HBox.margin>
                               </ImageView>
-                              <PasswordField fx:id="passwordID" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="171.0" promptText="Password" />
+                              <PasswordField fx:id="passwordID" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="201.0" promptText="Password" styleClass="inputField" style="-fx-text-fill:#0bba86; -fx-text-inner-color:#0bba86;">
+                                 <HBox.margin>
+                                    <Insets left="13.0" />
+                                 </HBox.margin></PasswordField>
                            </children>
                         </HBox>
-                        <Button fx:id="loginBtnID" layoutX="187.0" layoutY="419.0" mnemonicParsing="false" onAction="#onClickLogin" prefHeight="31.0" prefWidth="81.0" style="-fx-background-color: #FFCA28;" text="Log-In" />
+                        <Button fx:id="loginBtnID" layoutX="158.0" layoutY="413.0" mnemonicParsing="false" onAction="#onClickLogin" prefHeight="35.0" prefWidth="200.0" styleClass="loginBtn" text="Login" />
                      </children>
                   </AnchorPane>
                </center>

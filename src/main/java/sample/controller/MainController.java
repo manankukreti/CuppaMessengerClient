@@ -39,8 +39,8 @@ public class MainController {
     @FXML private HBox paneControllers;
 
     String currentTheme = "";
-    String lightThemeURL = getClass().getResource("/light.css").toExternalForm();
-    String darkThemeURL = getClass().getResource("/dark.css").toExternalForm();
+    String lightThemeURL = getClass().getResource("/styles/light.css").toExternalForm();
+    String darkThemeURL = getClass().getResource("/styles/dark.css").toExternalForm();
 
     private double xOffset = 0;
     private double yOffset = 0;
@@ -54,7 +54,7 @@ public class MainController {
 
 
     @FXML
-    public void initialize() throws IOException {
+    public void initialize(){
 
     }
 
@@ -74,19 +74,21 @@ public class MainController {
         newsFeed();
         conversations();
         contacts();
+
+
     }
 
     public void updateStatus() throws IOException {
         int status_int = 0;
-        System.out.println(statusBox.getValue().toString().trim().toLowerCase());
-        if(statusBox.getValue().toString().trim().toLowerCase().equals("busy")){
+        System.out.println(statusBox.getValue().trim().toLowerCase());
+        if(statusBox.getValue().trim().toLowerCase().equals("busy")){
             status_int = 1;
         }
-        else if (statusBox.getValue().toString().trim().toLowerCase().equals("away")){
+        else if (statusBox.getValue().trim().toLowerCase().equals("away")){
             status_int = 2;
         }
         client.setStatus(status_int);
-        setStatus(statusBox.getValue().toString());
+        setStatus(statusBox.getValue());
     }
 
     public void setStatus(String status_string) {
@@ -100,7 +102,6 @@ public class MainController {
                 break;
             default:
                 statusIndicator.setFill(Color.GREEN);
-
         }
     }
 
@@ -227,6 +228,7 @@ public class MainController {
 
 
             Scene createGroupScene = new Scene(root);
+            createGroupScene.getStylesheets().add(getClass().getResource("/styles/mainPage.css").toExternalForm());
             uiScene.put("createNewGroup", createGroupScene);
 
             if(currentTheme.equals("light")){
@@ -262,6 +264,7 @@ public class MainController {
             controllerMap.put("editProfile", editProfileController);
 
             Scene editScene = new Scene(root);
+            editScene.getStylesheets().add(getClass().getResource("/styles/mainPage.css").toExternalForm());
             uiScene.put("editProfile", editScene);
 
             if(currentTheme.equals("light")){
@@ -293,6 +296,7 @@ public class MainController {
         controller.setMainController(this);
 
         Scene mainScreenScene = new Scene(mainScreen);
+        mainScreenScene.getStylesheets().add(getClass().getResource("/styles/mainPage.css").toExternalForm());
         uiScene.put("settingScene", mainScreenScene);
 
         if(currentTheme.equals("light")){
@@ -356,7 +360,7 @@ public class MainController {
     }
 
     public void close(ActionEvent actionEvent) {
-        ((Stage)((Button)actionEvent.getSource()).getScene().getWindow()).hide();
+        (((Button)actionEvent.getSource()).getScene().getWindow()).hide();
         System.exit(0);
     }
 
@@ -371,13 +375,8 @@ public class MainController {
             Main.stage.setOpacity(0.8f);
         }));
 
-        paneControllers.setOnDragDone((event ->{
-            Main.stage.setOpacity(1.0f);
-
-        }));
-        paneControllers.setOnMouseReleased((event -> {
-            Main.stage.setOpacity(1.0f);
-        }));
+        paneControllers.setOnDragDone((event -> Main.stage.setOpacity(1.0f)));
+        paneControllers.setOnMouseReleased((event -> Main.stage.setOpacity(1.0f)));
     }
 
 }

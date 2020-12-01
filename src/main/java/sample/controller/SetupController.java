@@ -62,11 +62,12 @@ public class SetupController {
         logLoader.setLocation(getClass().getResource("/logInPage/LoginPage.fxml"));
         Parent loginScreen = logLoader.load();
         LoginController loginController = logLoader.getController();
+
+        Scene loginScreenScene = new Scene(loginScreen);
+        loginScreenScene.getStylesheets().add(getClass().getResource("/styles/login.css").toExternalForm());
+
+        stage.setScene(loginScreenScene);
         loginController.setStage(stage);
-
-
-        Scene mainScreenScene = new Scene(loginScreen);
-        stage.setScene(mainScreenScene);
         stage.show();
 
 

@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import sample.Client;
@@ -19,6 +20,8 @@ import java.io.IOException;
 
 public class LoginController {
 
+    @FXML
+    BorderPane loginPane;
 
     @FXML
     private TextField usernameID;
@@ -42,6 +45,7 @@ public class LoginController {
     }
 
     public LoginController() throws IOException {
+
     }
 
     public void setStage(Stage stage){
@@ -58,6 +62,7 @@ public class LoginController {
         controller.setCurrentEmployeeInfo(client.getUser());
 
         Scene mainScreenScene = new Scene(mainScreen);
+        mainScreenScene.getStylesheets().add(getClass().getResource("/styles/mainPage.css").toExternalForm());
         controller.setTheme("light");
         stage.setScene(mainScreenScene);
         stage.show();

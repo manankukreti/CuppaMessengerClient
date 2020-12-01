@@ -1,0 +1,9 @@
+.inputField{
+    -fx-background-insets: 0 -1 -1 -1, 0 0 0 0, 0 -1 3 -1;
+    -fx-background-color: #0bba86 , white , white;
+}
+.loginBtn{
+    -fx-background-color: #0bba86;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}

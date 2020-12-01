@@ -12,14 +12,12 @@ import javafx.stage.StageStyle;
 import sample.*;
 
 import javax.crypto.*;
-import javax.crypto.spec.SecretKeySpec;
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.security.InvalidKeyException;
-import java.security.Key;
 import java.security.NoSuchAlgorithmException;
 import java.util.*;
 
@@ -33,8 +31,8 @@ public class ConversationsController {
     static Stage stage = null;
 
     String currentTheme = "";
-    String lightThemeURL = getClass().getResource("/light.css").toExternalForm();
-    String darkThemeURL = getClass().getResource("/dark.css").toExternalForm();
+    String lightThemeURL = getClass().getResource("/styles/light.css").toExternalForm();
+    String darkThemeURL = getClass().getResource("/styles/dark.css").toExternalForm();
 
     static HashMap<String, ConversationWindowController> conversationWindowMap = new HashMap<>();
     static HashMap<String, ConversationTileController> conversationTileMap = new HashMap<>();
