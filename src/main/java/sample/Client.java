@@ -9,7 +9,7 @@ import java.net.UnknownHostException;
 import java.util.Arrays;
 public class Client {
 	private static Client instance = null;
-	private User user;
+	private User user = new User();;
 	private final Socket socket;
 	private final InputStream in;
 	private final OutputStream out;
@@ -17,16 +17,17 @@ public class Client {
 	Gson gson = new Gson();
 
 	public Client() throws IOException {
-		user = new User();
 		socket = new Socket("localhost", 5000);
 		in = socket.getInputStream();
 		out = socket.getOutputStream();
+		instance = this;
 	}
 
-	public Client(String ip, int port) throws UnknownHostException, IOException {
-		socket = new Socket(ip, port);
+	public Client(String ip) throws IOException {
+		socket = new Socket(ip, 5000);
 		in = socket.getInputStream();
 		out = socket.getOutputStream();
+		instance = this;
 	}
 
 	public static Client getInstance() throws IOException {
@@ -45,6 +46,7 @@ public class Client {
 
 	public void sendToUser(String to, String msg) throws IOException {
 		send(new Message(user.getUsername(), to, "MSG-TEXT", "user_to_user", msg));
+
 	}
 
 	public void sendToGroup(String[] to, String msg, String groupName) throws IOException {
@@ -92,10 +94,6 @@ public class Client {
 		send(new Message(user.getUsername(), "server", "MSG-REQ", "general", "all_posts"));
 	}
 
-	public void logout() throws IOException {
-		send(new Message(user.getUsername(), "server", "MSG-REQ", "logout", "logout"));
-	}
-
 	//send heartbeat to server
 	public void pulse() throws IOException {
 		Message heartbeat = new Message(user.getUsername(), "server", "client_status", "heartbeat", "alive");
@@ -108,6 +106,7 @@ public class Client {
 
 	public void setUser(User user){
 		this.user = user;
+		System.out.println(this.user.toString());
 	}
 
 	public User getUser(){
@@ -120,10 +119,6 @@ public class Client {
 
 	public boolean isAuth(){
 		return isAuth;
-	}
-
-	public void closeClient() throws IOException {
-		socket.close();
 	}
 
 }
