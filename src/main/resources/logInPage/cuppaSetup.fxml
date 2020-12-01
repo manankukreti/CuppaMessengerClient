@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="532.0" prefWidth="422.0" spacing="50.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.SetupController">
+<VBox fx:controller="sample.controller.SetupController" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="532.0" prefWidth="422.0" spacing="50.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label text="Cuppa Setup">
          <font>
@@ -34,7 +34,11 @@
             <Insets left="40.0" right="40.0" />
          </VBox.margin>
       </VBox>
-      <Label fx:id="statusLabel" />
+      <Label fx:id="statusLabel" text="Cuppa Setup">
+         <font>
+            <Font name="Marlett" size="30.0" />
+         </font>
+      </Label>
       <Button mnemonicParsing="false" onAction="#continueToLogin" text="Continue" />
    </children>
 </VBox>

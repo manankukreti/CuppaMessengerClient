@@ -10,24 +10,17 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="logIn" styleClass="primaryBg" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.LoginController">
+<BorderPane fx:id="logIn" prefHeight="579.0" prefWidth="803.0" styleClass="primaryBg" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.LoginController">
    <center>
       <VBox>
          <children>
-            <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="563.0" prefWidth="1027.0">
-               <children>
-                  <AnchorPane prefHeight="563.0" prefWidth="520.0" style="-fx-background-color: white;">
-                     <children>
-                        <ImageView fitHeight="260.0" fitWidth="227.0" layoutX="122.0" layoutY="152.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../Avatars/vec.png" />
-                           </image>
-                        </ImageView>
-                     </children></AnchorPane>
-                  <AnchorPane prefHeight="557.0" prefWidth="515.0" style="-fx-background-color: white;" stylesheets="@../light.css">
+            <BorderPane>
+               <center>
+                  <AnchorPane prefHeight="409.0" prefWidth="454.0" style="-fx-background-color: white;" stylesheets="@../light.css">
                      <children>
                         <Label fx:id="errorMessage" layoutX="172.0" layoutY="465.0" prefHeight="17.0" prefWidth="120.0" style="-fx-background-color: white;" textFill="RED" visible="false" />
                         <ImageView fitHeight="150.0" fitWidth="150.0" layoutX="158.0" layoutY="95.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="332.3268127441406" AnchorPane.leftAnchor="158.0" AnchorPane.rightAnchor="146.0" AnchorPane.topAnchor="95.0">
@@ -58,27 +51,39 @@
                         <Button fx:id="loginBtnID" layoutX="187.0" layoutY="419.0" mnemonicParsing="false" onAction="#onClickLogin" prefHeight="31.0" prefWidth="81.0" style="-fx-background-color: #FFCA28;" text="Log-In" />
                      </children>
                   </AnchorPane>
-               </children>
-            </HBox>
+               </center>
+               <top>
+                  <HBox fx:id="paneControllers" alignment="CENTER_RIGHT" prefHeight="40.0" prefWidth="181.0" spacing="5.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
+                     <children>
+                        <Button fx:id="minimizeBtn" mnemonicParsing="false" onAction="#minimize" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: white;" text="__" textFill="#08bdff">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="closeBtn" mnemonicParsing="false" onAction="#close" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: white;" text="X" textFill="#08bdff">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Button>
+                     </children>
+                     <padding>
+                        <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+                     </padding>
+                  </HBox>
+               </top>
+            </BorderPane>
          </children>
       </VBox>
    </center>
-   <top>
-      <HBox fx:id="paneControllers" alignment="CENTER_RIGHT" prefHeight="40.0" prefWidth="1030.0" spacing="5.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
+   <left>
+      <Pane prefHeight="618.0" prefWidth="537.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="minimizeBtn" mnemonicParsing="false" onAction="#minimize" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: white;" text="__" textFill="#08bdff">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Button>
-            <Button fx:id="closeBtn" mnemonicParsing="false" onAction="#close" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: white;" text="X" textFill="#08bdff">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Button>
+            <ImageView fitHeight="618.0" fitWidth="537.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@art/loginBg.png" />
+               </image>
+            </ImageView>
          </children>
-         <padding>
-            <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
-         </padding>
-      </HBox>   </top>
+      </Pane>
+   </left>
 </BorderPane>
