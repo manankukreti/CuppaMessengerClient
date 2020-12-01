@@ -14,7 +14,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane fx:id="mainPane" prefHeight="645.0" prefWidth="1030.0" styleClass="borderPane-main" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.MainController">
+<BorderPane fx:id="mainPane" prefHeight="645.0" prefWidth="1030.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.MainController">
        <center>
            <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="645.0" prefWidth="770.0">
          <children>
@@ -114,10 +114,6 @@
    
               </VBox>
        </left>
-   <styleClass>
-      <String fx:value="background" />
-      <String fx:value="fill" />
-   </styleClass>
    <top>
       <HBox fx:id="paneControllers" alignment="CENTER_RIGHT" prefHeight="40.0" prefWidth="1030.0" spacing="5.0" BorderPane.alignment="CENTER">
          <children>
