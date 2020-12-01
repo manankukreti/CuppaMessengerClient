@@ -83,6 +83,7 @@ public class LoginController {
 
 
     public void incorrectCredentials(){
+        System.out.println("fail");
         errorMessage.setVisible(true);
         errorMessage.setText("Incorrect Credentials!");
     }

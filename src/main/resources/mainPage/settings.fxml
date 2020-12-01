@@ -13,7 +13,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="470.0" prefWidth="678.0" spacing="10.0" styleClass="primaryBg" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.SettingsController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="733.0" prefWidth="678.0" spacing="10.0" styleClass="primaryBg" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.SettingsController">
    <children>
       <Text styleClass="tab-title" text="Settings">
          <font>
@@ -58,27 +58,49 @@
             <Font size="15.0" />
          </font>
       </Label>
-      <HBox alignment="CENTER" prefHeight="50.0" prefWidth="618.0" spacing="20.0">
+      <VBox>
          <children>
             <Label styleClass="basicText" text="File Name:" />
-            <TextField fx:id="fileName" prefHeight="25.0" prefWidth="419.0" styleClass="inputField" />
+            <TextField fx:id="fileName" prefHeight="25.0" prefWidth="424.0" styleClass="inputField" />
          </children>
-      </HBox>
-      <HBox alignment="CENTER" prefHeight="42.0" prefWidth="468.0" spacing="20.0">
+      </VBox>
+      <VBox>
          <children>
             <Label styleClass="basicText" text="File location:" />
-            <TextField fx:id="saveAddress" prefHeight="27.0" prefWidth="350.0" styleClass="inputField" />
-            <Button mnemonicParsing="false" onAction="#setSaveLocation" prefHeight="25.0" prefWidth="55.0" styleClass="primaryBtn" text="Browse" />
+            <HBox>
+               <children>
+                  <TextField fx:id="saveAddress" prefHeight="26.0" prefWidth="537.0" styleClass="inputField">
+                     <HBox.margin>
+                        <Insets right="25.0" />
+                     </HBox.margin>
+                  </TextField>
+                  <Button mnemonicParsing="false" onAction="#setSaveLocation" prefHeight="25.0" prefWidth="55.0" styleClass="primaryBtn" text="Browse" />
+               </children>
+            </HBox>
          </children>
-      </HBox>
+      </VBox>
       <HBox alignment="CENTER_RIGHT" prefHeight="46.0" prefWidth="518.0">
          <children>
             <Button fx:id="backupSave" mnemonicParsing="false" onAction="#saveBackup" prefHeight="29.0" prefWidth="66.0" styleClass="primaryBtn" text="Save" />
          </children>
       </HBox>
       <Label fx:id="errorMessage" prefHeight="17.0" prefWidth="255.0" />
-      <HBox alignment="CENTER" prefHeight="42.0" prefWidth="468.0" spacing="20.0" />
-      <HBox alignment="CENTER_RIGHT" prefHeight="46.0" prefWidth="518.0" />
+      <VBox prefHeight="137.0" prefWidth="618.0" spacing="12.0">
+         <children>
+            <Label text="Old Password" />
+            <TextField fx:id="oldPassword" accessibleRole="PASSWORD_FIELD" />
+            <Label text="New Password" />
+            <TextField fx:id="newPassword" accessibleRole="PASSWORD_FIELD" />
+            <Label text="Re-enter New Password" />
+            <TextField fx:id="newPassword2" accessibleRole="PASSWORD_FIELD" />
+            <Button mnemonicParsing="false" text="Button" />
+         </children>
+      </VBox>
+      <HBox fx:id="msgLabel" alignment="CENTER">
+         <children>
+            <Label text="Label" />
+         </children>
+      </HBox>
    </children>
    <padding>
       <Insets left="30.0" right="30.0" top="10.0" />

@@ -25,6 +25,11 @@ public class SettingsController {
     @FXML private TextField restoreAddress;
     @FXML private TextField fileName;
     @FXML private Label errorMessage;
+    @FXML private TextField oldPassword;
+    @FXML private TextField newPassword;
+    @FXML private TextField newPassword2;
+    @FXML private Label msgLabel;
+
     File selectedDirectory;
     File selectedFile;
     Client client =Client.getInstance();
@@ -103,4 +108,46 @@ public class SettingsController {
         MainController controller1 = loader1.getController();
 
     }
+
+    public boolean isOldPasswordCorrect(){
+        return true;
+    }
+
+    public boolean isNewPasswordValid(){
+        if (newPassword.getText().length() >= 8){
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+    public boolean doPasswordsMatch(){
+        if(newPassword.equals(newPassword2)){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    public void changePassword(){
+        if (isOldPasswordCorrect()){
+            if (isNewPasswordValid()){
+                if (doPasswordsMatch()){
+                    //setPassword
+
+                }
+                else{
+                    msgLabel.setText("The passwords did not match.");
+                }
+            }
+            else {
+                msgLabel.setText("The password has to be longer than 8 characters.");
+            }
+        }
+        else {
+            msgLabel.setText("Incorrect Old Password.");
+        }
+    }
+
+
 }
