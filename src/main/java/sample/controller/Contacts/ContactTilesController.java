@@ -38,20 +38,15 @@ public class ContactTilesController {
 
     //Internal Dependencies
     Client client = Client.getInstance();
-    MainController mainController;
     ConversationsController convoController;
 
 
     public ContactTilesController() throws IOException {
-        FXMLLoader mainLoader = new FXMLLoader();
-        mainLoader.setLocation(getClass().getResource("/mainPage/mainPage.fxml"));
-        try {
-            mainLoader.load();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        mainController = mainLoader.getController();
-        convoController = mainController.getConvoController();
+
+    }
+
+    public void setConvoController(ConversationsController convo){
+        convoController = convo;
     }
 
     public void setContactInfo(User contact){

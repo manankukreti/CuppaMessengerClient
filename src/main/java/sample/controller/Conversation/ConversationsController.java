@@ -36,15 +36,13 @@ public class ConversationsController {
     String lightThemeURL = getClass().getResource("/light.css").toExternalForm();
     String darkThemeURL = getClass().getResource("/dark.css").toExternalForm();
 
-    static HashMap<String, ConversationWindowController> conversationPaneMap = new HashMap<>();
+    static HashMap<String, ConversationWindowController> conversationWindowMap = new HashMap<>();
     static HashMap<String, ConversationTileController> conversationTileMap = new HashMap<>();
     static HashMap<String, Stage> conversationStageMap = new HashMap<>();
     static HashMap<String, Conversation> conversationMap;
 
     UserList users = UserList.getInstance();
     Client client = Client.getInstance();
-
-
 
 
     public ConversationsController() throws IOException {
@@ -56,6 +54,13 @@ public class ConversationsController {
         if(conversationMap == null){
             conversationMap = new HashMap<>();
         }
+    }
+
+    public void resetController(){
+        conversationMap.clear();
+        conversationTileMap.clear();
+        conversationStageMap.clear();
+        conversationWindowMap.clear();
     }
 
     public void setTheme(String theme){
@@ -116,7 +121,6 @@ public class ConversationsController {
                 conversationMap = loadedConvo;
             }
         }
-
     }
 
     public ConversationWindowController createConversationWindow(Conversation convo) throws IOException{
@@ -166,14 +170,14 @@ public class ConversationsController {
         chatStage.setScene(chatScene);
 
         conversationStageMap.put(key, chatStage);
-        conversationPaneMap.put(key, convoWindowController);
+        conversationWindowMap.put(key, convoWindowController);
 
         return convoWindowController;
     }
 
     public void floodConversationPane(String key) throws IOException {
         if(conversationMap.containsKey(key)) {
-            ConversationWindowController window = conversationPaneMap.get(key);
+            ConversationWindowController window = conversationWindowMap.get(key);
             Conversation convo = conversationMap.get(key);
 
             for (Message msg : convo.getMessages()) {
@@ -190,7 +194,7 @@ public class ConversationsController {
 
     public boolean doesConversationPaneNotExist(String key){
 
-        return !conversationPaneMap.containsKey(key);
+        return !conversationWindowMap.containsKey(key);
     }
 
     public boolean doesConversationExist(String key){
@@ -234,8 +238,8 @@ public class ConversationsController {
         conversationMap.get(key).addMessage(msg);
 
         //check if window exists
-        if(conversationPaneMap.containsKey(key)){
-            window = conversationPaneMap.get(key);
+        if(conversationWindowMap.containsKey(key)){
+            window = conversationWindowMap.get(key);
         }
         else{
            window = createConversationWindow(conversationMap.get(key));
@@ -278,7 +282,7 @@ public class ConversationsController {
     }
 
     public ConversationWindowController getWindowController(String key){
-        return conversationPaneMap.get(key);
+        return conversationWindowMap.get(key);
     }
 
     //update the title's subtitle when a message is sent
@@ -298,6 +302,7 @@ public class ConversationsController {
 
     public void addConversationTile(String key, Conversation convo) throws IOException {
         if(!conversationTileMap.containsKey(key)) {
+
             FXMLLoader convoTileloader = new FXMLLoader();
             convoTileloader.setLocation(getClass().getResource("/mainPage/conversations/conversationTile.fxml"));
             Parent conversationTile = convoTileloader.load();
@@ -332,9 +337,11 @@ public class ConversationsController {
             if (convo.getMessages().size() > 0) {
                 subtitle = convo.getMessages().get(convo.getMessages().size() - 1).message;
             }
+            System.out.println(subtitle);
 
             convoTileController.setConversationInfo(this, key, convo, title, subtitle, avatar);
             conversationTileMap.put(key, convoTileController);
+
             conversationVbox.getChildren().add(0, conversationTile);
         }
     }

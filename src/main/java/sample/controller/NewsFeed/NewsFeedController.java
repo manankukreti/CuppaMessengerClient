@@ -29,7 +29,6 @@ public class NewsFeedController {
     static ArrayList<Post> posts = new ArrayList<>();
 
 
-
     public NewsFeedController() throws IOException {
     }
     @FXML

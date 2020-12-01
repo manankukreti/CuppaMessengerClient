@@ -5,7 +5,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.HBox;
@@ -13,7 +12,6 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import sample.Client;
-import sample.Main;
 import sample.Message;
 import sample.User;
 
@@ -47,7 +45,7 @@ public class ConversationWindowController {
 
     Client client = Client.getInstance();
 
-    static ConversationsController conversationsController;
+    ConversationsController conversationsController;
     ConversationWindowUserInfoController convoInfoController;
 
     User sender = client.getUser();
@@ -55,12 +53,10 @@ public class ConversationWindowController {
     String conversationName = "default";
 
     @FXML
-    public void initialize() throws IOException {
+    public void initialize(){
         makeStageDraggable();
         //scroll pane to bottom when message is sent
-        messagesVbox.heightProperty().addListener(observable -> {
-            msgScrollPane.setVvalue(1D);
-        });
+        messagesVbox.heightProperty().addListener(observable -> msgScrollPane.setVvalue(1D));
     }
 
 
@@ -80,27 +76,28 @@ public class ConversationWindowController {
             infoHbox = conversationWindowInfoLoader.load();
             convoInfoController = conversationWindowInfoLoader.getController();
             convoInfoController.setInfo(recipient.get(0));
-            infoPane.getChildren().add(infoHbox);
         }else {
             conversationWindowInfoLoader.setLocation(getClass().getResource("/mainPage/conversations/conversationWindowGroupInfo.fxml"));
             infoHbox = conversationWindowInfoLoader.load();
             ConversationWindowGroupInfoController infoSetGroup = conversationWindowInfoLoader.getController();
             infoSetGroup.setInfo(recipient, name);
-            infoPane.getChildren().add(infoHbox);
         }
+        infoPane.getChildren().add(infoHbox);
 
     }
 
     public void updateInfo(String type, String value){
         if(convoInfoController != null){
-            if(type.equals("status")){
-                convoInfoController.setStatus(value);
-            }
-            else if(type.equals("avatar")){
-                convoInfoController.setAvatar(value);
-            }
-            else if(type.equals("bio")){
-                convoInfoController.setBio(value);
+            switch (type) {
+                case "status":
+                    convoInfoController.setStatus(value);
+                    break;
+                case "avatar":
+                    convoInfoController.setAvatar(value);
+                    break;
+                case "bio":
+                    convoInfoController.setBio(value);
+                    break;
             }
         }
     }
@@ -162,7 +159,7 @@ public class ConversationWindowController {
     }
 
     public void close(ActionEvent actionEvent) {
-        ((Stage)((Button)actionEvent.getSource()).getScene().getWindow()).hide();
+        ((Button)actionEvent.getSource()).getScene().getWindow().hide();
     }
     private  void makeStageDraggable(){
         paneControllers.setOnMousePressed((event -> {

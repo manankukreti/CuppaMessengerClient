@@ -7,13 +7,18 @@ import javafx.scene.layout.GridPane;
 import sample.Client;
 import sample.User;
 import sample.UserList;
+import sample.controller.Conversation.ConversationsController;
+import sample.controller.MainController;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 public class ContactsController {
+
     static HashMap<String, ContactTilesController> tileControllers = new HashMap<>();
+
     @FXML
     GridPane list;
 
@@ -21,15 +26,26 @@ public class ContactsController {
     Node contactTile;
     Client client = Client.getInstance();
 
-    static UserList userList  = UserList.getInstance();
-    static ArrayList<User> users;
+    UserList userList  = UserList.getInstance();
+
+    MainController mainController;
+    ConversationsController convoController;
 
     public ContactsController() throws IOException {
     }
 
     @FXML
     public void initialize() throws IOException {
-        loadContacts();
+
+    }
+
+    public void resetController(){
+        tileControllers.clear();
+    }
+
+    public void setUpContacts(MainController mainController) throws IOException {
+        this.mainController = mainController;
+        convoController = mainController.getConvoController();
     }
 
     public void updateContactTile(String username, String type, String value){
@@ -47,27 +63,29 @@ public class ContactsController {
         }
     }
 
-
-
     public void loadContacts() throws IOException {
-        users = userList.getUsers();
+        ArrayList<User> users = userList.getUsers();
+
         int j = 0;
         int k = 0;
         if(users != null){
+
             for (User user : users) {
 
                 if (user.getUsername().equals(client.getUser().getUsername())){
-
                 }
                 else {
                     FXMLLoader loader = new FXMLLoader();
                     loader.setLocation(getClass().getResource("/mainPage/contacts/contactTile.fxml"));
                     contactTile = loader.load();
                     ContactTilesController infoSet = loader.getController();
+                    infoSet.setConvoController(convoController);
+
 
                     infoSet.setContactInfo(user);
                     list.add(contactTile, j, k);
                     tileControllers.put(user.getUsername(), infoSet);
+
                     //adding to the grid
                     j++;
                     if (j % 2 == 0 && j != 0) {
@@ -78,7 +96,5 @@ public class ContactsController {
                 }
             }
         }
-
-
     }
 }

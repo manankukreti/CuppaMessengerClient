@@ -36,17 +36,14 @@ public class MainController {
     @FXML private BorderPane mainPane;
     @FXML private ComboBox<String> statusBox;
     @FXML private Circle statusIndicator;
-
+    @FXML private HBox paneControllers;
 
     String currentTheme = "";
     String lightThemeURL = getClass().getResource("/light.css").toExternalForm();
     String darkThemeURL = getClass().getResource("/dark.css").toExternalForm();
 
-
     private double xOffset = 0;
     private double yOffset = 0;
-    @FXML private HBox paneControllers;
-
 
     private static HashMap<String, Parent> uiMap;
     private static HashMap<String, Scene> uiScene;
@@ -58,6 +55,10 @@ public class MainController {
 
     @FXML
     public void initialize() throws IOException {
+
+    }
+
+    public void setUpMainController() throws IOException {
         if(uiMap == null){
             uiMap = new HashMap<>();
             uiScene = new HashMap<>();
@@ -68,6 +69,7 @@ public class MainController {
 
         statusBox.getItems().addAll("Online", "Away", "Busy");
         statusBox.setValue(client.getUser().getStatus().substring(0, 1).toUpperCase() + client.getUser().getStatus().substring(1));
+
         makeStageDraggable();
         newsFeed();
         conversations();
@@ -162,9 +164,14 @@ public class MainController {
         bioCurrentUser.setText(currentUser.getBio());
     }
 
-
     public void contacts() throws IOException {
-        loadUI("contacts", "/mainPage/contacts/contacts.fxml");
+        if(getContactsController() == null){
+            loadUI("contacts", "/mainPage/contacts/contacts.fxml");
+            getContactsController().setUpContacts(this);
+        }
+        else{
+            loadUI("contacts", "/mainPage/contacts/contacts.fxml");
+        }
 
     }
 
@@ -191,6 +198,7 @@ public class MainController {
             uiMap.put(key,root1);
             controllerMap.put(key, loader.getController());
             mainPane.setCenter(root1);
+
         }
 
     }
@@ -263,18 +271,7 @@ public class MainController {
         }
     }
 
-    public void logout(ActionEvent actionEvent) throws IOException {
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/logInPage/LoginPage.fxml"));
-        Parent mainScreen = loader.load();
-        Scene mainScreenScene = new Scene(mainScreen);
-        Stage stage =(Stage)((Node)actionEvent.getSource()).getScene().getWindow();
-        stage.setScene(mainScreenScene);
-        client = null;
-        stage.show();
-    }
-
-    public void settings(ActionEvent actionEvent) throws IOException {
+    public void settings() throws IOException {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/mainPage/settings.fxml"));
         Parent mainScreen = loader.load();
@@ -285,6 +282,34 @@ public class MainController {
         Stage stage = new Stage();
         stage.setScene(mainScreenScene);
         stage.show();
+    }
+
+    public void logout(ActionEvent actionEvent) throws IOException {
+        client.logout();
+        client.setUser(new User());
+
+        resetApplication();
+        setUpMainController();
+
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/logInPage/LoginPage.fxml"));
+        Parent mainScreen = loader.load();
+        Scene mainScreenScene = new Scene(mainScreen);
+        Stage stage =(Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        stage.setScene(mainScreenScene);
+        stage.show();
+    }
+
+    public void resetApplication(){
+
+        getConvoController().resetController();
+        getContactsController().resetController();
+
+        uiStage.clear();
+        uiScene.clear();
+        uiMap.clear();
+        controllerMap.clear();
+
     }
 
     public ConversationsController getConvoController(){
@@ -309,6 +334,7 @@ public class MainController {
         ((Stage)((Button)actionEvent.getSource()).getScene().getWindow()).hide();
         System.exit(0);
     }
+
     private  void makeStageDraggable(){
         paneControllers.setOnMousePressed((event -> {
             xOffset = event.getSceneX();

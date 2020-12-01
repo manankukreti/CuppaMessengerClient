@@ -34,7 +34,6 @@ public class Main extends Application {
     //static AudioInputStream audioInputStream;
     public static Stage stage = null;
 
-
     @Override
     public void start(Stage primaryStage) throws Exception{
 
@@ -48,11 +47,7 @@ public class Main extends Application {
         mainLoader.setLocation(getClass().getResource("/mainPage/mainPage.fxml"));
         mainLoader.load();
         mainController = mainLoader.getController();
-
-
-        conversationsController = mainController.getConvoController();
-        contactsController = mainController.getContactsController();
-        newsFeedController = mainController.getNewsFeedController();
+        mainController.setUpMainController();
 
        //audioInputStream = AudioSystem.getAudioInputStream(getClass().getResource("/Audio/notification.wav"));
 
@@ -119,6 +114,11 @@ public class Main extends Application {
                             User user = gson.fromJson(msg.message, User.class);
                             client.setUser(user);
                             client.setAuth(true);
+
+                            conversationsController = mainController.getConvoController();
+                            contactsController = mainController.getContactsController();
+                            newsFeedController = mainController.getNewsFeedController();
+
                         }
                     }
                     //TEXT MESSAGES (USER OR GROUP)
@@ -128,6 +128,7 @@ public class Main extends Application {
 //                        clip.start();
 
                         if(msg.subject.equals("user_to_user")){
+                            System.out.println("Message received");
                             Message message = msg;
                             Platform.runLater(() -> {
                                 try {
@@ -158,6 +159,7 @@ public class Main extends Application {
                         Platform.runLater(() -> {
                             try {
                                 userList.setUsers(users);
+                                System.out.println("Loading convo");
                                 conversationsController.loadConvoFromFile("backups/backup_"+ client.getUser().getUsername()+".cuppa");
                                 conversationsController.generateConversationTiles();
                                 contactsController.loadContacts();
@@ -235,8 +237,6 @@ public class Main extends Application {
                         });
 
                     }
-
-
                     else{
                         System.out.println(line);
                     }

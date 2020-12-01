@@ -44,7 +44,6 @@ public class LoginController {
     public LoginController() throws IOException {
     }
 
-
     public void setStage(Stage stage){
         this.stage = stage;
     }
@@ -54,6 +53,7 @@ public class LoginController {
         loader.setLocation(getClass().getResource("/mainPage/mainPage.fxml"));
         Parent mainScreen = loader.load();
         MainController controller = loader.getController();
+        controller.setUpMainController();
 
         controller.setCurrentEmployeeInfo(client.getUser());
 
