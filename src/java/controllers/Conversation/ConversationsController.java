@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import models.*;
@@ -172,6 +173,7 @@ public class ConversationsController {
         is set back to normal.
          */
         stage.setOpacity(0);
+        stage.getIcons().add(new Image("/cuppa.png"));
         stage.show();
         stage.close();
         stage.setOpacity(1);

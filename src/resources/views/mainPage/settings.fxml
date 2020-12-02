@@ -17,7 +17,7 @@
 
 <ScrollPane hbarPolicy="NEVER" prefHeight="596.0" prefWidth="680.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.SettingsController">
    <content>
-      <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="669.0" prefWidth="678.0" spacing="20.0" styleClass="primaryBg">
+      <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="806.0" prefWidth="678.0" spacing="20.0" styleClass="primaryBg">
          <children>
             <Text styleClass="tab-title" text="Settings">
                <font>

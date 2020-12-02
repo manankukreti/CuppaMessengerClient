@@ -13,7 +13,7 @@
       <Pane fx:id="infoPane" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="116.0" prefWidth="700.0" />
       <ScrollPane fx:id="msgScrollPane" hbarPolicy="NEVER" prefHeight="471.0" prefWidth="702.0" styleClass="primaryBg">
          <content>
-            <VBox fx:id="messagesVbox" prefHeight="445.0" prefWidth="688.0" spacing="8.0" styleClass="primaryBg" />
+            <VBox fx:id="messagesVbox" prefHeight="447.0" prefWidth="688.0" spacing="8.0" styleClass="primaryBg" />
          </content>
       </ScrollPane>
       <HBox alignment="CENTER_LEFT" prefHeight="124.0" prefWidth="600.0" styleClass="primaryBg">
@@ -27,4 +27,7 @@
          </children>
       </HBox>
    </children>
+   <padding>
+      <Insets top="5.0" />
+   </padding>
 </VBox>
