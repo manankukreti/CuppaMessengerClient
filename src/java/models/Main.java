@@ -267,14 +267,9 @@ public class Main extends Application {
     public static void displayWindowsNotification(String title, String body) throws AWTException {
         SystemTray tray = SystemTray.getSystemTray();
 
-        //If the icon is a file
-        //Alternative (if the icon is on the classpath):
-        java.awt.Image image = Toolkit.getDefaultToolkit().createImage("3.png");
-
+        java.awt.Image image = Toolkit.getDefaultToolkit().createImage(Main.class.getResource("/cuppa.png"));
         TrayIcon trayIcon = new TrayIcon(image, title);
-        //Let the system resize the image if needed
         trayIcon.setImageAutoSize(true);
-        //Set tooltip text for the tray icon
         trayIcon.setToolTip(body);
         tray.add(trayIcon);
 
