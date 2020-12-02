@@ -23,7 +23,7 @@
         </Text>
       <ScrollPane hbarPolicy="NEVER" prefHeight="579.0" prefWidth="768.0" styleClass="scrollPane-newsfeed" vbarPolicy="ALWAYS">
          <content>
-            <VBox fx:id="postVbox" alignment="TOP_CENTER" prefHeight="577.0" prefWidth="767.0" spacing="5.0" styleClass="vboxScrollPane-newsfeed">
+            <VBox fx:id="postVbox" alignment="TOP_CENTER" prefHeight="577.0" prefWidth="756.0" spacing="5.0" styleClass="vboxScrollPane-newsfeed">
                <children>
                   <VBox prefHeight="175.0" prefWidth="707.0" spacing="4.0">
                      <children>
@@ -33,7 +33,7 @@
                         <TextArea fx:id="postContent" minHeight="-Infinity" prefHeight="150.0" prefWidth="707.0" styleClass="inputField" wrapText="true" />
                         <HBox alignment="CENTER_RIGHT" prefHeight="33.0" prefWidth="710.0">
                            <children>
-                              <Button styleClass="primaryBtn" fx:id="postBtn" mnemonicParsing="false" onAction="#createPost" text="Post" />
+                              <Button fx:id="postBtn" mnemonicParsing="false" onAction="#createPost" styleClass="primaryBtn" text="Post" />
                            </children>
                         </HBox>
                      </children>

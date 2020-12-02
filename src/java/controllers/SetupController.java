@@ -1,11 +1,14 @@
 package controllers;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import models.Client;
 import models.Main;
@@ -19,9 +22,11 @@ public class SetupController {
 
     @FXML
     TextField ipTextbox;
-
     @FXML
     Label statusLabel;
+    @FXML private HBox paneControllers;
+    private double xOffset = 0;
+    private double yOffset = 0;
 
     Stage stage;
     Client client;
@@ -97,4 +102,26 @@ public class SetupController {
         }
     }
 
+    public void minimize(ActionEvent actionEvent) {
+        ((Stage)((Button)actionEvent.getSource()).getScene().getWindow()).setIconified(true);
+    }
+
+    public void close(ActionEvent actionEvent) {
+        (((Button)actionEvent.getSource()).getScene().getWindow()).hide();
+        System.exit(0);
+    }
+    private  void makeStageDraggable(){
+        paneControllers.setOnMousePressed((event -> {
+            xOffset = event.getSceneX();
+            yOffset = event.getSceneY();
+        }));
+        paneControllers.setOnMouseDragged((event -> {
+            Main.stage.setX(event.getScreenX()- xOffset);
+            Main.stage.setY(event.getScreenY()- yOffset);
+            Main.stage.setOpacity(0.8f);
+        }));
+
+        paneControllers.setOnDragDone((event -> Main.stage.setOpacity(1.0f)));
+        paneControllers.setOnMouseReleased((event -> Main.stage.setOpacity(1.0f)));
+    }
 }

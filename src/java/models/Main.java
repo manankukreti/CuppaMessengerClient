@@ -7,6 +7,7 @@ import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
@@ -52,6 +53,7 @@ public class Main extends Application {
         setupScene.setFill(Color.TRANSPARENT);
         primaryStage.setScene(setupScene);
         primaryStage.isResizable();
+        primaryStage.getIcons().add(new Image("/cuppa.png"));
         primaryStage.show();
         setupController.readSettings();
 

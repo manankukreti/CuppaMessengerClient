@@ -65,3 +65,55 @@
  -fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #D5ACA9, #EBCFB2);
 
 }
+
+.check-box .box {
+
+-fx-background-color: white;
+-fx-border-color:grey;
+-fx-border-radius:3px;
+
+}
+
+.check-box:selected .mark {
+
+-fx-background-color: white;
+
+}
+
+.check-box:selected .box {
+
+-fx-background-color: #0bba86;
+}
+
+
+.scroll-bar:vertical .track{
+    -fx-background-color : #fbfbfb;
+    -fx-border-color :transparent;
+    -fx-background-radius : 0.0em;
+    -fx-border-radius :2.0em;
+}
+.scroll-bar:vertical .thumb {
+    -fx-background-color :#0bba86;
+    -fx-background-insets : 2.0, 0.0, 0.0;
+    -fx-background-radius : 1.5em;
+}
+ .scroll-bar .increment-arrow,
+ .scroll-bar .decrement-arrow{
+    -fx-shape : " ";
+
+}
+
+.scroll-bar:vertical .increment-button ,
+.scroll-bar:vertical .decrement-button {
+    -fx-background-color :transparent;
+    -fx-background-radius : 0.0em;
+    -fx-padding :0.0 10.0 0.0 0.0;
+
+}
+.lightBtn{
+    -fx-background-color :#0bba86;
+        -fx-text-fill: #ffffff;
+}
+.darkBtn{
+    -fx-background-color : #fbfbfb;
+}

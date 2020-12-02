@@ -250,6 +250,8 @@ public class MainController {
 
             createGroupStage.setScene(createGroupScene);
             createGroupStage.setTitle("Create group chat");
+            createGroupStage.getIcons().add(new Image("/cuppa.png"));
+
             createGroupStage.show();
         }
 
@@ -287,6 +289,8 @@ public class MainController {
             editProfileController.initializeControls();
             editStage.setScene(editScene);
             editStage.setTitle("Edit Profile");
+            editStage.getIcons().add(new Image("/cuppa.png"));
+
             editStage.show();
         }
     }
@@ -316,7 +320,7 @@ public class MainController {
 
             Stage stage = new Stage();
             uiStage.put("settings", stage);
-
+            stage.getIcons().add(new Image("/cuppa.png"));
             stage.setScene(mainScreenScene);
             stage.show();
         }
@@ -332,6 +336,7 @@ public class MainController {
 
         Stage stage =(Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         stage.setScene(loginScene);
+        stage.getIcons().add(new Image("/cuppa.png"));
         stage.show();
     }
 

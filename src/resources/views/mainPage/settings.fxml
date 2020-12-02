@@ -15,10 +15,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<ScrollPane hbarPolicy="NEVER" prefHeight="596.0" prefWidth="680.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.SettingsController">
+<ScrollPane hbarPolicy="NEVER" prefHeight="596.0" prefWidth="680.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.SettingsController">
    <content>
-      <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="594.0" prefWidth="678.0" spacing="10.0" styleClass="primaryBg">
+      <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="669.0" prefWidth="678.0" spacing="20.0" styleClass="primaryBg">
          <children>
             <Text styleClass="tab-title" text="Settings">
                <font>
@@ -42,13 +41,13 @@
                   </Label>
                   <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#lightButton" prefHeight="36.0" prefWidth="52.0" styleClass="lightBtn" text="Light" />
-                        <Button mnemonicParsing="false" onAction="#darkButton" prefHeight="36.0" prefWidth="52.0" style="-fx-border-color: black;" styleClass="darkBtn" text="Dark" />
+                        <Button mnemonicParsing="false" onAction="#lightButton" prefHeight="36.0" prefWidth="52.0" style="-fx-border-radius: 0;" styleClass="lightBtn" text="Light" />
+                        <Button mnemonicParsing="false" onAction="#darkButton" prefHeight="36.0" prefWidth="52.0" style="-fx-border-radius: 0;" styleClass="darkBtn" text="Dark" />
                      </children>
                   </HBox>
                </children>
             </GridPane>
-            <VBox prefHeight="137.0" prefWidth="618.0" spacing="2.0">
+            <VBox prefHeight="137.0" prefWidth="618.0" spacing="15.0">
                <children>
                   <Label fx:id="errorMessage" prefHeight="17.0" prefWidth="255.0">
                      <graphic>
@@ -65,31 +64,27 @@
                   <PasswordField fx:id="newPassword" styleClass="inputField" />
                   <Label styleClass="basicText" text="Re-enter Password" />
                   <PasswordField fx:id="newPassword2" styleClass="inputField" />
-                  <Label fx:id="msgLabel" styleClass="basicText" />
                   <Button mnemonicParsing="false" onAction="#changePassword" styleClass="primaryBtn" text="Update Passsword">
                      <VBox.margin>
                         <Insets top="10.0" />
                      </VBox.margin>
                   </Button>
+                  <Label fx:id="msgLabel" styleClass="basicText" />
                </children>
             </VBox>
-            <Label prefHeight="17.0" prefWidth="255.0">
-               <graphic>
-                  <Label styleClass="basicText" text="Create backup">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Label>
-               </graphic>
-            </Label>
-            <VBox>
+            <VBox spacing="15.0">
                <children>
+                  <Label prefHeight="17.0" prefWidth="255.0">
+                     <graphic>
+                        <Label styleClass="basicText" text="Create backup">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                     </graphic>
+                  </Label>
                   <Label styleClass="basicText" text="File Name" />
                   <TextField fx:id="fileName" prefHeight="25.0" prefWidth="424.0" styleClass="inputField" />
-               </children>
-            </VBox>
-            <VBox>
-               <children>
                   <Label styleClass="basicText" text="File location" />
                   <HBox>
                      <children>
@@ -101,13 +96,13 @@
                         <Button mnemonicParsing="false" onAction="#setSaveLocation" prefHeight="25.0" prefWidth="77.0" styleClass="primaryBtn" text="Browse" />
                      </children>
                   </HBox>
+                  <Button fx:id="backupSave" mnemonicParsing="false" onAction="#saveBackup" prefHeight="29.0" prefWidth="66.0" styleClass="primaryBtn" text="Save">
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </Button>
                </children>
             </VBox>
-            <HBox prefHeight="46.0" prefWidth="518.0">
-               <children>
-                  <Button fx:id="backupSave" mnemonicParsing="false" onAction="#saveBackup" prefHeight="29.0" prefWidth="66.0" styleClass="primaryBtn" text="Save" />
-               </children>
-            </HBox>
          </children>
          <padding>
             <Insets left="30.0" right="30.0" top="10.0" />
