@@ -19,10 +19,14 @@
    <content>
       <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="806.0" prefWidth="678.0" spacing="20.0" styleClass="primaryBg">
          <children>
-            <Text styleClass="tab-title" text="Settings">
+            <Text text="Settings">
                <font>
                   <Font size="40.0" />
                </font>
+               <styleClass>
+                  <String fx:value="tab-title" />
+                  <String fx:value="veryLargeText" />
+               </styleClass>
             </Text>
             <GridPane hgap="5.0" vgap="5.0">
               <columnConstraints>
@@ -34,10 +38,14 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label styleClass="basicText" text="Theme">
+                  <Label text="Theme">
                      <font>
                         <Font size="15.0" />
                      </font>
+                     <styleClass>
+                        <String fx:value="basicText" />
+                        <String fx:value="smallText" />
+                     </styleClass>
                   </Label>
                   <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
                      <children>
@@ -51,18 +59,34 @@
                <children>
                   <Label fx:id="errorMessage" prefHeight="17.0" prefWidth="255.0">
                      <graphic>
-                        <Label styleClass="basicText" text="Change Password">
+                        <Label text="Change Password">
                            <font>
                               <Font size="18.0" />
                            </font>
+                           <styleClass>
+                              <String fx:value="basicText" />
+                              <String fx:value="mediumText" />
+                           </styleClass>
                         </Label>
                      </graphic>
                   </Label>
-                  <Label styleClass="basicText" text="Old Password" />
+                  <Label text="Old Password">
+                     <styleClass>
+                        <String fx:value="basicText" />
+                        <String fx:value="verySmallText" />
+                     </styleClass></Label>
                   <PasswordField fx:id="oldPassword" styleClass="inputField" />
-                  <Label styleClass="basicText" text="New Password" />
+                  <Label text="New Password">
+                     <styleClass>
+                        <String fx:value="basicText" />
+                        <String fx:value="verySmallText" />
+                     </styleClass></Label>
                   <PasswordField fx:id="newPassword" styleClass="inputField" />
-                  <Label styleClass="basicText" text="Re-enter Password" />
+                  <Label text="Re-enter Password">
+                     <styleClass>
+                        <String fx:value="basicText" />
+                        <String fx:value="verySmallText" />
+                     </styleClass></Label>
                   <PasswordField fx:id="newPassword2" styleClass="inputField" />
                   <Button mnemonicParsing="false" onAction="#changePassword" styleClass="primaryBtn" text="Update Passsword">
                      <VBox.margin>
@@ -76,16 +100,28 @@
                <children>
                   <Label prefHeight="17.0" prefWidth="255.0">
                      <graphic>
-                        <Label styleClass="basicText" text="Create backup">
+                        <Label text="Create backup">
                            <font>
                               <Font size="18.0" />
                            </font>
+                           <styleClass>
+                              <String fx:value="basicText" />
+                              <String fx:value="mediumText" />
+                           </styleClass>
                         </Label>
                      </graphic>
                   </Label>
-                  <Label styleClass="basicText" text="File Name" />
+                  <Label text="File Name">
+                     <styleClass>
+                        <String fx:value="basicText" />
+                        <String fx:value="verySmallText" />
+                     </styleClass></Label>
                   <TextField fx:id="fileName" prefHeight="25.0" prefWidth="424.0" styleClass="inputField" />
-                  <Label styleClass="basicText" text="File location" />
+                  <Label text="File location">
+                     <styleClass>
+                        <String fx:value="basicText" />
+                        <String fx:value="verySmallText" />
+                     </styleClass></Label>
                   <HBox>
                      <children>
                         <TextField fx:id="saveAddress" prefHeight="26.0" prefWidth="537.0" styleClass="inputField">

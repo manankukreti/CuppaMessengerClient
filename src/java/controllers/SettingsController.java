@@ -67,26 +67,34 @@ public class SettingsController {
         var source = new File("./././backups/backup_" + client.getUser().getUsername() + ".cuppa");
         var dest = new File(saveAddress.getText() + "\\" + fileName.getText() + ".cuppa");
 
-        if (dest.createNewFile())
-        {
-            try (var fis = new FileInputStream(source);
-                 var fos = new FileOutputStream(dest)) {
-
-                byte[] buffer = new byte[1024];
-                int length;
-
-                while ((length = fis.read(buffer)) > 0) {
-                    fos.write(buffer, 0, length);
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-            errorMessage.setText("Backup created at " + saveAddress.getText() + "\\" + fileName.getText() + ".cuppa");
-        } else {
-            errorMessage.setText("File already exists.");
+        if(source.equals("") || dest.equals("")){
+            errorMessage.setText("Please choose a location and filename.");
+            return;
         }
 
+        try {
+            if (dest.createNewFile()) {
+                try (var fis = new FileInputStream(source);
+                     var fos = new FileOutputStream(dest)) {
+
+                    byte[] buffer = new byte[1024];
+                    int length;
+
+                    while ((length = fis.read(buffer)) > 0) {
+                        fos.write(buffer, 0, length);
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                errorMessage.setText("Backup created at " + saveAddress.getText() + "\\" + fileName.getText() + ".cuppa");
+            } else {
+                errorMessage.setText("File already exists.");
+            }
+        }
+        catch(IOException ex){
+            errorMessage.setText(ex.getMessage());
+        }
     }
 
 

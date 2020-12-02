@@ -11,6 +11,7 @@ import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
+import java.awt.*;
 import java.io.DataInputStream;
 import java.io.IOException;
 import java.lang.reflect.Type;
@@ -62,7 +63,7 @@ public class Main extends Application {
 
     }
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args){
 
         launch(args);
     }
@@ -119,9 +120,7 @@ public class Main extends Application {
 
                         if(msg.message.equals("fail")){
 
-                            Platform.runLater(() -> {
-                                loginController.incorrectCredentials();
-                            });
+                            Platform.runLater(() -> loginController.incorrectCredentials());
                         }
                         else{
                             User user = gson.fromJson(msg.message, User.class);
@@ -135,12 +134,10 @@ public class Main extends Application {
                     }
                     //TEXT MESSAGES (USER OR GROUP)
                     else if(msg.type.equals("MSG-TEXT")){
-//                        Clip clip = AudioSystem.getClip();
-//                        clip.open(audioInputStream);
-//                        clip.start();
-
+//
                         if(msg.subject.equals("user_to_user")){
                             Message message = msg;
+                            displayWindowsNotification(msg.from, msg.message);
                             Platform.runLater(() -> {
                                 try {
                                     conversationsController.addReceivedMessage(message);
@@ -152,7 +149,8 @@ public class Main extends Application {
                         }
                         else if(msg.subject.contains("user_to_group")){
                             Message message = msg;
-
+                            String grpName =  msg.subject.replace("user_to_group:", "");
+                            displayWindowsNotification(grpName, msg.message);
                             Platform.runLater(() -> {
                                 try {
                                     conversationsController.addReceivedMessage(message);
@@ -224,10 +222,8 @@ public class Main extends Application {
                         Post[] posts = gson.fromJson(msg.message, Post[].class);
                         Platform.runLater(() -> {
                             try {
-                                if (posts.length == 0){
+                                if (posts.length != 0){
 
-                                }
-                                else {
                                     newsFeedController.importPosts(posts);
                                     newsFeedController.floodList();
                                 }
@@ -250,9 +246,7 @@ public class Main extends Application {
                     }
                     else if(msg.subject.equals("password_update")){
                         String result = msg.message;
-                        Platform.runLater(() -> {
-                            mainController.getSettingssController().setPasswordChangeResult(result);
-                        });
+                        Platform.runLater(() -> mainController.getSettingssController().setPasswordChangeResult(result));
                     }
                     else{
                         System.out.println("Unknown message: " + line);
@@ -265,5 +259,22 @@ public class Main extends Application {
         });
 
         listenThread.start();
+    }
+
+    public static void displayWindowsNotification(String title, String body) throws AWTException {
+        SystemTray tray = SystemTray.getSystemTray();
+
+        //If the icon is a file
+        //Alternative (if the icon is on the classpath):
+        java.awt.Image image = Toolkit.getDefaultToolkit().createImage("3.png");
+
+        TrayIcon trayIcon = new TrayIcon(image, title);
+        //Let the system resize the image if needed
+        trayIcon.setImageAutoSize(true);
+        //Set tooltip text for the tray icon
+        trayIcon.setToolTip(body);
+        tray.add(trayIcon);
+
+        trayIcon.displayMessage(title, body, TrayIcon.MessageType.INFO);
     }
 }
