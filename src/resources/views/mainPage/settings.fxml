@@ -15,134 +15,175 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<ScrollPane hbarPolicy="NEVER" prefHeight="596.0" prefWidth="680.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.SettingsController">
+<ScrollPane hbarPolicy="NEVER" prefHeight="680.0" prefWidth="680.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.SettingsController">
    <content>
-      <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="806.0" prefWidth="678.0" spacing="20.0" styleClass="primaryBg">
+      <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1476.0" prefWidth="678.0" spacing="20.0" styleClass="primaryBg">
          <children>
-            <Text text="Settings">
-               <font>
-                  <Font size="40.0" />
-               </font>
-               <styleClass>
-                  <String fx:value="tab-title" />
-                  <String fx:value="veryLargeText" />
-               </styleClass>
-            </Text>
-            <GridPane hgap="5.0" vgap="5.0">
-              <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-              </columnConstraints>
-              <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-              </rowConstraints>
+            <VBox>
                <children>
-                  <Label text="Theme">
+                  <Text text="Settings">
                      <font>
-                        <Font size="15.0" />
+                        <Font size="40.0" />
                      </font>
                      <styleClass>
-                        <String fx:value="basicText" />
-                        <String fx:value="smallText" />
+                        <String fx:value="tab-title" />
+                        <String fx:value="veryLargeText" />
                      </styleClass>
-                  </Label>
-                  <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
+                  </Text>
+                  <GridPane hgap="5.0" vgap="5.0">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
                      <children>
-                        <Button mnemonicParsing="false" onAction="#lightButton" prefHeight="36.0" prefWidth="52.0" style="-fx-border-radius: 0;" styleClass="lightBtn" text="Light" />
-                        <Button mnemonicParsing="false" onAction="#darkButton" prefHeight="36.0" prefWidth="52.0" style="-fx-border-radius: 0;" styleClass="darkBtn" text="Dark" />
-                     </children>
-                  </HBox>
-               </children>
-            </GridPane>
-            <VBox prefHeight="137.0" prefWidth="618.0" spacing="15.0">
-               <children>
-                  <Label fx:id="errorMessage" prefHeight="17.0" prefWidth="255.0">
-                     <graphic>
-                        <Label text="Change Password">
+                        <Label text="Theme">
                            <font>
-                              <Font size="18.0" />
+                              <Font size="15.0" />
                            </font>
                            <styleClass>
                               <String fx:value="basicText" />
-                              <String fx:value="mediumText" />
+                              <String fx:value="smallText" />
                            </styleClass>
                         </Label>
-                     </graphic>
-                  </Label>
-                  <Label text="Old Password">
-                     <styleClass>
-                        <String fx:value="basicText" />
-                        <String fx:value="verySmallText" />
-                     </styleClass></Label>
-                  <PasswordField fx:id="oldPassword" styleClass="inputField" />
-                  <Label text="New Password">
-                     <styleClass>
-                        <String fx:value="basicText" />
-                        <String fx:value="verySmallText" />
-                     </styleClass></Label>
-                  <PasswordField fx:id="newPassword" styleClass="inputField" />
-                  <Label text="Re-enter Password">
-                     <styleClass>
-                        <String fx:value="basicText" />
-                        <String fx:value="verySmallText" />
-                     </styleClass></Label>
-                  <PasswordField fx:id="newPassword2" styleClass="inputField" />
-                  <Button mnemonicParsing="false" onAction="#changePassword" styleClass="primaryBtn" text="Update Passsword">
-                     <VBox.margin>
-                        <Insets top="10.0" />
-                     </VBox.margin>
-                  </Button>
-                  <Label fx:id="msgLabel" styleClass="basicText" />
+                        <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
+                           <children>
+                              <Button mnemonicParsing="false" onAction="#lightButton" prefHeight="36.0" prefWidth="52.0" style="-fx-border-radius: 0;" styleClass="lightBtn" text="Light" />
+                              <Button mnemonicParsing="false" onAction="#darkButton" prefHeight="36.0" prefWidth="52.0" style="-fx-border-radius: 0;" styleClass="darkBtn" text="Dark" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </GridPane>
+                  <VBox prefHeight="137.0" prefWidth="618.0" spacing="15.0">
+                     <children>
+                        <Label fx:id="errorMessage" prefHeight="17.0" prefWidth="255.0">
+                           <graphic>
+                              <Label text="Change Password">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                                 <styleClass>
+                                    <String fx:value="basicText" />
+                                    <String fx:value="mediumText" />
+                                 </styleClass>
+                              </Label>
+                           </graphic>
+                        </Label>
+                        <Label text="Old Password">
+                           <styleClass>
+                              <String fx:value="basicText" />
+                              <String fx:value="verySmallText" />
+                           </styleClass>
+                        </Label>
+                        <PasswordField fx:id="oldPassword" styleClass="inputField" />
+                        <Label text="New Password">
+                           <styleClass>
+                              <String fx:value="basicText" />
+                              <String fx:value="verySmallText" />
+                           </styleClass>
+                        </Label>
+                        <PasswordField fx:id="newPassword" styleClass="inputField" />
+                        <Label text="Re-enter Password">
+                           <styleClass>
+                              <String fx:value="basicText" />
+                              <String fx:value="verySmallText" />
+                           </styleClass>
+                        </Label>
+                        <PasswordField fx:id="newPassword2" styleClass="inputField" />
+                        <Button mnemonicParsing="false" onAction="#changePassword" styleClass="primaryBtn" text="Update Passsword">
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </Button>
+                        <Label fx:id="msgLabel" styleClass="basicText" />
+                     </children>
+                  </VBox>
+                  <VBox spacing="15.0">
+                     <children>
+                        <Label prefHeight="17.0" prefWidth="255.0">
+                           <graphic>
+                              <Label text="Create backup">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                                 <styleClass>
+                                    <String fx:value="basicText" />
+                                    <String fx:value="mediumText" />
+                                 </styleClass>
+                              </Label>
+                           </graphic>
+                        </Label>
+                        <Label text="File Name">
+                           <styleClass>
+                              <String fx:value="basicText" />
+                              <String fx:value="verySmallText" />
+                           </styleClass>
+                        </Label>
+                        <TextField fx:id="fileName" prefHeight="25.0" prefWidth="424.0" styleClass="inputField" />
+                        <Label text="File location">
+                           <styleClass>
+                              <String fx:value="basicText" />
+                              <String fx:value="verySmallText" />
+                           </styleClass>
+                        </Label>
+                        <HBox>
+                           <children>
+                              <TextField fx:id="saveAddress" prefHeight="26.0" prefWidth="537.0" styleClass="inputField">
+                                 <HBox.margin>
+                                    <Insets right="25.0" />
+                                 </HBox.margin>
+                              </TextField>
+                              <Button mnemonicParsing="false" onAction="#setSaveLocation" prefHeight="25.0" prefWidth="77.0" styleClass="primaryBtn" text="Browse" />
+                           </children>
+                        </HBox>
+                        <Button fx:id="backupSave" mnemonicParsing="false" onAction="#saveBackup" prefHeight="29.0" prefWidth="66.0" styleClass="primaryBtn" text="Save">
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </Button>
+                     </children>
+                  </VBox>
                </children>
+               <VBox.margin>
+                  <Insets left="30.0" right="30.0" top="30.0" />
+               </VBox.margin>
             </VBox>
-            <VBox spacing="15.0">
+            <VBox alignment="CENTER" prefHeight="835.0" prefWidth="678.0" spacing="5.0" style="-fx-background-color: #0bba86;">
                <children>
-                  <Label prefHeight="17.0" prefWidth="255.0">
-                     <graphic>
-                        <Label text="Create backup">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                           <styleClass>
-                              <String fx:value="basicText" />
-                              <String fx:value="mediumText" />
-                           </styleClass>
-                        </Label>
-                     </graphic>
+                  <Label styleClass="veryLargeText" text="Credits" textFill="WHITE">
+                     <font>
+                        <Font size="35.0" />
+                     </font>
                   </Label>
-                  <Label text="File Name">
-                     <styleClass>
-                        <String fx:value="basicText" />
-                        <String fx:value="verySmallText" />
-                     </styleClass></Label>
-                  <TextField fx:id="fileName" prefHeight="25.0" prefWidth="424.0" styleClass="inputField" />
-                  <Label text="File location">
-                     <styleClass>
-                        <String fx:value="basicText" />
-                        <String fx:value="verySmallText" />
-                     </styleClass></Label>
-                  <HBox>
-                     <children>
-                        <TextField fx:id="saveAddress" prefHeight="26.0" prefWidth="537.0" styleClass="inputField">
-                           <HBox.margin>
-                              <Insets right="25.0" />
-                           </HBox.margin>
-                        </TextField>
-                        <Button mnemonicParsing="false" onAction="#setSaveLocation" prefHeight="25.0" prefWidth="77.0" styleClass="primaryBtn" text="Browse" />
-                     </children>
-                  </HBox>
-                  <Button fx:id="backupSave" mnemonicParsing="false" onAction="#saveBackup" prefHeight="29.0" prefWidth="66.0" styleClass="primaryBtn" text="Save">
-                     <VBox.margin>
-                        <Insets top="10.0" />
-                     </VBox.margin>
-                  </Button>
+                  <Label maxHeight="-Infinity" prefHeight="100.0" prefWidth="618.0" styleClass="mediumText" text="Manan Kukreti - Software Architect and Lead Software Developer (grumpy developer)" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label prefHeight="100.0" prefWidth="556.0" styleClass="mediumText" text="Shivain Kumar -  Software Developer, Front-Designer and Developer (the optimist)" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label prefHeight="100.0" styleClass="mediumText" text="Yousuf Idris - QA Tester" textFill="WHITE">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label prefHeight="100.0" prefWidth="280.0" styleClass="mediumText" text="Shirisha Maharjan - Logo Designer" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
                </children>
+               <padding>
+                  <Insets bottom="120.0" left="30.0" right="30.0" top="120.0" />
+               </padding>
             </VBox>
          </children>
-         <padding>
-            <Insets left="30.0" right="30.0" top="10.0" />
-         </padding>
          <styleClass>
             <String fx:value="background" />
             <String fx:value="fill" />
