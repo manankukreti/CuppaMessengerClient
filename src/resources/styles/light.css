@@ -133,3 +133,6 @@
 .darkBtn{
     -fx-background-color : #fbfbfb;
 }
+.bold{
+-fx-font-weight: bold;
+}

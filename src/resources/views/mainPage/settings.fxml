@@ -94,7 +94,7 @@
                               <Insets top="10.0" />
                            </VBox.margin>
                         </Button>
-                        <Label fx:id="errorMessage" prefHeight="17.0" prefWidth="255.0" />
+                        <Label fx:id="msgLabel" styleClass="basicText" />
                      </children>
                   </VBox>
                   <VBox spacing="15.0">
@@ -140,6 +140,7 @@
                               <Insets top="10.0" />
                            </VBox.margin>
                         </Button>
+                        <Label fx:id="errorMessage" prefHeight="17.0" prefWidth="255.0" styleClass="basicText" />
                      </children>
                   </VBox>
                </children>
