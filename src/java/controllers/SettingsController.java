@@ -42,7 +42,6 @@ public class SettingsController {
         Path themeFile = Path.of("settings/theme_setting.txt");
         if(!Files.exists(themeFile)){
             File file = themeFile.toFile();
-            file.createNewFile();
         }
         Files.writeString(themeFile, theme);
     }
@@ -58,7 +57,7 @@ public class SettingsController {
         saveAddress.setText(selectedDirectory.getAbsolutePath());
     }
 
-    public void saveBackup() throws IOException {
+    public void saveBackup(){
 
         if (saveAddress.getText().trim().equals("") || fileName.getText().trim().equals("")){
             errorMessage.setText("Enter a name and file path");
@@ -67,7 +66,7 @@ public class SettingsController {
         var source = new File("./././backups/backup_" + client.getUser().getUsername() + ".cuppa");
         var dest = new File(saveAddress.getText() + "\\" + fileName.getText() + ".cuppa");
 
-        if(source.equals("") || dest.equals("")){
+        if(saveAddress.getText().equals("") || fileName.getText().equals("")){
             errorMessage.setText("Please choose a location and filename.");
             return;
         }
