@@ -1,0 +1,20 @@
+.serverAlert, .serverAlert > button-bar > container, .serverAlert:header .header-panel{
+    -fx-background-color:#ff3b44;
+}
+
+.serverAlert:header .header-panel .label{
+    -fx-font-weight:bold;
+    -fx-font-size:18;
+}
+
+.serverAlert > .content.label, .serverAlert:header .header-panel .label{
+    -fx-font-size: 16;
+    -fx-text-fill:white;
+}
+
+.dialog-pane .button{
+    -fx-text-fill:#ff3b44;
+    -fx-background-color:white;
+    -fx-font-size: 14;
+    -fx-font-weight:bold;
+}

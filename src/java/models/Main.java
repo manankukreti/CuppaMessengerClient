@@ -7,6 +7,9 @@ import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -91,7 +94,7 @@ public class Main extends Application {
                     client.pulse();
                 }
                 catch(IOException ex){
-                    ex.printStackTrace();
+                    Platform.runLater(Main::showLostConnectionDialog);
                 }
             }
 
@@ -254,7 +257,7 @@ public class Main extends Application {
 
                 }
             } catch (Exception e) {
-                e.printStackTrace();
+                Platform.runLater(Main::showLostConnectionDialog);
             }
         });
 
@@ -276,5 +279,24 @@ public class Main extends Application {
         tray.add(trayIcon);
 
         trayIcon.displayMessage(title, body, TrayIcon.MessageType.INFO);
+    }
+
+    public static void showLostConnectionDialog(){
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Connection lost.");
+        alert.setHeaderText("Lost connection to server");
+        alert.getDialogPane().getStylesheets().add(Main.class.getResource("/styles/alert.css").toExternalForm());
+        alert.getDialogPane().getStyleClass().add("serverAlert");
+        alert.setResizable(false);
+        alert.setGraphic(null);
+        alert.initStyle(StageStyle.UTILITY);
+
+        javafx.scene.control.Label label = new Label("The application lost connection to the server. Please try restarting your application or contact IT.");
+        label.setWrapText(true);
+        alert.getDialogPane().setContent(label);
+        Optional<ButtonType> result = alert.showAndWait();
+        if(result.isEmpty() || result.get() == ButtonType.OK){
+            System.exit(0);
+        }
     }
 }
