@@ -52,8 +52,9 @@ public class Main extends Application {
         setupScene.setFill(Color.TRANSPARENT);
         primaryStage.setScene(setupScene);
         primaryStage.isResizable();
-        setupController.readSettings();
         primaryStage.show();
+        setupController.readSettings();
+
     }
 
     public static void main(String[] args) throws IOException {
