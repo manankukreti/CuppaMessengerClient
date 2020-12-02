@@ -5,6 +5,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -14,102 +15,107 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="625.0" prefWidth="678.0" spacing="10.0" styleClass="primaryBg" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.SettingsController">
-   <children>
-      <Text styleClass="tab-title" text="Settings">
-         <font>
-            <Font size="40.0" />
-         </font>
-      </Text>
-      <GridPane hgap="5.0" vgap="5.0">
-        <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        </rowConstraints>
+
+<ScrollPane hbarPolicy="NEVER" prefHeight="596.0" prefWidth="680.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.SettingsController">
+   <content>
+      <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="594.0" prefWidth="678.0" spacing="10.0" styleClass="primaryBg">
          <children>
-            <Label styleClass="basicText" text="Theme">
+            <Text styleClass="tab-title" text="Settings">
                <font>
-                  <Font size="15.0" />
+                  <Font size="40.0" />
                </font>
-            </Label>
-            <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
+            </Text>
+            <GridPane hgap="5.0" vgap="5.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
                <children>
-                  <Button mnemonicParsing="false" onAction="#lightButton" prefHeight="36.0" prefWidth="52.0" styleClass="lightBtn" text="Light" />
-                  <Button mnemonicParsing="false" onAction="#darkButton" prefHeight="36.0" prefWidth="52.0" style="-fx-border-color: black;" styleClass="darkBtn" text="Dark" />
+                  <Label styleClass="basicText" text="Theme">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#lightButton" prefHeight="36.0" prefWidth="52.0" styleClass="lightBtn" text="Light" />
+                        <Button mnemonicParsing="false" onAction="#darkButton" prefHeight="36.0" prefWidth="52.0" style="-fx-border-color: black;" styleClass="darkBtn" text="Dark" />
+                     </children>
+                  </HBox>
                </children>
-            </HBox>
-         </children>
-      </GridPane>
-      <VBox prefHeight="137.0" prefWidth="618.0" spacing="2.0">
-         <children>
-            <Label fx:id="errorMessage" prefHeight="17.0" prefWidth="255.0">
+            </GridPane>
+            <VBox prefHeight="137.0" prefWidth="618.0" spacing="2.0">
+               <children>
+                  <Label fx:id="errorMessage" prefHeight="17.0" prefWidth="255.0">
+                     <graphic>
+                        <Label styleClass="basicText" text="Change Password">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                     </graphic>
+                  </Label>
+                  <Label styleClass="basicText" text="Old Password" />
+                  <PasswordField fx:id="oldPassword" styleClass="inputField" />
+                  <Label styleClass="basicText" text="New Password" />
+                  <PasswordField fx:id="newPassword" styleClass="inputField" />
+                  <Label styleClass="basicText" text="Re-enter Password" />
+                  <PasswordField fx:id="newPassword2" styleClass="inputField" />
+                  <Label fx:id="msgLabel" styleClass="basicText" />
+                  <Button mnemonicParsing="false" onAction="#changePassword" styleClass="primaryBtn" text="Update Passsword">
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </Button>
+               </children>
+            </VBox>
+            <Label prefHeight="17.0" prefWidth="255.0">
                <graphic>
-                  <Label styleClass="basicText" text="Change Password">
+                  <Label styleClass="basicText" text="Create backup">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Label>
                </graphic>
             </Label>
-            <Label styleClass="basicText" text="Old Password" />
-            <PasswordField styleClass="inputField" fx:id="oldPassword" />
-            <Label styleClass="basicText" text="New Password" />
-            <PasswordField styleClass="inputField" fx:id="newPassword" />
-            <Label styleClass="basicText" text="Re-enter Password" />
-            <PasswordField styleClass="inputField" fx:id="newPassword2" />
-            <Label styleClass="basicText" fx:id="msgLabel" />
-            <Button onAction="#changePassword" styleClass="primaryBtn" mnemonicParsing="false" text="Update Passsword">
-               <VBox.margin>
-                  <Insets top="10.0" />
-               </VBox.margin>
-            </Button>
-         </children>
-      </VBox>
-      <Label prefHeight="17.0" prefWidth="255.0">
-         <graphic>
-            <Label styleClass="basicText" text="Create backup">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Label>
-         </graphic>
-      </Label>
-      <VBox>
-         <children>
-            <Label styleClass="basicText" text="File Name" />
-            <TextField fx:id="fileName" prefHeight="25.0" prefWidth="424.0" styleClass="inputField" />
-         </children>
-      </VBox>
-      <VBox>
-         <children>
-            <Label styleClass="basicText" text="File location" />
-            <HBox>
+            <VBox>
                <children>
-                  <TextField fx:id="saveAddress" prefHeight="26.0" prefWidth="537.0" styleClass="inputField">
-                     <HBox.margin>
-                        <Insets right="25.0" />
-                     </HBox.margin>
-                  </TextField>
-                  <Button mnemonicParsing="false" onAction="#setSaveLocation" prefHeight="25.0" prefWidth="77.0" styleClass="primaryBtn" text="Browse" />
+                  <Label styleClass="basicText" text="File Name" />
+                  <TextField fx:id="fileName" prefHeight="25.0" prefWidth="424.0" styleClass="inputField" />
+               </children>
+            </VBox>
+            <VBox>
+               <children>
+                  <Label styleClass="basicText" text="File location" />
+                  <HBox>
+                     <children>
+                        <TextField fx:id="saveAddress" prefHeight="26.0" prefWidth="537.0" styleClass="inputField">
+                           <HBox.margin>
+                              <Insets right="25.0" />
+                           </HBox.margin>
+                        </TextField>
+                        <Button mnemonicParsing="false" onAction="#setSaveLocation" prefHeight="25.0" prefWidth="77.0" styleClass="primaryBtn" text="Browse" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <HBox prefHeight="46.0" prefWidth="518.0">
+               <children>
+                  <Button fx:id="backupSave" mnemonicParsing="false" onAction="#saveBackup" prefHeight="29.0" prefWidth="66.0" styleClass="primaryBtn" text="Save" />
                </children>
             </HBox>
          </children>
+         <padding>
+            <Insets left="30.0" right="30.0" top="10.0" />
+         </padding>
+         <styleClass>
+            <String fx:value="background" />
+            <String fx:value="fill" />
+         </styleClass>
       </VBox>
-      <HBox prefHeight="46.0" prefWidth="518.0">
-         <children>
-            <Button fx:id="backupSave" mnemonicParsing="false" onAction="#saveBackup" prefHeight="29.0" prefWidth="66.0" styleClass="primaryBtn" text="Save" />
-         </children>
-      </HBox>
-   </children>
-   <padding>
-      <Insets left="30.0" right="30.0" top="10.0" />
-   </padding>
-   <styleClass>
-      <String fx:value="background" />
-      <String fx:value="fill" />
-   </styleClass>
-</VBox>
+   </content>
+</ScrollPane>

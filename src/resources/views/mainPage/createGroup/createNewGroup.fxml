@@ -23,18 +23,20 @@
                 <Insets bottom="10.0" top="10.0" />
             </VBox.margin>
         </Text>
-   <HBox alignment="CENTER_LEFT" prefHeight="91.0" prefWidth="778.0">
+   <VBox>
       <children>
          <Label prefHeight="25.0" prefWidth="144.0" styleClass="basicText" text="Enter Group Name:">
             <font>
                <Font size="15.0" />
-            </font></Label>
-         <TextField fx:id="groupName" focusTraversable="false" prefHeight="38.0" prefWidth="627.0" styleClass="inputField">
+            </font>
+         </Label>
+         <TextField fx:id="groupName" focusTraversable="false" prefHeight="31.0" prefWidth="625.0" styleClass="inputField">
             <font>
                <Font size="15.0" />
-            </font></TextField>
+            </font>
+         </TextField>
       </children>
-   </HBox>
+   </VBox>
    <Label fx:id="warningMessage" prefHeight="20.0" prefWidth="436.0" textFill="RED">
       <font>
          <Font size="14.0" />
