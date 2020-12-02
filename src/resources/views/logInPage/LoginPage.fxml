@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane fx:id="loginPane" prefHeight="579.0" prefWidth="803.0" styleClass="primaryBg" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.LoginController">
+   <center>
+      <VBox>
+         <children>
+            <BorderPane>
+               <center>
+                  <AnchorPane prefHeight="409.0" prefWidth="454.0" style="-fx-background-color: white;" stylesheets="@../../styles/light.css">
+                     <children>
+                        <ImageView fitHeight="150.0" fitWidth="150.0" layoutX="158.0" layoutY="98.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="329.78082275390625" AnchorPane.leftAnchor="158.0" AnchorPane.rightAnchor="146.0" AnchorPane.topAnchor="98.0">
+                           <image>
+                              <Image url="@../../cuppa.png" />
+                           </image>
+                        </ImageView>
+                        <HBox layoutX="102.0" layoutY="282.0" prefHeight="23.0" prefWidth="250.0" style="-fx-border-radius: 100px;">
+                           <children>
+                              <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="1.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" x="10.0">
+                                 <image>
+                                    <Image url="@art/usernameIcon.png" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets left="5.0" top="7.0" />
+                                 </HBox.margin>
+                              </ImageView>
+                              <TextField fx:id="usernameID" minHeight="-Infinity" minWidth="-Infinity" prefHeight="33.0" prefWidth="201.0" promptText="Username" style="-fx-text-fill:#0bba86; -fx-text-inner-color:#0bba86;" styleClass="loginInputField">
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                                 <font>
+                                    <Font name="System Bold" size="13.0" />
+                                 </font></TextField>
+                           </children>
+                        </HBox>
+                        <HBox layoutX="102.0" layoutY="337.0" prefHeight="30.0" prefWidth="250.0">
+                           <children>
+                              <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@art/passwordIcon.png" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets left="5.0" top="7.0" />
+                                 </HBox.margin>
+                              </ImageView>
+                              <PasswordField fx:id="passwordID" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="201.0" promptText="Password" style="-fx-text-fill:#0bba86; -fx-text-inner-color:#0bba86;" styleClass="loginInputField">
+                                 <HBox.margin>
+                                    <Insets left="13.0" />
+                                 </HBox.margin></PasswordField>
+                           </children>
+                        </HBox>
+                        <Button fx:id="loginBtnID" layoutX="133.0" layoutY="388.0" mnemonicParsing="false" onAction="#onClickLogin" prefHeight="35.0" prefWidth="200.0" styleClass="loginBtn" text="Login" />
+                        <Label fx:id="errorMessage" layoutX="133.0" layoutY="444.0" text="" textFill="#ff4444" visible="true">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </center>
+               <top>
+                  <HBox fx:id="paneControllers" alignment="CENTER_RIGHT" prefHeight="40.0" prefWidth="181.0" spacing="5.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
+                     <children>
+                        <Button fx:id="minimizeBtn" mnemonicParsing="false" onAction="#minimize" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: white;" text="__" textFill="#08bdff">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="closeBtn" mnemonicParsing="false" onAction="#close" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: white;" text="X" textFill="#08bdff">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Button>
+                     </children>
+                     <padding>
+                        <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+                     </padding>
+                  </HBox>
+               </top>
+            </BorderPane>
+         </children>
+      </VBox>
+   </center>
+   <left>
+      <Pane prefHeight="618.0" prefWidth="537.0" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="618.0" fitWidth="537.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@art/loginBg.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+   </left>
+</BorderPane>

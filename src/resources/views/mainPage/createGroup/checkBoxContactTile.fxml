@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<HBox alignment="CENTER_LEFT" minHeight="-Infinity" minWidth="-Infinity" prefHeight="80.0" prefWidth="244.0" spacing="5.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CreateGroup.CheckboxContactTileController">
+   <children>
+      <ImageView fx:id="image" fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+         <HBox.margin>
+            <Insets right="10.0" />
+         </HBox.margin></ImageView>
+      <VBox alignment="CENTER_LEFT" prefHeight="80.0" prefWidth="107.0">
+         <children>
+            <Label fx:id="name" maxHeight="35.0" prefHeight="20.0" prefWidth="130.0" styleClass="basicText" text="Shivain Kumar" wrapText="true">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="jobTitle" maxHeight="35.0" prefHeight="17.0" prefWidth="135.0" styleClass="basicText2" text="Senior gym bro" />
+         </children>
+         <HBox.margin>
+            <Insets right="5.0" />
+         </HBox.margin>
+      </VBox>
+      <CheckBox fx:id="checkbox" mnemonicParsing="false" />
+   </children>
+</HBox>

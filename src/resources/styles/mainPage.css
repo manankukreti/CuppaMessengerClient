@@ -1,0 +1,32 @@
+@font-face {
+    font-family: Montserrat;
+    src: url('../../../src/resources/fonts/Montserrat-Regular.ttf');
+}
+
+@font-face {
+    font-family: MontserratBold;
+    src: url('../../../src/resources/fonts/Montserrat-Bold.ttf');
+}
+
+.root *{
+    -fx-font-family:Montserrat;
+}
+
+#mainPane{
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 10, 0.5, 0.0, 0.0);
+    -fx-background-color:transparent;
+    -fx-background-insets: 12;
+    -fx-padding: 12;
+}
+
+.primaryBtn{
+    -fx-background-color:#0bba86;
+    -fx-text-fill:#ffffff;
+    -fx-padding: 6 8 6 8;
+}
+.lightBtn{
+  -fx-background-color: #ffffff;
+}
+.darkBtn{
+  -fx-background-color: #8275e6;
+}

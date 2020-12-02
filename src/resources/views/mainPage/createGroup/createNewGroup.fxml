@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="646.0" prefWidth="818.0" spacing="10.0" styleClass="vbox-newGroup" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CreateGroup.CreateNewGroupController">
+
+        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="tab-title" text="Create a new group chat" wrappingWidth="750.13671875">
+            <font>
+                <Font size="40.0" />
+            </font>
+            <VBox.margin>
+                <Insets bottom="10.0" top="10.0" />
+            </VBox.margin>
+        </Text>
+   <HBox alignment="CENTER_LEFT" prefHeight="91.0" prefWidth="778.0">
+      <children>
+         <Label prefHeight="25.0" prefWidth="144.0" styleClass="basicText" text="Enter Group Name:">
+            <font>
+               <Font size="15.0" />
+            </font></Label>
+         <TextField fx:id="groupName" focusTraversable="false" prefHeight="38.0" prefWidth="627.0" styleClass="inputField">
+            <font>
+               <Font size="15.0" />
+            </font></TextField>
+      </children>
+   </HBox>
+   <Label fx:id="warningMessage" prefHeight="20.0" prefWidth="436.0" textFill="RED">
+      <font>
+         <Font size="14.0" />
+      </font>
+   </Label>
+    <ScrollPane hbarPolicy="NEVER" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="414.0" prefWidth="797.0" styleClass="scrollPane-newGroup">
+
+            <GridPane fx:id="list" alignment="TOP_CENTER" hgap="30.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="364.0" prefWidth="783.0" styleClass="grid-newGroup" vgap="30.0">
+                <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="220.0" prefWidth="220.0" />
+                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="220.0" prefWidth="220.0" />
+                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="220.0" prefWidth="220.0" />
+                </columnConstraints>
+                <rowConstraints>
+            <RowConstraints maxHeight="-Infinity" minHeight="80.0" prefHeight="80.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="-Infinity" minHeight="80.0" prefHeight="80.0" vgrow="SOMETIMES" />
+                    <RowConstraints maxHeight="-Infinity" minHeight="80.0" prefHeight="80.0" vgrow="SOMETIMES" />
+                </rowConstraints>
+                <padding>
+                    <Insets top="10.0" />
+                </padding>
+            </GridPane>
+
+    </ScrollPane>
+   <HBox alignment="CENTER" prefHeight="175.0" prefWidth="805.0" spacing="50.0">
+      <children>
+         <Button fx:id="createBtn" mnemonicParsing="false" onAction="#createGroup" styleClass="primaryBtn" text="Create group" />
+         <Button fx:id="clearBtn" mnemonicParsing="false" styleClass="primaryBtn" text="Clear selection" />
+      </children>
+   </HBox>
+   <padding>
+      <Insets left="20.0" right="20.0" />
+   </padding>
+</VBox>

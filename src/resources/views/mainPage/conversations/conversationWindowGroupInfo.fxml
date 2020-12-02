@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<HBox styleClass="primaryBg" prefHeight="116.0" prefWidth="805.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Conversation.ConversationWindowGroupInfoController">
+   <children>
+      <ImageView fx:id="groupIcon" fitHeight="116.0" fitWidth="116.0" pickOnBounds="true" preserveRatio="true">
+         <HBox.margin>
+            <Insets bottom="2.0" left="25.0" right="2.0" top="2.0" />
+         </HBox.margin></ImageView>
+      <VBox styleClass="primaryBg" alignment="CENTER_LEFT" prefHeight="81.0" prefWidth="454.0" spacing="5.0">
+         <children>
+            <Label styleClass="basicText" fx:id="conversationWindowName" prefHeight="38.0" prefWidth="475.0" text="fgbisbg">
+               <font>
+                  <Font name="System Bold" size="26.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </Label>
+            <Label styleClass="basicText" fx:id="conversationWindowJobTitle" prefHeight="36.0" prefWidth="454.0" text="bkbk" />
+         </children>
+         <HBox.margin>
+            <Insets left="25.0" />
+         </HBox.margin>
+      </VBox>
+   </children>
+</HBox>

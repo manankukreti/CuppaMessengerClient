@@ -28,7 +28,7 @@
         </plugins>
         <resources>
             <resource>
-                <directory>${basedir}/src/main/resources</directory>
+                <directory>src/resources</directory>
                 <includes>
                     <include>**/*</include>
                 </includes>

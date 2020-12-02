@@ -1,0 +1,69 @@
+@font-face {
+    font-family: Montserrat;
+    src: url('../../../src/resources/fonts/Montserrat-Regular.ttf');
+}
+
+@font-face {
+    font-family: MontserratBold;
+    src: url('../../../src/resources/fonts/Montserrat-Bold.ttf');
+}
+
+.anchorPane-main{
+    -fx-background-color: #EDDFF4;
+}
+
+#mainPane, .borderPane-main, .convoWindowRoot, .scrollPane-contacts, .vbox-contacts, .grid-contacts, .vbox-conversations, .scrollPane-conversations, .vboxScrollPane-conversations, .vbox-newsfeed, .scrollPane-newsfeed, .vboxScrollPane-newsfeed, .vbox-newGroup, .scrollPane-newGroup, .grid-newGroup, .vbox-editProfile, .hbox-editProfile, .primaryBg{
+    -fx-background-color: #252525;
+}
+
+.main-tab-button, .status-select{
+    -fx-background-color: #252525;
+    -fx-text-fill: #ffffff;
+    -fx-text-base-color:#ffffff;
+}
+
+.vbox-newsfeedTile, .hbox-newsfeedTile, .info-newsfeedTile {
+    -fx-background-color:#353535;
+}
+
+.tab-title, .body-newsfeedTile{
+    -fx-fill:#ffffff;
+    -fx-font-family:MontserratBold;
+    -fx-font-weight:bold;
+}
+
+.inputField{
+    -fx-background-color: #0bba86, #252525, #252525;
+    -fx-background-insets: 0, 0 0 1 0;
+    -fx-background-radius: 0;
+    -fx-text-fill:white;
+    -fx-text-inner-color:white;
+    -text-area-background:#252525;
+}
+
+.inputField:focused{
+    -fx-background-color: #0bba86, #303030, #303030 ;
+}
+
+.inputField .content {
+    -fx-background-color: #252525 ;
+}
+
+.tileTitle{
+    -fx-text-fill: #ffffff;
+    -fx-font-family:Montserrat;
+    -fx-font-size:20;
+}
+.basicText{
+    -fx-text-fill: #ffffff;
+    -fx-font-family:Montserrat;
+}
+
+.basicText2{
+    -fx-text-fill: #e1e1e1;
+}
+
+.anchorPane-main{
+ -fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #D5ACA9, #EBCFB2);
+
+}
