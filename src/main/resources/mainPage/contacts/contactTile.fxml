@@ -13,7 +13,7 @@
       <ImageView fx:id="image" fitHeight="100.0" fitWidth="94.0" pickOnBounds="true" preserveRatio="true" />
       <VBox prefHeight="100.0" prefWidth="206.0">
          <children>
-            <Label styleClass="basicText"  fx:id="contactName" text="Full Name">
+            <Label styleClass="tileTitle"  fx:id="contactName" text="Full Name">
                <font>
                   <Font size="20.0" />
                </font>

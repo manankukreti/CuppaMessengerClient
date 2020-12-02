@@ -7,6 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import sample.*;
@@ -154,6 +155,7 @@ public class ConversationsController {
 
 
         Scene chatScene = new Scene(conversationWindowP);
+        chatScene.getStylesheets().add(getClass().getResource("/styles/mainPage.css").toExternalForm());
 
         if(currentTheme.equals("light")){
             chatScene.getStylesheets().add(lightThemeURL);
@@ -164,7 +166,18 @@ public class ConversationsController {
 
         Stage chatStage = new Stage();
         stage = chatStage;
-        chatStage.initStyle(StageStyle.UNDECORATED);
+
+        /*This is to fix a bug regarding the computation of the width of the messages
+        inside the conversation window. The window needs to be open once so the dynamic
+        sizes are properly computed. So, on creation of the stage, it's opened once and its
+        opacity is set to 0 so it is not visible. It is then immediately closed and opacity
+        is set back to normal.
+         */
+        stage.setOpacity(0);
+        stage.show();
+        stage.close();
+        stage.setOpacity(1);
+
         chatStage.setScene(chatScene);
 
         conversationStageMap.put(key, chatStage);

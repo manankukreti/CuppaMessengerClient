@@ -54,7 +54,6 @@ public class ConversationWindowController {
 
     @FXML
     public void initialize(){
-        makeStageDraggable();
         //scroll pane to bottom when message is sent
         messagesVbox.heightProperty().addListener(observable -> msgScrollPane.setVvalue(1D));
     }
@@ -160,25 +159,6 @@ public class ConversationWindowController {
 
     public void close(ActionEvent actionEvent) {
         ((Button)actionEvent.getSource()).getScene().getWindow().hide();
-    }
-    private  void makeStageDraggable(){
-        paneControllers.setOnMousePressed((event -> {
-            xOffset = event.getSceneX();
-            yOffset = event.getSceneY();
-        }));
-        paneControllers.setOnMouseDragged((event -> {
-            ConversationsController.stage.setX(event.getScreenX()- xOffset);
-            ConversationsController.stage.setY(event.getScreenY()- yOffset);
-            ConversationsController.stage.setOpacity(0.8f);
-        }));
-
-        paneControllers.setOnDragDone((event ->{
-            ConversationsController.stage.setOpacity(1.0f);
-
-        }));
-        paneControllers.setOnMouseReleased((event -> {
-            ConversationsController.stage.setOpacity(1.0f);
-        }));
     }
 
 }

@@ -71,7 +71,7 @@
       </VBox>
       <Label prefHeight="17.0" prefWidth="255.0">
          <graphic>
-            <Label styleClass="basicText" text="Change Password">
+            <Label styleClass="basicText" text="Create backup">
                <font>
                   <Font size="18.0" />
                </font>
@@ -80,13 +80,13 @@
       </Label>
       <VBox>
          <children>
-            <Label styleClass="basicText" text="File Name:" />
+            <Label styleClass="basicText" text="File Name" />
             <TextField fx:id="fileName" prefHeight="25.0" prefWidth="424.0" styleClass="inputField" />
          </children>
       </VBox>
       <VBox>
          <children>
-            <Label styleClass="basicText" text="File location:" />
+            <Label styleClass="basicText" text="File location" />
             <HBox>
                <children>
                   <TextField fx:id="saveAddress" prefHeight="26.0" prefWidth="537.0" styleClass="inputField">

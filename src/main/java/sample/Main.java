@@ -7,6 +7,7 @@ import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.io.DataInputStream;
@@ -43,10 +44,14 @@ public class Main extends Application {
         SetupController setupController = setupLoader.getController();
         setupController.setStage(primaryStage);
 
+        loginController = setupController.getLoginController();
+
         stage = primaryStage;
-        primaryStage.initStyle(StageStyle.UNDECORATED);
+        primaryStage.initStyle(StageStyle.TRANSPARENT);
         primaryStage.setTitle("Hello World");
-        primaryStage.setScene(new Scene(setup));
+        Scene setupScene = new Scene(setup);
+        setupScene.setFill(Color.TRANSPARENT);
+        primaryStage.setScene(setupScene);
         primaryStage.isResizable();
         setupController.readSettings();
         primaryStage.show();
@@ -64,12 +69,6 @@ public class Main extends Application {
         mainLoader.load();
         mainController = mainLoader.getController();
         mainController.setUpMainController();
-
-        FXMLLoader loginLoader = new FXMLLoader();
-        loginLoader.setLocation(Main.class.getResource("/logInPage/LoginPage.fxml"));
-        loginLoader.load();
-        loginController = loginLoader.getController();
-
 
 
         Gson gson = new Gson();
@@ -114,11 +113,10 @@ public class Main extends Application {
                     else if(msg.subject.equals("login_credentials")){
 
                         if(msg.message.equals("fail")){
+
                             Platform.runLater(() -> {
                                 loginController.incorrectCredentials();
                             });
-                            System.out.println("Incorrect credentials :(");
-
                         }
                         else{
                             User user = gson.fromJson(msg.message, User.class);
@@ -137,7 +135,6 @@ public class Main extends Application {
 //                        clip.start();
 
                         if(msg.subject.equals("user_to_user")){
-                            System.out.println("Message received");
                             Message message = msg;
                             Platform.runLater(() -> {
                                 try {
@@ -168,7 +165,7 @@ public class Main extends Application {
                         Platform.runLater(() -> {
                             try {
                                 userList.setUsers(users);
-                                System.out.println("Loading convo");
+
                                 conversationsController.loadConvoFromFile("backups/backup_"+ client.getUser().getUsername()+".cuppa");
                                 conversationsController.generateConversationTiles();
                                 contactsController.loadContacts();
@@ -253,7 +250,7 @@ public class Main extends Application {
                         });
                     }
                     else{
-                        System.out.println(line);
+                        System.out.println("Unknown message: " + line);
                     }
 
                 }

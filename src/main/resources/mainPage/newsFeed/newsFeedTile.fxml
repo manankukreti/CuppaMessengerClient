@@ -31,13 +31,19 @@
       </HBox>
       <Label fx:id="title" styleClass="basicText" text="Title for the past">
          <font>
-            <Font name="System Bold" size="20.0" />
+            <Font name="System Bold" size="18.0" />
          </font>
+         <VBox.margin>
+            <Insets top="10.0" />
+         </VBox.margin>
       </Label>
       <Text fx:id="body" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="body-newsfeedTile" text="Text" wrappingWidth="669.13671875">
          <font>
             <Font size="14.0" />
          </font>
+         <VBox.margin>
+            <Insets top="5.0" />
+         </VBox.margin>
       </Text>
    </children>
    <padding>

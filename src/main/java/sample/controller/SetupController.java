@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import org.apache.commons.logging.Log;
 import sample.Client;
 import sample.Main;
 
@@ -27,12 +28,24 @@ public class SetupController {
     Stage stage;
     Client client;
 
-    public SetupController() throws IOException {
+    LoginController loginController;
+    Scene loginScene;
 
+    public SetupController() throws IOException {
+        FXMLLoader logLoader = new FXMLLoader();
+        logLoader.setLocation(getClass().getResource("/logInPage/LoginPage.fxml"));
+        Parent loginScreen = logLoader.load();
+        loginScene = new Scene(loginScreen);
+        loginScene.getStylesheets().add(getClass().getResource("/styles/login.css").toExternalForm());
+        loginController = logLoader.getController();
     }
 
     public void setStage(Stage stage) throws IOException {
         this.stage = stage;
+    }
+
+    public LoginController getLoginController(){
+        return loginController;
     }
 
     public void readSettings() throws IOException {
@@ -58,19 +71,9 @@ public class SetupController {
     public void goToLoginScreen() throws IOException {
         Main.startSystem();
 
-        FXMLLoader logLoader = new FXMLLoader();
-        logLoader.setLocation(getClass().getResource("/logInPage/LoginPage.fxml"));
-        Parent loginScreen = logLoader.load();
-        LoginController loginController = logLoader.getController();
-
-        Scene loginScreenScene = new Scene(loginScreen);
-        loginScreenScene.getStylesheets().add(getClass().getResource("/styles/login.css").toExternalForm());
-
-        stage.setScene(loginScreenScene);
-        loginController.setStage(stage);
+        stage.setScene(loginScene);
+        LoginController.setUpLogin(stage);
         stage.show();
-
-
     }
 
     public void createConnection(String ip){

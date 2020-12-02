@@ -16,6 +16,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
+import org.apache.commons.logging.Log;
 import sample.Client;
 import sample.Main;
 import sample.User;
@@ -49,9 +50,11 @@ public class MainController {
     private static HashMap<String, Scene> uiScene;
     private static HashMap<String, Stage> uiStage;
     private static HashMap<String, Object> controllerMap;
+
+    private static Scene loginScene;
+    private static LoginController loginController;
     //Navigation mechanism start
     Client client = Client.getInstance();
-
 
     @FXML
     public void initialize(){
@@ -173,6 +176,11 @@ public class MainController {
         nameCurrentUser.setText(currentUser.getFullName());
         jobTitleCurrentUser.setText(currentUser.getJobTitle());
         bioCurrentUser.setText(currentUser.getBio());
+    }
+
+    public void setLoginScreen(Scene scene, LoginController controller){
+        loginScene = scene;
+        loginController = controller;
     }
 
     public void contacts() throws IOException {
@@ -323,12 +331,8 @@ public class MainController {
         resetApplication();
         setUpMainController();
 
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/logInPage/LoginPage.fxml"));
-        Parent mainScreen = loader.load();
-        Scene mainScreenScene = new Scene(mainScreen);
         Stage stage =(Stage)((Node)actionEvent.getSource()).getScene().getWindow();
-        stage.setScene(mainScreenScene);
+        stage.setScene(loginScene);
         stage.show();
     }
 

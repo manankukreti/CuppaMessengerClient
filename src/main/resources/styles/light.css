@@ -1,8 +1,19 @@
+@font-face {
+    font-family: Montserrat;
+    src: url('../../../src/main/resources/fonts/Montserrat-Regular.ttf');
+}
+
+@font-face {
+    font-family: MontserratBold;
+    src: url('../../../src/main/resources/fonts/Montserrat-Bold.ttf');
+}
+
+
 .anchorPane-main{
     -fx-background-color: #EDDFF4;
 }
 
-.borderPane-main, .scrollPane-contacts, .vbox-contacts, .grid-contacts, .vbox-conversations, .scrollPane-conversations, .vboxScrollPane-conversations, .vbox-newsfeed, .scrollPane-newsfeed, .vboxScrollPane-newsfeed, .vbox-newGroup, .scrollPane-newGroup, .grid-newGroup, .vbox-editProfile, .hbox-editProfile, .primaryBg{
+#mainPane, .borderPane-main, .convoWindowRoot, .scrollPane-contacts, .vbox-contacts, .grid-contacts, .vbox-conversations, .scrollPane-conversations, .vboxScrollPane-conversations, .vbox-newsfeed, .scrollPane-newsfeed, .vboxScrollPane-newsfeed, .vbox-newGroup, .scrollPane-newGroup, .grid-newGroup, .vbox-editProfile, .hbox-editProfile, .primaryBg{
     -fx-background-color: #ffffff;
 }
 
@@ -18,12 +29,11 @@
 
 .tab-title{
     -fx-fill:#252525;
-    -fx-font-family:MontserratBold;
     -fx-font-weight:bold;
 }
 
 .inputField{
-     -fx-background-color: #0bba86, white, white ;
+    -fx-background-color: #0bba86, white, white;
     -fx-background-insets: 0, 0 0 1 0 ;
     -fx-background-radius: 0 ;
     -fx-text-fill:#252525;
@@ -37,9 +47,14 @@
 .inputField .content {
     -fx-background-color: white ;
 }
-
+.tileTitle{
+    -fx-text-fill: #252525;
+    -fx-font-family:Montserrat;
+    -fx-font-size:20;
+}
 .basicText{
     -fx-text-fill: #252525;
+    -fx-font-family:Montserrat;
 }
 
 .basicText2{
@@ -49,10 +64,4 @@
 .anchorPane-main{
  -fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #D5ACA9, #EBCFB2);
 
-}
-.lightBtn{
-  -fx-background-color: #8275e6;
-}
-.darkBtn{
-  -fx-background-color: #ffffff;
 }

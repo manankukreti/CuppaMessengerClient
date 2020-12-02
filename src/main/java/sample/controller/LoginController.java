@@ -11,7 +11,10 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+import org.apache.commons.logging.Log;
 import sample.Client;
 import sample.Main;
 import sample.Message;
@@ -31,7 +34,7 @@ public class LoginController {
     Label errorMessage;
 
     static Stage stage;
-    private final Client client = Client.getInstance();
+    private static Client client;
     Gson gson = new Gson();
 
     private double xOffset = 0;
@@ -48,25 +51,31 @@ public class LoginController {
 
     }
 
-    public void setStage(Stage stage){
-        this.stage = stage;
+    public static void setUpLogin(Stage stage) throws IOException {
+        LoginController.stage = stage;
+        client = Client.getInstance();
     }
 
     public void goToMainScreen() throws IOException {
+
+        errorMessage.setText("");
+        usernameID.setText("");
+        passwordID.setText("");
+
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/mainPage/mainPage.fxml"));
         Parent mainScreen = loader.load();
         MainController controller = loader.getController();
         controller.setUpMainController();
-
+        controller.setLoginScreen(stage.getScene(), this);
         controller.setCurrentEmployeeInfo(client.getUser());
 
         Scene mainScreenScene = new Scene(mainScreen);
+        mainScreenScene.setFill(Color.TRANSPARENT);
         mainScreenScene.getStylesheets().add(getClass().getResource("/styles/mainPage.css").toExternalForm());
         controller.setTheme("light");
         stage.setScene(mainScreenScene);
         stage.show();
-
 
     }
 
@@ -83,8 +92,7 @@ public class LoginController {
 
 
     public void incorrectCredentials(){
-        errorMessage.setVisible(true);
-        errorMessage.setText("Incorrect Credentials!");
+        errorMessage.setText("Incorrect username or password.");
     }
 
     public void minimize(ActionEvent actionEvent) {
@@ -92,7 +100,7 @@ public class LoginController {
     }
 
     public void close(ActionEvent actionEvent) {
-        ((Stage)((Button)actionEvent.getSource()).getScene().getWindow()).hide();
+        (((Button)actionEvent.getSource()).getScene().getWindow()).hide();
         System.exit(0);
     }
     private  void makeStageDraggable(){
@@ -106,13 +114,8 @@ public class LoginController {
             Main.stage.setOpacity(0.8f);
         }));
 
-        paneControllers.setOnDragDone((event ->{
-            Main.stage.setOpacity(1.0f);
-
-        }));
-        paneControllers.setOnMouseReleased((event -> {
-            Main.stage.setOpacity(1.0f);
-        }));
+        paneControllers.setOnDragDone((event -> Main.stage.setOpacity(1.0f)));
+        paneControllers.setOnMouseReleased((event -> Main.stage.setOpacity(1.0f)));
     }
 
 }

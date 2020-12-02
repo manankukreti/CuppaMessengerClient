@@ -17,7 +17,6 @@ import java.io.IOException;
 
 public class MessageController {
 
-    Text text = new Text();
     @FXML
     HBox messageHbox;
 
@@ -35,7 +34,8 @@ public class MessageController {
     }
 
     public void setMessageLabel(Message message){
-        currentMessage = message;
+
+
         name.setText(message.from);
         if (message.from.equals(client.getUser().getUsername())){
             messageTextFlow.setStyle("-fx-padding: 5px; -fx-background-color: #B3D89C");
@@ -43,10 +43,13 @@ public class MessageController {
             messageTextFlow.setStyle("-fx-padding: 5px; -fx-background-color: #9DC3C2");
         }
 
+
+        Text text = new Text(message.message);
+        messageTextFlow.getChildren().add(text);
+
         messageHbox.setPrefHeight(messageTextFlow.getPrefHeight());
 
-        text.setText(message.message);
-        messageTextFlow.getChildren().add(text);
+        //messageTextFlow.setPrefWidth(text.getLayoutBounds().getWidth());
     }
 
 

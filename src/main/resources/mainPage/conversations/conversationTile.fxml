@@ -12,12 +12,12 @@
       <ImageView fx:id="image" fitHeight="97.0" fitWidth="93.0" pickOnBounds="true" preserveRatio="true" />
       <VBox alignment="CENTER_LEFT" prefHeight="86.0" prefWidth="477.0">
          <children>
-            <Label styleClass="basicText" fx:id="conversationName" text="Label">
+            <Label fx:id="conversationName" styleClass="tileTitle" text="Label">
                <font>
                   <Font size="21.0" />
                </font>
             </Label>
-            <Label styleClass="basicText2" fx:id="conversationPreview" text="Label" />
+            <Label fx:id="conversationPreview" styleClass="basicText" text="Label" />
          </children>
          <HBox.margin>
             <Insets bottom="10.0" left="30.0" />

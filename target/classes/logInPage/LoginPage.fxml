@@ -22,13 +22,12 @@
                <center>
                   <AnchorPane prefHeight="409.0" prefWidth="454.0" style="-fx-background-color: white;" stylesheets="@../styles/light.css">
                      <children>
-                        <Label fx:id="errorMessage" layoutX="172.0" layoutY="465.0" prefHeight="17.0" prefWidth="120.0" style="-fx-background-color: white;" textFill="RED" visible="false" />
-                        <ImageView fitHeight="150.0" fitWidth="150.0" layoutX="158.0" layoutY="95.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="332.3268127441406" AnchorPane.leftAnchor="158.0" AnchorPane.rightAnchor="146.0" AnchorPane.topAnchor="95.0">
+                        <ImageView fitHeight="150.0" fitWidth="150.0" layoutX="158.0" layoutY="98.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="329.78082275390625" AnchorPane.leftAnchor="158.0" AnchorPane.rightAnchor="146.0" AnchorPane.topAnchor="98.0">
                            <image>
-                              <Image url="@../Avatars/loginImage.png" />
+                              <Image url="@../cuppa.png" />
                            </image>
                         </ImageView>
-                        <HBox layoutX="133.0" layoutY="282.0" prefHeight="23.0" prefWidth="250.0" style="-fx-border-radius: 100px;">
+                        <HBox layoutX="102.0" layoutY="282.0" prefHeight="23.0" prefWidth="250.0" style="-fx-border-radius: 100px;">
                            <children>
                               <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="1.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" x="10.0">
                                  <image>
@@ -38,16 +37,16 @@
                                     <Insets left="5.0" top="7.0" />
                                  </HBox.margin>
                               </ImageView>
-                              <TextField fx:id="usernameID" minHeight="-Infinity" minWidth="-Infinity" prefHeight="33.0" prefWidth="201.0" promptText="Usename" style="-fx-text-fill:#0bba86; -fx-text-inner-color:#0bba86;" styleClass="loginInputField">
+                              <TextField fx:id="usernameID" minHeight="-Infinity" minWidth="-Infinity" prefHeight="33.0" prefWidth="201.0" promptText="Username" style="-fx-text-fill:#0bba86; -fx-text-inner-color:#0bba86;" styleClass="loginInputField">
                                  <HBox.margin>
                                     <Insets left="10.0" />
                                  </HBox.margin>
                                  <font>
-                                    <Font size="13.0" />
+                                    <Font name="System Bold" size="13.0" />
                                  </font></TextField>
                            </children>
                         </HBox>
-                        <HBox layoutX="133.0" layoutY="340.0" prefHeight="30.0" prefWidth="250.0">
+                        <HBox layoutX="102.0" layoutY="337.0" prefHeight="30.0" prefWidth="250.0">
                            <children>
                               <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -63,8 +62,8 @@
                                  </HBox.margin></PasswordField>
                            </children>
                         </HBox>
-                        <Button fx:id="loginBtnID" layoutX="158.0" layoutY="413.0" mnemonicParsing="false" onAction="#onClickLogin" prefHeight="35.0" prefWidth="200.0" styleClass="loginBtn" text="Login" />
-                        <Label fx:id="errorMessage" layoutX="244.0" layoutY="500.0" text="Label" textFill="#ff4444" visible="false">
+                        <Button fx:id="loginBtnID" layoutX="133.0" layoutY="388.0" mnemonicParsing="false" onAction="#onClickLogin" prefHeight="35.0" prefWidth="200.0" styleClass="loginBtn" text="Login" />
+                        <Label fx:id="errorMessage" layoutX="133.0" layoutY="444.0" text="" textFill="#ff4444" visible="true">
                            <font>
                               <Font size="14.0" />
                            </font>
