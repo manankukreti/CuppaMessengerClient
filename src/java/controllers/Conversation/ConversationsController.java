@@ -48,7 +48,7 @@ public class ConversationsController {
     }
 
     @FXML
-    public void initialize() throws IOException {
+    public void initialize() {
         if(conversationMap == null){
             conversationMap = new HashMap<>();
         }

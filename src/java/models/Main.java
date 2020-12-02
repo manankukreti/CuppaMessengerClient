@@ -54,6 +54,9 @@ public class Main extends Application {
         primaryStage.setScene(setupScene);
         primaryStage.isResizable();
         primaryStage.getIcons().add(new Image("/cuppa.png"));
+        primaryStage.setX(100);
+        primaryStage.setY(100);
+
         primaryStage.show();
         setupController.readSettings();
 

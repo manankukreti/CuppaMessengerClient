@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.ImageView?>
@@ -19,31 +20,43 @@
             </ImageView>
             <VBox prefHeight="54.0" prefWidth="548.0" spacing="2.0" styleClass="info-newsfeedTile">
                <children>
-                  <Label fx:id="name" styleClass="basicText" text="Sidhu Moose wala">
+                  <Label fx:id="name" text="Sidhu Moose wala">
                      <font>
                         <Font size="17.0" />
                      </font>
+                     <styleClass>
+                        <String fx:value="basicText" />
+                        <String fx:value="largeText" />
+                     </styleClass>
                   </Label>
                   <Label fx:id="dateAndTime" styleClass="basicText2" text="Label" />
                </children>
             </VBox>
          </children>
       </HBox>
-      <Label fx:id="title" styleClass="basicText" text="Title for the past">
+      <Label fx:id="title" text="Title for the past">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
          <VBox.margin>
             <Insets top="10.0" />
          </VBox.margin>
+         <styleClass>
+            <String fx:value="basicText" />
+            <String fx:value="smallText" />
+         </styleClass>
       </Label>
-      <Text fx:id="body" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="body-newsfeedTile" text="Text" wrappingWidth="669.13671875">
+      <Text fx:id="body" lineSpacing="1.5" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="669.13671875">
          <font>
             <Font size="14.0" />
          </font>
          <VBox.margin>
             <Insets top="5.0" />
          </VBox.margin>
+         <styleClass>
+            <String fx:value="body-newsfeedTile" />
+            <String fx:value="verySmallText" />
+         </styleClass>
       </Text>
    </children>
    <padding>

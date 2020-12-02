@@ -17,7 +17,10 @@ import models.Client;
 import models.Main;
 import models.Message;
 
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
 public class LoginController {
 
@@ -67,15 +70,26 @@ public class LoginController {
         controller.setUpMainController();
         controller.setLoginScreen(stage.getScene(), this);
         controller.setCurrentEmployeeInfo(client.getUser());
-
         Scene mainScreenScene = new Scene(mainScreen);
         mainScreenScene.setFill(Color.TRANSPARENT);
         mainScreenScene.getStylesheets().add(getClass().getResource("/styles/mainPage.css").toExternalForm());
-        controller.setTheme("light");
+        readSettings(controller);
         stage.setScene(mainScreenScene);
+
         stage.show();
 
     }
+
+    public void readSettings(MainController controller) throws IOException {
+        Path theme_file = Path.of("settings/theme_setting.txt");
+        if(Files.exists(theme_file)){
+            String theme = Files.readString(theme_file);
+            if(!theme.equals("")){
+                controller.setTheme(theme);
+            }
+        }
+    }
+
 
     public void onClickLogin() throws IOException {
         String username = usernameID.getText();

@@ -30,7 +30,6 @@
 .tab-title, .body-newsfeedTile{
     -fx-fill:#252525;
     -fx-font-family:Montserrat;
-    -fx-font-weight:bold;
 }
 
 .inputField{
@@ -56,6 +55,17 @@
 .basicText{
     -fx-text-fill: #252525;
     -fx-font-family:Montserrat;
+
+}
+.largeText{
+    -fx-font-size:20;
+}
+.smallText{
+    -fx-font-size:15;
+}
+.verySmallText{
+    -fx-font-size:12;
+
 }
 
 .basicText2{

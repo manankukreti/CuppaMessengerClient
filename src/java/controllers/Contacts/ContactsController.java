@@ -34,7 +34,7 @@ public class ContactsController {
     }
 
     @FXML
-    public void initialize() throws IOException {
+    public void initialize()  {
 
     }
 
@@ -42,7 +42,7 @@ public class ContactsController {
         tileControllers.clear();
     }
 
-    public void setUpContacts(MainController mainController) throws IOException {
+    public void setUpContacts(MainController mainController) {
         this.mainController = mainController;
         convoController = mainController.getConvoController();
     }

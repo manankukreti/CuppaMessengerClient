@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
@@ -16,10 +17,14 @@
          </HBox.margin></ImageView>
       <VBox alignment="CENTER_LEFT" prefHeight="80.0" prefWidth="107.0">
          <children>
-            <Label fx:id="name" maxHeight="35.0" prefHeight="20.0" prefWidth="130.0" styleClass="basicText" text="name" wrapText="true">
+            <Label fx:id="name" maxHeight="35.0" prefHeight="20.0" prefWidth="130.0" text="name" wrapText="true">
                <font>
                   <Font size="14.0" />
                </font>
+               <styleClass>
+                  <String fx:value="basicText" />
+                  <String fx:value="smallText" />
+               </styleClass>
             </Label>
             <Label fx:id="jobTitle" maxHeight="35.0" prefHeight="17.0" prefWidth="135.0" styleClass="basicText2" text="title" />
          </children>

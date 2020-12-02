@@ -37,9 +37,7 @@ public class ConversationWindowController {
     VBox messagesVbox;
     @FXML
     ScrollPane msgScrollPane;
-    private double xOffset = 0;
-    private double yOffset = 0;
-    @FXML private HBox paneControllers;
+
 
     HBox infoHbox;
 
@@ -153,12 +151,5 @@ public class ConversationWindowController {
         messagesVbox.getChildren().add(returnMessageNode(msg));
     }
 
-    public void minimize(ActionEvent actionEvent) {
-        ((Stage)((Button)actionEvent.getSource()).getScene().getWindow()).setIconified(true);
-    }
-
-    public void close(ActionEvent actionEvent) {
-        ((Button)actionEvent.getSource()).getScene().getWindow().hide();
-    }
 
 }

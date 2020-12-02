@@ -22,8 +22,6 @@ public class MessageController {
     @FXML
     TextFlow messageTextFlow;
 
-
-    Message currentMessage;
     Client client = Client.getInstance();
 
     public MessageController() throws IOException {

@@ -8,6 +8,8 @@ import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 import models.Client;
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
 public class SettingsController {
 
@@ -26,12 +28,23 @@ public class SettingsController {
     public SettingsController() throws IOException {
     }
 
-    public void darkButton() {
+    public void darkButton() throws IOException {
         mainController.setTheme("dark");
+        saveSettings("dark");
     }
 
-    public void lightButton(){
+    public void lightButton() throws IOException {
         mainController.setTheme("light");
+        saveSettings("light");
+
+    }
+    public void saveSettings(String theme) throws IOException {
+        Path themeFile = Path.of("settings/theme_setting.txt");
+        if(!Files.exists(themeFile)){
+            File file = themeFile.toFile();
+            file.createNewFile();
+        }
+        Files.writeString(themeFile, theme);
     }
 
     public void setMainController(MainController controller){

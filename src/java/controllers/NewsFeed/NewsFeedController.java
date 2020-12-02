@@ -31,7 +31,7 @@ public class NewsFeedController {
     public NewsFeedController() throws IOException {
     }
     @FXML
-    public void initialize() throws IOException {
+    public void initialize() {
     }
 
     public void createPost() throws IOException {
@@ -40,7 +40,7 @@ public class NewsFeedController {
         author.submitPost(post);
     }
 
-    public void importPosts(Post[] list) throws IOException {
+    public void importPosts(Post[] list) {
         Collections.addAll(posts, list);
     }
 
