@@ -50,9 +50,11 @@ public class SetupController {
         Path ipFile = Path.of("settings/server_ip.txt");
         if(Files.exists(ipFile)){
             String ip = Files.readString(ipFile);
-            createConnection(ip);
-            if(client != null && client.isConnected()){
-                goToLoginScreen();
+            if(!ip.equals("")){
+                createConnection(ip);
+                if(client != null && client.isConnected()){
+                    goToLoginScreen();
+                }
             }
         }
     }
@@ -75,7 +77,7 @@ public class SetupController {
     }
 
     public void createConnection(String ip){
-
+        statusLabel.setText("Attempting to connect...");
         try{
             client = new Client(ip);
         }
@@ -86,7 +88,7 @@ public class SetupController {
 
     public void continueToLogin() throws IOException {
         String ip = ipTextbox.getText().trim();
-        statusLabel.setText("Attempting to connect...");
+
         createConnection(ip);
 
         if(client != null && client.isConnected()){
