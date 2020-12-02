@@ -1,47 +1,36 @@
 package sample.controller;
 
 import javafx.fxml.FXML;
-
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.DirectoryChooser;
-import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import sample.Client;
-import sample.controller.Conversation.ConversationsController;
-
-import javax.crypto.BadPaddingException;
-import javax.crypto.IllegalBlockSizeException;
-import javax.crypto.NoSuchPaddingException;
 import java.io.*;
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
 
 public class SettingsController {
 
     MainController mainController;
     @FXML private TextField saveAddress;
-    @FXML private TextField restoreAddress;
     @FXML private TextField fileName;
     @FXML private Label errorMessage;
-    @FXML private TextField oldPassword;
-    @FXML private TextField newPassword;
-    @FXML private TextField newPassword2;
+    @FXML private PasswordField oldPassword;
+    @FXML private PasswordField newPassword;
+    @FXML private PasswordField newPassword2;
     @FXML private Label msgLabel;
 
     File selectedDirectory;
-    File selectedFile;
     Client client =Client.getInstance();
 
     public SettingsController() throws IOException {
     }
 
-    public void darkButton() throws IOException {
+    public void darkButton() {
         mainController.setTheme("dark");
     }
 
-    public void lightButton() throws IOException {
+    public void lightButton(){
         mainController.setTheme("light");
     }
 
@@ -54,13 +43,6 @@ public class SettingsController {
         Stage stage = new Stage();
         selectedDirectory = directoryChooser.showDialog(stage);
         saveAddress.setText(selectedDirectory.getAbsolutePath());
-    }
-    public void setRestoreLocation() {
-
-        FileChooser directoryChooser = new FileChooser();
-        Stage stage = new Stage();
-        selectedFile = directoryChooser.showOpenDialog(stage);
-        restoreAddress.setText(selectedFile.getAbsolutePath());
     }
 
     public void saveBackup() throws IOException {
@@ -94,60 +76,37 @@ public class SettingsController {
 
     }
 
-    public void restoreBackup() throws NoSuchPaddingException, NoSuchAlgorithmException, IOException, BadPaddingException, IllegalBlockSizeException, InvalidKeyException {
 
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/mainPage/conversations/conversations.fxml"));
-        loader.load();
-        ConversationsController controller = loader.getController();
-        controller.loadConvoFromFile(restoreAddress.getText());
-
-        FXMLLoader loader1 = new FXMLLoader();
-        loader1.setLocation(getClass().getResource("/mainPage/mainPage.fxml"));
-        loader1.load();
-        MainController controller1 = loader1.getController();
-
-    }
-
-    public boolean isOldPasswordCorrect(){
-        return true;
-    }
-
-    public boolean isNewPasswordValid(){
-        if (newPassword.getText().length() >= 8){
-            return true;
-        }
-        else {
-            return false;
-        }
-    }
-    public boolean doPasswordsMatch(){
-        if(newPassword.equals(newPassword2)){
-            return true;
+    public void changePassword() throws IOException {
+        String oldPass = oldPassword.getText();
+        String newPass = newPassword.getText();
+        String newPass2 = newPassword2.getText();
+        if (newPassword.getText().length() < 8) {
+            msgLabel.setText("Password must be at least 8 characters.");
+            return;
         }
         else{
-            return false;
+            msgLabel.setText("");
         }
-    }
-    public void changePassword(){
-        if (isOldPasswordCorrect()){
-            if (isNewPasswordValid()){
-                if (doPasswordsMatch()){
-                    //setPassword
 
-                }
-                else{
-                    msgLabel.setText("The passwords did not match.");
-                }
-            }
-            else {
-                msgLabel.setText("The password has to be longer than 8 characters.");
-            }
-        }
-        else {
-            msgLabel.setText("Incorrect Old Password.");
+        if (!newPass.equals(newPass2)) {
+            msgLabel.setText("Passwords do not match.");
+        } else {
+            msgLabel.setText("");
+            client.changePassword(oldPass, newPass);
         }
     }
 
+    public void setPasswordChangeResult(String changed){
+        if(changed.equals("success")){
+            msgLabel.setText("Password successfully changed.");
+            oldPassword.setText("");
+            newPassword.setText("");
+            newPassword2.setText("");
+        }
+        else{
+            msgLabel.setText("Old password incorrect.");
+        }
+    }
 
 }

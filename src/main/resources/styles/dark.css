@@ -24,9 +24,20 @@
 }
 
 .inputField{
-    -fx-control-inner-background:#454545;
-    -fx-text-fill:#ffffff;
-    -fx-text-inner-color:#ffffff;
+    -fx-background-color: #0bba86, #252525, #252525;
+    -fx-background-insets: 0, 0 0 1 0;
+    -fx-background-radius: 0;
+    -fx-text-fill:white;
+    -fx-text-inner-color:white;
+    -text-area-background:#252525;
+}
+
+.inputField:focused{
+    -fx-background-color: #0bba86, #303030, #303030 ;
+}
+
+.inputField .content {
+    -fx-background-color: #252525 ;
 }
 
 .basicText{

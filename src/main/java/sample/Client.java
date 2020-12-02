@@ -84,6 +84,11 @@ public class Client {
 		send(new Message(user.getUsername(), "server", "MSG-POST", "new_post", gson.toJson(post)));
 	}
 
+	public void changePassword(String old, String newPass) throws IOException {
+		String[] passes = {old, newPass};
+		send(new Message(user.getUsername(), "server", "MSG-REQ", "change_password", gson.toJson(passes)));
+	}
+
 	//request all users that are signed up
 	public void requestAllUsers() throws IOException {
 		send(new Message(user.getUsername(), "server", "MSG-REQ", "general", "all_users"));

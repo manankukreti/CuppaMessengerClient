@@ -16,16 +16,26 @@
     -fx-background-color:#fafafa;
 }
 
-.tab-title, .body-newsfeedTile{
+.tab-title{
     -fx-fill:#252525;
     -fx-font-family:MontserratBold;
     -fx-font-weight:bold;
 }
 
 .inputField{
-    -fx-control-inner-background:#fafafa;
+     -fx-background-color: #0bba86, white, white ;
+    -fx-background-insets: 0, 0 0 1 0 ;
+    -fx-background-radius: 0 ;
     -fx-text-fill:#252525;
     -fx-text-inner-color:#252525;
+}
+
+.inputField:focused{
+    -fx-background-color: #0bba86, #fafafa, #fafafa ;
+}
+
+.inputField .content {
+    -fx-background-color: white ;
 }
 
 .basicText{

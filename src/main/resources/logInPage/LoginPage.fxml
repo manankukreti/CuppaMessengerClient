@@ -38,7 +38,7 @@
                                     <Insets left="5.0" top="7.0" />
                                  </HBox.margin>
                               </ImageView>
-                              <TextField fx:id="usernameID" minHeight="-Infinity" minWidth="-Infinity" prefHeight="33.0" prefWidth="201.0" promptText="Usename" style="-fx-text-fill:#0bba86; -fx-text-inner-color:#0bba86;" styleClass="inputField">
+                              <TextField fx:id="usernameID" minHeight="-Infinity" minWidth="-Infinity" prefHeight="33.0" prefWidth="201.0" promptText="Usename" style="-fx-text-fill:#0bba86; -fx-text-inner-color:#0bba86;" styleClass="loginInputField">
                                  <HBox.margin>
                                     <Insets left="10.0" />
                                  </HBox.margin>
@@ -57,7 +57,7 @@
                                     <Insets left="5.0" top="7.0" />
                                  </HBox.margin>
                               </ImageView>
-                              <PasswordField fx:id="passwordID" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="201.0" promptText="Password" style="-fx-text-fill:#0bba86; -fx-text-inner-color:#0bba86;" styleClass="inputField">
+                              <PasswordField fx:id="passwordID" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="201.0" promptText="Password" style="-fx-text-fill:#0bba86; -fx-text-inner-color:#0bba86;" styleClass="loginInputField">
                                  <HBox.margin>
                                     <Insets left="13.0" />
                                  </HBox.margin></PasswordField>

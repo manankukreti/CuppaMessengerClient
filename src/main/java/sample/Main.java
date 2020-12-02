@@ -21,6 +21,7 @@ import sample.controller.Conversation.ConversationsController;
 import sample.controller.LoginController;
 import sample.controller.MainController;
 import sample.controller.NewsFeed.NewsFeedController;
+import sample.controller.SettingsController;
 import sample.controller.SetupController;
 
 
@@ -127,7 +128,6 @@ public class Main extends Application {
                             conversationsController = mainController.getConvoController();
                             contactsController = mainController.getContactsController();
                             newsFeedController = mainController.getNewsFeedController();
-
                         }
                     }
                     //TEXT MESSAGES (USER OR GROUP)
@@ -245,6 +245,12 @@ public class Main extends Application {
                             }
                         });
 
+                    }
+                    else if(msg.subject.equals("password_update")){
+                        String result = msg.message;
+                        Platform.runLater(() -> {
+                            mainController.getSettingssController().setPasswordChangeResult(result);
+                        });
                     }
                     else{
                         System.out.println(line);

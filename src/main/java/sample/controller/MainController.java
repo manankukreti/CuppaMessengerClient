@@ -80,7 +80,6 @@ public class MainController {
 
     public void updateStatus() throws IOException {
         int status_int = 0;
-        System.out.println(statusBox.getValue().trim().toLowerCase());
         if(statusBox.getValue().trim().toLowerCase().equals("busy")){
             status_int = 1;
         }
@@ -115,8 +114,8 @@ public class MainController {
                 if(uiScene.containsKey("editProfile")){
                     uiScene.get("editProfile").getStylesheets().remove(lightThemeURL);
                 }
-                if(uiScene.containsKey("settingScene")){
-                    uiScene.get("settingScene").getStylesheets().remove(lightThemeURL);
+                if(uiScene.containsKey("settings")){
+                    uiScene.get("settings").getStylesheets().remove(lightThemeURL);
                 }
             }
 
@@ -127,8 +126,8 @@ public class MainController {
             if(uiScene.containsKey("editProfile")) {
                 uiScene.get("editProfile").getStylesheets().add(darkThemeURL);
             }
-            if(uiScene.containsKey("settingScene")){
-                uiScene.get("settingScene").getStylesheets().add(darkThemeURL);
+            if(uiScene.containsKey("settings")){
+                uiScene.get("settings").getStylesheets().add(darkThemeURL);
             }
 
         }
@@ -141,8 +140,8 @@ public class MainController {
                 if(uiScene.containsKey("editProfile")){
                     uiScene.get("editProfile").getStylesheets().remove(darkThemeURL);
                 }
-                if(uiScene.containsKey("settingScene")){
-                    uiScene.get("settingScene").getStylesheets().remove(darkThemeURL);
+                if(uiScene.containsKey("settings")){
+                    uiScene.get("settings").getStylesheets().remove(darkThemeURL);
                 }
             }
             mainPane.getScene().getStylesheets().add(lightThemeURL);
@@ -152,8 +151,8 @@ public class MainController {
             if(uiScene.containsKey("editProfile")){
                 uiScene.get("editProfile").getStylesheets().add(lightThemeURL);
             }
-            if(uiScene.containsKey("settingScene")){
-                uiScene.get("settingScene").getStylesheets().add(lightThemeURL);
+            if(uiScene.containsKey("settings")){
+                uiScene.get("settings").getStylesheets().add(lightThemeURL);
             }
             getConvoController().setTheme("light");
 
@@ -286,31 +285,35 @@ public class MainController {
     }
 
     public void settings() throws IOException {
-        if(uiScene.containsKey("settingScene")){
-            uiStage.get("settingStage").show();
-        }
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/mainPage/settings.fxml"));
-        Parent mainScreen = loader.load();
-        SettingsController controller = loader.getController();
-        controller.setMainController(this);
-
-        Scene mainScreenScene = new Scene(mainScreen);
-        mainScreenScene.getStylesheets().add(getClass().getResource("/styles/mainPage.css").toExternalForm());
-        uiScene.put("settingScene", mainScreenScene);
-
-        if(currentTheme.equals("light")){
-            mainScreenScene.getStylesheets().add(lightThemeURL);
+        if(uiScene.containsKey("settings")){
+            uiStage.get("settings").show();
         }
         else{
-            mainScreenScene.getStylesheets().add(darkThemeURL);
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/mainPage/settings.fxml"));
+            Parent mainScreen = loader.load();
+            SettingsController controller = loader.getController();
+            controller.setMainController(this);
+            controllerMap.put("settings", controller);
+
+            Scene mainScreenScene = new Scene(mainScreen);
+            mainScreenScene.getStylesheets().add(getClass().getResource("/styles/mainPage.css").toExternalForm());
+            uiScene.put("settings", mainScreenScene);
+
+            if(currentTheme.equals("light")){
+                mainScreenScene.getStylesheets().add(lightThemeURL);
+            }
+            else{
+                mainScreenScene.getStylesheets().add(darkThemeURL);
+            }
+
+            Stage stage = new Stage();
+            uiStage.put("settings", stage);
+
+            stage.setScene(mainScreenScene);
+            stage.show();
         }
 
-        Stage stage = new Stage();
-        uiStage.put("settingStage", stage);
-
-        stage.setScene(mainScreenScene);
-        stage.show();
     }
 
     public void logout(ActionEvent actionEvent) throws IOException {
@@ -343,6 +346,10 @@ public class MainController {
 
     public ConversationsController getConvoController(){
         return (ConversationsController) controllerMap.get("conversations");
+    }
+
+    public SettingsController getSettingssController(){
+        return (SettingsController) controllerMap.get("settings");
     }
 
     public ContactsController getContactsController(){

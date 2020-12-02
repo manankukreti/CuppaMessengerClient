@@ -238,7 +238,6 @@ public class ConversationsController {
         thisConvo.addMessage(msg);
 
         //check if window exists
-        System.out.println("Does convo window exist : " + conversationWindowMap.containsKey(key));
         if(conversationWindowMap.containsKey(key)){
             window = conversationWindowMap.get(key);
             window.addMessageToPane(msg);
@@ -341,7 +340,6 @@ public class ConversationsController {
             if (convo.getMessages().size() > 0) {
                 subtitle = convo.getMessages().get(convo.getMessages().size() - 1).message;
             }
-            System.out.println(subtitle);
 
             convoTileController.setConversationInfo(this, key, convo, title, subtitle, avatar);
             conversationTileMap.put(key, convoTileController);
