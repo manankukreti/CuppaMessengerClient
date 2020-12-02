@@ -273,6 +273,7 @@ public class Main extends Application {
         trayIcon.setToolTip(body);
         tray.add(trayIcon);
 
+
         trayIcon.displayMessage(title, body, TrayIcon.MessageType.INFO);
     }
 

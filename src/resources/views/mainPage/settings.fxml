@@ -59,18 +59,14 @@
                   </GridPane>
                   <VBox prefHeight="137.0" prefWidth="618.0" spacing="15.0">
                      <children>
-                        <Label fx:id="errorMessage" prefHeight="17.0" prefWidth="255.0">
-                           <graphic>
-                              <Label text="Change Password">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                                 <styleClass>
-                                    <String fx:value="basicText" />
-                                    <String fx:value="mediumText" />
-                                 </styleClass>
-                              </Label>
-                           </graphic>
+                        <Label text="Change Password">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                           <styleClass>
+                              <String fx:value="basicText" />
+                              <String fx:value="mediumText" />
+                           </styleClass>
                         </Label>
                         <Label text="Old Password">
                            <styleClass>
@@ -98,7 +94,7 @@
                               <Insets top="10.0" />
                            </VBox.margin>
                         </Button>
-                        <Label fx:id="msgLabel" styleClass="basicText" />
+                        <Label fx:id="errorMessage" prefHeight="17.0" prefWidth="255.0" />
                      </children>
                   </VBox>
                   <VBox spacing="15.0">
