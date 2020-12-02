@@ -35,6 +35,11 @@ public class SetupController {
     LoginController loginController;
     Scene loginScene;
 
+    @FXML
+    public void initialize(){
+        makeStageDraggable();
+    }
+
     public SetupController() throws IOException {
         FXMLLoader logLoader = new FXMLLoader();
         logLoader.setLocation(getClass().getResource("/views/logInPage/LoginPage.fxml"));

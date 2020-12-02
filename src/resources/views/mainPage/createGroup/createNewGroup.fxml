@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -23,17 +24,21 @@
                 <Insets bottom="10.0" top="10.0" />
             </VBox.margin>
         </Text>
-   <VBox>
+   <VBox spacing="5.0">
       <children>
-         <Label prefHeight="25.0" prefWidth="144.0" styleClass="basicText" text="Enter Group Name:">
+         <Label prefHeight="21.0" prefWidth="217.0" styleClass="smallText" text="Enter Group Name:">
             <font>
                <Font size="15.0" />
             </font>
          </Label>
-         <TextField fx:id="groupName" focusTraversable="false" prefHeight="31.0" prefWidth="625.0" styleClass="inputField">
+         <TextField fx:id="groupName" focusTraversable="false" prefHeight="47.0" prefWidth="778.0">
             <font>
                <Font size="15.0" />
             </font>
+            <styleClass>
+               <String fx:value="inputField" />
+               <String fx:value="smallText" />
+            </styleClass>
          </TextField>
       </children>
    </VBox>

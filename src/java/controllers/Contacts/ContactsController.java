@@ -12,6 +12,8 @@ import controllers.MainController;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 
 public class ContactsController {
@@ -65,6 +67,13 @@ public class ContactsController {
     public void loadContacts() throws IOException {
         ArrayList<User> users = userList.getUsers();
 
+        Collections.sort(users, new Comparator<User>() {
+            public int compare(User v1, User v2) {
+                return v1.getFullName().compareTo(v2.getFullName());
+            }
+        });
+
+        Collections.sort(users, Comparator.comparing(User::getFullName));
         int j = 0;
         int k = 0;
         if(users != null){

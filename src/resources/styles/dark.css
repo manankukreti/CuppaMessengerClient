@@ -15,6 +15,10 @@
 #mainPane, .borderPane-main, .convoWindowRoot, .scrollPane-contacts, .vbox-contacts, .grid-contacts, .vbox-conversations, .scrollPane-conversations, .vboxScrollPane-conversations, .vbox-newsfeed, .scrollPane-newsfeed, .vboxScrollPane-newsfeed, .vbox-newGroup, .scrollPane-newGroup, .grid-newGroup, .vbox-editProfile, .hbox-editProfile, .primaryBg{
     -fx-background-color: #252525;
 }
+.chatBg{
+    -fx-background-color: #202020;
+
+}
 
 .main-tab-button, .status-select{
     -fx-background-color: #252525;
@@ -70,6 +74,7 @@
 }
 .smallText{
     -fx-font-size:15;
+    -fx-text-fill: white
 }
 .verySmallText{
     -fx-font-size:12;
