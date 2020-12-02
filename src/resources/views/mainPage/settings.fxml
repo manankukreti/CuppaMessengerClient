@@ -153,10 +153,14 @@
             </VBox>
             <VBox alignment="CENTER" prefHeight="835.0" prefWidth="678.0" spacing="5.0" style="-fx-background-color: #0bba86;">
                <children>
-                  <Label styleClass="veryLargeText" text="Credits" textFill="WHITE">
+                  <Label text="Credits" textFill="WHITE">
                      <font>
                         <Font size="35.0" />
                      </font>
+                     <styleClass>
+                        <String fx:value="veryLargeText" />
+                        <String fx:value="bold" />
+                     </styleClass>
                   </Label>
                   <Label maxHeight="-Infinity" prefHeight="100.0" prefWidth="618.0" styleClass="mediumText" text="Manan Kukreti - Software Architect and Lead Software Developer (grumpy developer)" textAlignment="CENTER" textFill="WHITE" wrapText="true">
                      <font>
@@ -178,6 +182,13 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
+                  <Label text="Cuppa Messenger by CodeStraw">
+                     <styleClass>
+                        <String fx:value="largeText" />
+                        <String fx:value="bold" />
+                     </styleClass>
+                  </Label>
+                  <Label text="© CodeStraw - All Rights Reserved" />
                </children>
                <padding>
                   <Insets bottom="120.0" left="30.0" right="30.0" top="120.0" />

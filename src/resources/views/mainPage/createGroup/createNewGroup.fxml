@@ -69,7 +69,6 @@
    <HBox alignment="CENTER" prefHeight="175.0" prefWidth="805.0" spacing="50.0">
       <children>
          <Button fx:id="createBtn" mnemonicParsing="false" onAction="#createGroup" styleClass="primaryBtn" text="Create group" />
-         <Button fx:id="clearBtn" mnemonicParsing="false" styleClass="primaryBtn" text="Clear selection" />
       </children>
    </HBox>
    <padding>
