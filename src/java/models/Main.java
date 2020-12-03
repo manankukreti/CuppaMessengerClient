@@ -52,7 +52,7 @@ public class Main extends Application {
 
         stage = primaryStage;
         primaryStage.initStyle(StageStyle.TRANSPARENT);
-        primaryStage.setTitle("Hello World");
+        primaryStage.setTitle("Cuppa Messenger - Set up");
         Scene setupScene = new Scene(setup);
         setupScene.setFill(Color.TRANSPARENT);
         primaryStage.setScene(setupScene);

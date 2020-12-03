@@ -55,6 +55,7 @@ public class LoginController {
     public static void setUpLogin(Stage stage) throws IOException {
         LoginController.stage = stage;
         client = Client.getInstance();
+        stage.setTitle("Cuppa Messenger - Login");
     }
 
     public void goToMainScreen() throws IOException {
@@ -75,7 +76,7 @@ public class LoginController {
         mainScreenScene.getStylesheets().add(getClass().getResource("/styles/mainPage.css").toExternalForm());
         readSettings(controller);
         stage.setScene(mainScreenScene);
-
+        stage.setTitle("Cuppa Messenger");
         stage.show();
 
     }
