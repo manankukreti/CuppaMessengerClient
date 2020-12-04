@@ -159,22 +159,17 @@
                         <String fx:value="bold" />
                      </styleClass>
                   </Label>
-                  <Label maxHeight="-Infinity" prefHeight="100.0" prefWidth="618.0" styleClass="mediumText" text="Manan Kukreti - Software Architect and Lead Software Developer (grumpy developer)" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+                  <Label maxHeight="-Infinity" prefHeight="100.0" prefWidth="618.0" styleClass="mediumText" text="Manan Kukreti - Software Architect / Lead Software Developer / Grumpy Developer" textAlignment="CENTER" textFill="WHITE" wrapText="true">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <Label prefHeight="100.0" prefWidth="556.0" styleClass="mediumText" text="Shivain Kumar -  Software Developer, Front-Designer and Developer (the optimist)" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+                  <Label prefHeight="100.0" prefWidth="556.0" styleClass="mediumText" text="Shivain Kumar -  Front End Developer / Front-Designer / Lazy Developer" textAlignment="CENTER" textFill="WHITE" wrapText="true">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Label>
                   <Label prefHeight="100.0" styleClass="mediumText" text="Yousuf Idris - QA Tester" textFill="WHITE">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Label>
-                  <Label prefHeight="100.0" prefWidth="280.0" styleClass="mediumText" text="Shirisha Maharjan - Logo Designer" textAlignment="CENTER" textFill="WHITE" wrapText="true">
                      <font>
                         <Font size="18.0" />
                      </font>

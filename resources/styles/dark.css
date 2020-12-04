@@ -1,99 +1,101 @@
 @font-face {
     font-family: Montserrat;
-    src: url('../../../src/resources/fonts/Montserrat-Regular.ttf');
+    src: url('../../../resources/fonts/Montserrat-Regular.ttf');
 }
 
 @font-face {
     font-family: MontserratBold;
-    src: url('../../../src/resources/fonts/Montserrat-Bold.ttf');
+    src: url('../../../resources/fonts/Montserrat-Bold.ttf');
 }
-
 
 .anchorPane-main{
     -fx-background-color: #EDDFF4;
 }
 
 #mainPane, .borderPane-main, .convoWindowRoot, .scrollPane-contacts, .vbox-contacts, .grid-contacts, .vbox-conversations, .scrollPane-conversations, .vboxScrollPane-conversations, .vbox-newsfeed, .scrollPane-newsfeed, .vboxScrollPane-newsfeed, .vbox-newGroup, .scrollPane-newGroup, .grid-newGroup, .vbox-editProfile, .hbox-editProfile, .primaryBg{
-    -fx-background-color: #ffffff;
+    -fx-background-color: #252525;
+}
+.chatBg{
+    -fx-background-color: #202020;
+
 }
 
 .main-tab-button, .status-select{
-    -fx-background-color: #ffffff;
-    -fx-text-fill: #252525;
-    -fx-text-base-color:#252525;
+    -fx-background-color: #252525;
+    -fx-text-fill: #ffffff;
+    -fx-text-base-color:#ffffff;
 }
 
-.vbox-newsfeedTile, .hbox-newsfeedTile, .info-newsfeedTile{
-    -fx-background-color:#fafafa;
+.vbox-newsfeedTile, .hbox-newsfeedTile, .info-newsfeedTile {
+    -fx-background-color:#353535;
 }
 
 .tab-title, .body-newsfeedTile{
-    -fx-fill:#252525;
+    -fx-fill:#ffffff;
     -fx-font-family:Montserrat;
     -fx-font-size:40;
 }
 
 .inputField{
-    -fx-background-color: #0bba86, white, white;
-    -fx-background-insets: 0, 0 0 1 0 ;
-    -fx-background-radius: 0 ;
-    -fx-text-fill:#252525;
-    -fx-text-inner-color:#252525;
+    -fx-background-color: #0bba86, #252525, #252525;
+    -fx-background-insets: 0, 0 0 1 0;
+    -fx-background-radius: 0;
+    -fx-text-fill:white;
+    -fx-text-inner-color:white;
+    -text-area-background:#252525;
 }
 
 .inputField:focused{
-    -fx-background-color: #0bba86, #fafafa, #fafafa ;
+    -fx-background-color: #0bba86, #303030, #303030 ;
 }
 
 .inputField .content {
-    -fx-background-color: white ;
+    -fx-background-color: #252525 ;
 }
+
 .tileTitle{
-    -fx-text-fill: #252525;
+    -fx-text-fill: #ffffff;
     -fx-font-family:Montserrat;
     -fx-font-size:20;
 }
 .basicText{
-    -fx-text-fill: #252525;
+    -fx-text-fill: #ffffff;
     -fx-font-family:Montserrat;
+}
 
+.veryLargeText{
+    -fx-font-size:40;
 }
 .largeText{
     -fx-font-size:20;
 }
-.smallText{
-    -fx-font-size:15;
-}
 .mediumText{
     -fx-font-size:18;
-
+}
+.smallText{
+    -fx-font-size:15;
+    -fx-text-fill: white
 }
 .verySmallText{
     -fx-font-size:12;
-
 }
 
 .basicText2{
-    -fx-text-fill: #252525;
+    -fx-text-fill: #e1e1e1;
 }
 
 .anchorPane-main{
  -fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #D5ACA9, #EBCFB2);
 
 }
+.check-box:selected .mark {
 
-.check-box .box {
-
--fx-background-color: white;
--fx-border-color:grey;
--fx-border-radius:3px;
+-fx-background-color: #353535;
 
 }
 
-.check-box:selected .mark {
-
--fx-background-color: white;
-
+.check-box .box{
+-fx-background-color: #353535;
 }
 
 .check-box:selected .box {
@@ -101,17 +103,16 @@
 -fx-background-color: #0bba86;
 }
 
-
 .scroll-bar:vertical .track{
-    -fx-background-color : #fbfbfb;
+    -fx-background-color :#353535;
     -fx-border-color :transparent;
     -fx-background-radius : 0.0em;
-    -fx-border-radius :1.0em;
+    -fx-border-radius :2.0em;
 }
 .scroll-bar:vertical .thumb {
     -fx-background-color :#0bba86;
-    -fx-background-insets : 1.0, 0.0, 0.0;
-    -fx-background-radius : 1.0em;
+    -fx-background-insets : 2.0, 0.0, 0.0;
+    -fx-background-radius : 1.5em;
 }
  .scroll-bar .increment-arrow,
  .scroll-bar .decrement-arrow{
@@ -127,11 +128,12 @@
 
 }
 .lightBtn{
-    -fx-background-color :#0bba86;
-        -fx-text-fill: #ffffff;
+    -fx-background-color :#353535;
+    -fx-text-fill: #ffffff;
 }
 .darkBtn{
-    -fx-background-color : #fbfbfb;
+    -fx-background-color : #0bba86;
+        -fx-text-fill: #ffffff;
 }
 .bold{
 -fx-font-weight: bold;
