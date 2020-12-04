@@ -38,6 +38,10 @@ public class UserList {
         return null;
     }
 
+    public void addUser(User user){
+        users.add(user);
+    }
+
     public void setUserBio(String username, String bio){
         Objects.requireNonNull(getUser(username)).setBio(bio);
     }

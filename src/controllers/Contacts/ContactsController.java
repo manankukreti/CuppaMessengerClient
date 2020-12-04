@@ -32,6 +32,9 @@ public class ContactsController {
     MainController mainController;
     ConversationsController convoController;
 
+    private int posJ = 0;
+    private int posK = 0;
+
     public ContactsController() throws IOException {
     }
 
@@ -64,6 +67,24 @@ public class ContactsController {
         }
     }
 
+    public void addTile(User user) throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/views/mainPage/contacts/contactTile.fxml"));
+        contactTile = loader.load();
+        ContactTilesController infoSet = loader.getController();
+        infoSet.setConvoController(convoController);
+        infoSet.setContactInfo(user);
+
+        list.add(contactTile, posJ, posK);
+        tileControllers.put(user.getUsername(), infoSet);
+
+        posJ++;
+        if (posJ % 2 == 0 && posJ != 0) {
+            posK++;
+            posJ = 0;
+        }
+    }
+
     public void loadContacts() throws IOException {
         ArrayList<User> users = userList.getUsers();
 
@@ -74,8 +95,7 @@ public class ContactsController {
         });
 
         Collections.sort(users, Comparator.comparing(User::getFullName));
-        int j = 0;
-        int k = 0;
+
         if(users != null){
 
             for (User user : users) {
@@ -83,24 +103,7 @@ public class ContactsController {
                 if (user.getUsername().equals(client.getUser().getUsername())){
                 }
                 else {
-                    FXMLLoader loader = new FXMLLoader();
-                    loader.setLocation(getClass().getResource("/views/mainPage/contacts/contactTile.fxml"));
-                    contactTile = loader.load();
-                    ContactTilesController infoSet = loader.getController();
-                    infoSet.setConvoController(convoController);
-
-
-                    infoSet.setContactInfo(user);
-                    list.add(contactTile, j, k);
-                    tileControllers.put(user.getUsername(), infoSet);
-
-                    //adding to the grid
-                    j++;
-                    if (j % 2 == 0 && j != 0) {
-                        k++;
-                        j = 0;
-                    }
-
+                   addTile(user);
                 }
             }
         }

@@ -203,10 +203,23 @@ public class Main extends Application {
                             Platform.runLater(() -> {
                                 userList.setUserBio(message.from, message.message);
                                 contactsController.updateContactTile(message.from, "avatar" ,message.message);
+                                conversationsController.updateAvatar(message);
                                 if(!conversationsController.doesConversationPaneNotExist(key)){
                                     conversationsController.getWindowController(key).updateInfo("avatar", message.message);
                                 }
 
+                            });
+                        }
+                        else if(msg.subject.equalsIgnoreCase("new_account")){
+                            System.out.println(msg.message);
+                            User new_user = gson.fromJson(msg.message, User.class);
+                            userList.addUser(new_user);
+                            Platform.runLater(() -> {
+                                try {
+                                    contactsController.addTile(new_user);
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
                             });
                         }
                         else if(msg.subject.equalsIgnoreCase("user_bio_change")){
@@ -219,6 +232,18 @@ public class Main extends Application {
                                 }
                             });
                         }
+                        else if(msg.subject.equals("user_new_post")){
+                            Post post = gson.fromJson(msg.message, Post.class);
+                            Platform.runLater(() -> {
+                                try {
+                                    System.out.println(post.getBody());
+                                    newsFeedController.addPostToFeed(post);
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+                            });
+
+                        }
                     }
                     //ALL POSTS RECEIVED ON LOGIN
                     else if(msg.subject.equals("all_posts")){
@@ -230,17 +255,6 @@ public class Main extends Application {
                                     newsFeedController.importPosts(posts);
                                     newsFeedController.floodList();
                                 }
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
-                        });
-
-                    }
-                    else if(msg.subject.equals("user_new_post")){
-                        Post post = gson.fromJson(msg.message, Post.class);
-                        Platform.runLater(() -> {
-                            try {
-                                newsFeedController.addPostToFeed(post);
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }

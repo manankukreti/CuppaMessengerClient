@@ -57,7 +57,6 @@ public class NewsFeedController {
 
         NewsFeedTileController postTileController = postLoader.getController();
         postTileController.setPostInfo(post);
-
         postVbox.getChildren().add(1,postNode);
     }
 

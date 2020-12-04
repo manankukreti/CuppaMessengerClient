@@ -32,11 +32,10 @@ public class ConversationTileController {
     public void setConversationInfo(ConversationsController convoController, String key, Conversation conversation, String title, String subtitle, String icon){
         ArrayList<String> participants = (ArrayList<String>) conversation.getParticipants();
         if (participants.size() ==2){
-            image.setImage(new Image(getClass().getResource("/avatars/" +  icon + ".png").toExternalForm()));
+            setAvatar(icon);
 
         }else{
-            image.setImage(new Image(getClass().getResource("/avatars/group.png").toExternalForm()));
-
+            setAvatar("group");
         }
         conversationName.setText(title);
         conversationPreview.setText(subtitle);
@@ -56,6 +55,10 @@ public class ConversationTileController {
             convoController.openExistingConversationPane(key);
         });
 
+    }
+
+    public void setAvatar(String i){
+        image.setImage(new Image(getClass().getResource("/avatars/" +  i + ".png").toExternalForm()));
     }
 
     public void setSubtitle(String text){

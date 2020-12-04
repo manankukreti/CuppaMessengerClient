@@ -213,6 +213,15 @@ public class ConversationsController {
         return conversationMap.containsKey(key);
     }
 
+    public void updateAvatar(Message message){
+        String key = generateKey(message);
+        ConversationTileController convo = conversationTileMap.get(key);
+        if(convo != null){
+            convo.setAvatar(message.message);
+        }
+
+    }
+
     public void addReceivedMessage(Message msg) throws IOException, NoSuchAlgorithmException, BadPaddingException, NoSuchPaddingException, IllegalBlockSizeException, InvalidKeyException {
         ArrayList<String> participants = new ArrayList<>();
         String convoName;
